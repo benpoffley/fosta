@@ -1,3 +1,9 @@
+---
+title: "AI Agent Instructions"
+nav_order: 2
+layout: default
+---
+
 # Fosta — AI Coding Agent Instructions
 
 Read this file before writing any code, suggesting any architecture, or proposing any feature change. This is the primary context document for AI coding tools working on Fosta.

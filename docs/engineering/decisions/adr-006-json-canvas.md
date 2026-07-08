@@ -1,3 +1,10 @@
+---
+title: "ADR-006: JSON Canvas"
+parent: "Decision Records"
+nav_order: 6
+layout: default
+---
+
 # ADR-006: JSON Canvas as canvas storage format
 
 **Status:** Final  

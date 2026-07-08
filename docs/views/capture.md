@@ -1,3 +1,10 @@
+---
+title: "Capture"
+parent: "Views"
+nav_order: 1
+layout: default
+---
+
 # Capture
 
 **Status:** Final  

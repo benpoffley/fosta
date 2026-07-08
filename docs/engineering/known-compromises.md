@@ -1,3 +1,10 @@
+---
+title: "Known Compromises"
+parent: "Engineering"
+nav_order: 5
+layout: default
+---
+
 # Known Compromises
 
 **Status:** Final — intentional decisions  

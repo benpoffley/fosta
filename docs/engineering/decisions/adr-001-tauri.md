@@ -1,3 +1,10 @@
+---
+title: "ADR-001: Tauri 2"
+parent: "Decision Records"
+nav_order: 1
+layout: default
+---
+
 # ADR-001: Tauri 2 as the desktop shell
 
 **Status:** Final  

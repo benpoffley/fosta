@@ -1,3 +1,10 @@
+---
+title: "File Structure"
+parent: "Build"
+nav_order: 3
+layout: default
+---
+
 # Target File Structure
 
 The intended folder structure for the Fosta application codebase.

@@ -1,3 +1,10 @@
+---
+title: "ADR-007: Offline-first"
+parent: "Decision Records"
+nav_order: 7
+layout: default
+---
+
 # ADR-007: Offline-first architecture
 
 **Status:** Final  

@@ -1,3 +1,10 @@
+---
+title: "Views"
+parent: "Product"
+nav_order: 4
+layout: default
+---
+
 # Views Overview
 
 **Status:** Decided — Final  

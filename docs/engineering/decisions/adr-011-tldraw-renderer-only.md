@@ -1,3 +1,10 @@
+---
+title: "ADR-011: tldraw renderer only"
+parent: "Decision Records"
+nav_order: 11
+layout: default
+---
+
 # ADR-011: tldraw as renderer only — never as storage
 
 **Status:** Final  

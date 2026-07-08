@@ -1,3 +1,10 @@
+---
+title: "ADR-002: Markdown source of truth"
+parent: "Decision Records"
+nav_order: 2
+layout: default
+---
+
 # ADR-002: Markdown files on disk as the source of truth
 
 **Status:** Final  

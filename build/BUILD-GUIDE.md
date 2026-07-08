@@ -1,3 +1,10 @@
+---
+title: "Build Guide"
+parent: "Build"
+nav_order: 1
+layout: default
+---
+
 # Fosta Build Guide
 
 **For:** AI coding agents (Claude Code, Cursor) and future collaborators  

@@ -1,3 +1,10 @@
+---
+title: "Global Actions"
+parent: "Foundations"
+nav_order: 1
+layout: default
+---
+
 # Global Actions
 
 **Status:** Final  

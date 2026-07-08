@@ -1,3 +1,10 @@
+---
+title: "Open Questions"
+parent: "Project"
+nav_order: 4
+layout: default
+---
+
 # Open Questions
 
 Items that are genuinely unresolved. Not deferred — actively open.

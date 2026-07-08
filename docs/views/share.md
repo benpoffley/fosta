@@ -1,3 +1,10 @@
+---
+title: "Share"
+parent: "Views"
+nav_order: 6
+layout: default
+---
+
 # Share
 
 **Status:** Decided — Final

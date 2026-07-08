@@ -1,3 +1,10 @@
+---
+title: "Quick Look"
+parent: "Foundations"
+nav_order: 2
+layout: default
+---
+
 # Quick Look
 
 **Status:** Final  

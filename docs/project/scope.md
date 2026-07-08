@@ -1,3 +1,10 @@
+---
+title: "Scope"
+parent: "Project"
+nav_order: 3
+layout: default
+---
+
 # Scope
 
 ## In scope for v1.0

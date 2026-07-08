@@ -1,3 +1,10 @@
+---
+title: "ADR-005: UUIDs"
+parent: "Decision Records"
+nav_order: 5
+layout: default
+---
+
 # ADR-005: UUIDs as stable note identity — never file paths
 
 **Status:** Final  

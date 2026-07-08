@@ -1,3 +1,10 @@
+---
+title: "Acceptance Criteria"
+parent: "Build"
+nav_order: 4
+layout: default
+---
+
 # Acceptance Criteria
 
 Definition of "done" for each major feature. A feature is not done until all criteria pass.

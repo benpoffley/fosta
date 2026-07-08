@@ -1,3 +1,10 @@
+---
+title: "ADR-003: SQLite index"
+parent: "Decision Records"
+nav_order: 3
+layout: default
+---
+
 # ADR-003: SQLite as the query and index layer
 
 **Status:** Final  

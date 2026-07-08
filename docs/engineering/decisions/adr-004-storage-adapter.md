@@ -1,3 +1,10 @@
+---
+title: "ADR-004: Storage adapter"
+parent: "Decision Records"
+nav_order: 4
+layout: default
+---
+
 # ADR-004: Storage adapter pattern
 
 **Status:** Final  

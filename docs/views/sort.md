@@ -1,3 +1,10 @@
+---
+title: "Sort / Curate"
+parent: "Views"
+nav_order: 3
+layout: default
+---
+
 # Sort / Curate
 
 **Status:** Decided  

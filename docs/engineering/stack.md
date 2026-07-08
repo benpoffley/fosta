@@ -1,3 +1,10 @@
+---
+title: "Stack"
+parent: "Engineering"
+nav_order: 1
+layout: default
+---
+
 # Stack
 
 **Status:** Final — do not suggest alternatives

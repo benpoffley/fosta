@@ -1,3 +1,10 @@
+---
+title: "Changelog"
+parent: "Project"
+nav_order: 6
+layout: default
+---
+
 # Changelog
 
 Documentation milestones. Records meaningful changes — not every wording edit.

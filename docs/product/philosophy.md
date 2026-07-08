@@ -1,3 +1,10 @@
+---
+title: "Philosophy"
+parent: "Product"
+nav_order: 2
+layout: default
+---
+
 # Product Philosophy
 
 **Status:** Decided — Final

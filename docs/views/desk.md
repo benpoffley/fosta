@@ -1,3 +1,10 @@
+---
+title: "Desk / Base"
+parent: "Views"
+nav_order: 2
+layout: default
+---
+
 # Desk / Base
 
 **Status:** Decided  

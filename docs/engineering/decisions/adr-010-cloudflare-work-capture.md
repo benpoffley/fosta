@@ -1,3 +1,10 @@
+---
+title: "ADR-010: Cloudflare work capture"
+parent: "Decision Records"
+nav_order: 10
+layout: default
+---
+
 # ADR-010: Cloudflare work-capture architecture
 
 **Status:** Final for v1  

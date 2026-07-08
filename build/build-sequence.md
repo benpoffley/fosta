@@ -1,3 +1,10 @@
+---
+title: "Build Sequence"
+parent: "Build"
+nav_order: 2
+layout: default
+---
+
 # Build Sequence
 
 **Principle:** Build phase by phase. Each phase must be working and in daily use before the next begins.

@@ -1,3 +1,10 @@
+---
+title: "ADR-009: References not copies"
+parent: "Decision Records"
+nav_order: 9
+layout: default
+---
+
 # ADR-009: References not copies
 
 **Status:** Final  

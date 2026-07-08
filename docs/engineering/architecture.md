@@ -1,3 +1,10 @@
+---
+title: "Architecture"
+parent: "Engineering"
+nav_order: 2
+layout: default
+---
+
 # Architecture Principles
 
 **Status:** Final — non-negotiable

@@ -1,3 +1,10 @@
+---
+title: "Current Development"
+parent: "Project"
+nav_order: 1
+layout: default
+---
+
 # Current Development
 
 **Status:** Updated regularly — lowest authority section  

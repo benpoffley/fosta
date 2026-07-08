@@ -1,3 +1,10 @@
+---
+title: "Data Model"
+parent: "Engineering"
+nav_order: 3
+layout: default
+---
+
 # Data Model
 
 **Status:** Final

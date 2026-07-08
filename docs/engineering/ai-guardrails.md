@@ -1,3 +1,10 @@
+---
+title: "AI Guardrails"
+parent: "Engineering"
+nav_order: 4
+layout: default
+---
+
 # AI Guardrails
 
 **Status:** Final — Non-negotiable  

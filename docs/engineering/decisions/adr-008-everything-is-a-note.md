@@ -1,3 +1,10 @@
+---
+title: "ADR-008: Everything is a note"
+parent: "Decision Records"
+nav_order: 8
+layout: default
+---
+
 # ADR-008: Everything is a note — single object type
 
 **Status:** Final  

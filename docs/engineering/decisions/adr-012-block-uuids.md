@@ -1,3 +1,10 @@
+---
+title: "ADR-012: Block UUIDs"
+parent: "Decision Records"
+nav_order: 12
+layout: default
+---
+
 # ADR-012: Block UUIDs are permanent anchors
 
 **Status:** Final  

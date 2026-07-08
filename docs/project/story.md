@@ -1,3 +1,10 @@
+---
+title: "Story"
+parent: "Project"
+nav_order: 5
+layout: default
+---
+
 # Story
 
 A log of how Fosta was built — decisions made, problems solved, things learned. Most recent first.
