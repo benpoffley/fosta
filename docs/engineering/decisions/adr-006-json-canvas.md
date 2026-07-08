@@ -1,6 +1,7 @@
 ---
 title: "ADR-006: JSON Canvas"
 parent: "Decision Records"
+grand_parent: "Engineering"
 nav_order: 6
 layout: default
 ---

@@ -1,6 +1,7 @@
 ---
 title: "ADR-001: Tauri 2"
 parent: "Decision Records"
+grand_parent: "Engineering"
 nav_order: 1
 layout: default
 ---

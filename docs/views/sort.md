@@ -1,5 +1,5 @@
 ---
-title: "Sort / Curate"
+title: "Sort"
 parent: "Views"
 nav_order: 3
 layout: default

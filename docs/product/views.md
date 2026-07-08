@@ -1,5 +1,5 @@
 ---
-title: "Views"
+title: "Views Overview"
 parent: "Product"
 nav_order: 4
 layout: default

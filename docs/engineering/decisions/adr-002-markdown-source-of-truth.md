@@ -1,6 +1,7 @@
 ---
 title: "ADR-002: Markdown source of truth"
 parent: "Decision Records"
+grand_parent: "Engineering"
 nav_order: 2
 layout: default
 ---

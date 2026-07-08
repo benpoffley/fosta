@@ -1,6 +1,7 @@
 ---
 title: "ADR-003: SQLite index"
 parent: "Decision Records"
+grand_parent: "Engineering"
 nav_order: 3
 layout: default
 ---

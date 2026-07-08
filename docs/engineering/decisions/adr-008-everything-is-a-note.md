@@ -1,6 +1,7 @@
 ---
 title: "ADR-008: Everything is a note"
 parent: "Decision Records"
+grand_parent: "Engineering"
 nav_order: 8
 layout: default
 ---

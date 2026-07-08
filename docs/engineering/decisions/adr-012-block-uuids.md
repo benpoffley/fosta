@@ -1,6 +1,7 @@
 ---
 title: "ADR-012: Block UUIDs"
 parent: "Decision Records"
+grand_parent: "Engineering"
 nav_order: 12
 layout: default
 ---

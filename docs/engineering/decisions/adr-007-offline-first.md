@@ -1,6 +1,7 @@
 ---
 title: "ADR-007: Offline-first"
 parent: "Decision Records"
+grand_parent: "Engineering"
 nav_order: 7
 layout: default
 ---

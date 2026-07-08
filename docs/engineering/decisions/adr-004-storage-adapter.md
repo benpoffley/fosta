@@ -1,6 +1,7 @@
 ---
 title: "ADR-004: Storage adapter"
 parent: "Decision Records"
+grand_parent: "Engineering"
 nav_order: 4
 layout: default
 ---
