@@ -1,9 +1,3 @@
----
-title: "Home"
-nav_order: 1
-layout: default
----
-
 # Fosta
 
 > The non-linear editor for thought. A studio for your ideas.
