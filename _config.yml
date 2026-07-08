@@ -1,22 +1,19 @@
 title: Fosta Wiki
 description: Product constitution, architecture, and build documentation for Fosta
-theme: just-the-docs
+remote_theme: just-the-docs/just-the-docs
 
 url: "https://benpoffley.github.io"
 baseurl: "/fosta"
 
-# Navigation order
+color_scheme: dark
+search_enabled: true
 nav_sort: case_sensitive
 
-# Footer
 footer_content: "Fosta — fosta.studio"
-
-# Enable search
-search_enabled: true
-
-# Colour scheme — dark feels right for this product
-color_scheme: dark
 
 aux_links:
   "GitHub":
     - "https://github.com/benpoffley/fosta"
+
+plugins:
+  - jekyll-remote-theme
