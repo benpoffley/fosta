@@ -27,6 +27,11 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 - Established Quick Look as canonical term (supersedes "expanded capture card")
 - Documented canvas node two-state model (compact / expanded live preview)
 - Settled interaction model: single click selects, double click opens Quick Look
+- Track: Linear → Line, Spatial → Web; Thread added (vertical scroll, no canvas/connections/annotations, read-only v1)
+- Track population model formalised: Manual vs Live (AND-only tag combination), Create-new pre-tagging, Live tracks skip Inbox
+- File navigator in Track scoped to Manual tracks only
+- Known Compromises: Web mode renamed from Spatial, Thread inline editing added as v1.1 candidate
+- Future Ideas page added — Line/Thread zoom model exploration documented for post-v1
 - Updated Desk, Layer, Capture docs to reflect new interaction model
 - Restructured nav: Product / Market / Engineering / Foundations / Views / Project
 

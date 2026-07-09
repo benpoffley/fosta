@@ -28,7 +28,8 @@ These are not bugs. They are deliberate decisions that accept a known limitation
 | Backlinks are manual only | Auto backlink indexing requires continuous background scanning. Manual wikilinks give explicit control. | AI auto-backlinks v2+ |
 | Tags are flat — no hierarchy | Tag hierarchy adds schema, UI, and query complexity without proportional value for v1. | Evaluate post-v1 |
 | Track connections are visual-only | Relationship data structures are out of scope. Visual-only connections allow spatial canvas without graph infrastructure. | Not planned |
-| Track Spatial mode: manual population only | Auto-layout algorithm for node placement is out of scope for v1. | v2 consideration |
+| Track Web mode: manual population only | Auto-layout algorithm for node placement is out of scope for v1 (formerly called Spatial mode). | v2 consideration |
+| Track Thread mode: read-only in v1 | Inline editing would require live editor instances per note in the scroll stack, not just static rendered content — a materially bigger build. | v1.1 candidate |
 | Sort inbox interaction model not finalised | Drag-to-tag model still being designed. Deferring prevents building interactions that need rebuilding. | Sort hi-fi design phase |
 | Split view in Layer deferred | Multiple editor instances with independent state adds significant React complexity. | v1.1 |
 | No tag templates | Insufficient value to justify v1 scope. | Evaluate post-v1 |

@@ -36,7 +36,7 @@ Sends a note or Track canvas to the Desk scratchpad as a reference node.
 
 Hovering any tag, anywhere it renders — Sort's tag bubbles, inline tag chips in Layer's metadata row, block-level tags — surfaces a "Create Track" action.
 
-Opens Track's creation modal pre-filled with that tag as the population criteria. The user can adjust before confirming.
+Opens Track's creation modal pre-filled with the hovered tag as the first tag in a Live population combination. The user can add further tags to the combination, choose the layout (Line or Thread — the two layouts that support Live population), or switch to Manual before confirming.
 
 ### UI behaviour
 

@@ -11,6 +11,21 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Track gains a third layout mode — Line, Web, Thread — plus population model finalised
+**Week 2, 2026 · Milestone**
+
+Track's two modes (Linear, Spatial) renamed to Line and Web, and a third layout — Thread — added: full note content stacked vertically and scrollable, sharing Line's population/sort logic but with no canvas rendering, no connections, and no annotations. Read-only in v1; inline editing deferred to v1.1.
+
+The population model was formalised across all three layouts: every Track is Manual or Live. Live tracks are driven by a fixed, AND-only combination of tags set at creation — a note appears if and only if it carries every tag in the combination. Live tracks have no "+ add" action and no file navigator; the only item-creation action is "Create new," which pre-tags a new note with the Track's full combination. Because the note is born fully tagged, it skips Inbox (a display consequence, not a change to file routing). Switching a Live track to Manual is one-way, freezing its membership.
+
+File navigator visibility was scoped to Manual tracks only (any layout) — a deliberate reversal of the original "no navigator in Track" rule, kept narrow: Live tracks retain the original constraint, avoiding the ambiguity a drag-and-drop add would create against an automatic population rule.
+
+Thread storage was decided as JSON Canvas on disk (same format as Line and Web), with tldraw not invoked for rendering — the scroll UI reads the node list directly. This keeps one storage model for all three Track layouts.
+
+A zoom-model alternative was explored (Line and Thread as one view at different zoom levels) and consciously deferred to post-v1 — see Future Ideas.
+
+---
+
 ## Global Actions and Quick Look established as Foundations-level patterns
 **Week 2, 2026 · Milestone**
 
