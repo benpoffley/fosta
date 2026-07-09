@@ -1,7 +1,7 @@
 ---
 title: "Desk / Base"
 parent: "Views"
-nav_order: 2
+nav_order: 1
 layout: default
 ---
 

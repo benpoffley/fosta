@@ -8,3 +8,5 @@ layout: default
 # Foundations
 
 Global capabilities available across all views — not scoped to any single view.
+
+Foundations are: **Capture**, **Global Actions**, and **Quick Look**.

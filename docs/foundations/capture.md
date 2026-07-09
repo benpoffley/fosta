@@ -1,6 +1,6 @@
 ---
 title: "Capture"
-parent: "Views"
+parent: "Foundations"
 nav_order: 1
 layout: default
 ---

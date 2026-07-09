@@ -21,7 +21,7 @@ Fosta has five views accessible from the persistent bottom toolbar, plus one glo
 | Layer / Work / Develop | TBD: Layer, Work, or Develop | Deep writing and editing |
 | Track | Final | Timeline and relationship tool |
 | Share | Final | Composition and publishing |
-| Capture | Final (not a tab) | Global intake action |
+| Capture | Final (not a tab) | Global intake action — documented under Foundations, not Views |
 
 ## Naming decisions — deferred
 
