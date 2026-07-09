@@ -324,3 +324,30 @@ hr {
 ::-webkit-scrollbar-track { background: #0E0C0B; }
 ::-webkit-scrollbar-thumb { background: #302825; border-radius: 2px; }
 ::-webkit-scrollbar-thumb:hover { background: #443C38; }
+
+// ---- MOBILE MENU BUTTON ----
+.nav-open-btn,
+.navigation-list-toggle,
+button.nav-trigger,
+.menu-icon,
+.menu-icon::before,
+.menu-icon::after {
+  color: #7AAF8A !important;
+  fill: #7AAF8A !important;
+  stroke: #7AAF8A !important;
+}
+
+// just-the-docs hamburger uses SVG lines
+.nav-trigger-btn {
+  color: #7AAF8A !important;
+}
+
+// Override any blue focus rings
+*:focus {
+  outline-color: #7AAF8A !important;
+}
+
+// Mobile header background
+.site-header .nav-trigger {
+  color: #7AAF8A !important;
+}
