@@ -351,3 +351,46 @@ button.nav-trigger,
 .site-header .nav-trigger {
   color: #7AAF8A !important;
 }
+
+// ---- HAMBURGER / MOBILE MENU ----
+// just-the-docs draws the hamburger using box-shadow on a pseudo-element
+// tied to the theme link colour — must override at the element level
+
+.site-button {
+  color: #7AAF8A !important;
+  fill: #7AAF8A !important;
+}
+
+// The three bars are drawn via box-shadow on span inside the button
+.nav-open-btn span,
+.nav-open-btn span::before,
+.nav-open-btn span::after {
+  background-color: #7AAF8A !important;
+}
+
+// SVG icons in the header (search, menu etc.)
+.site-header svg,
+.site-header button svg {
+  fill: #7AAF8A !important;
+  color: #7AAF8A !important;
+}
+
+// Force all button colours in header
+.site-header button {
+  color: #7AAF8A !important;
+}
+
+// Override the theme's $link-color usage in buttons
+button.btn,
+.btn {
+  color: #7AAF8A !important;
+  border-color: #7AAF8A !important;
+}
+
+// just-the-docs v0.10 uses .navigation-list-toggle
+.navigation-list-toggle {
+  color: #7AAF8A !important;
+  background: none !important;
+  
+  svg { fill: #7AAF8A !important; }
+}
