@@ -73,7 +73,7 @@ One-way. Freezes current membership — notes in the Track at conversion become 
 
 ### Note-reference nodes
 
-UUID pointer to a note. On Line and Web, supports the two-state model (compact card / expanded live preview) — see `desk.md`, identical here. On Thread, rendered as full note content in a scroll, not a card.
+UUID pointer to a note. On Line and Web, supports the two-state model (compact card / expanded live preview) — see [Canvas Nodes](../foundations/canvas-nodes.md) for the full model. On Thread, rendered as full note content in a scroll, not a card.
 
 ### Annotation nodes (Line and Web only)
 

@@ -63,13 +63,7 @@ Clicking a wikilink inside a note open in Quick Look opens the linked note withi
 
 ## Canvas node two-state model
 
-Note-reference and canvas-reference nodes on any canvas (Desk or Track) exist in two states:
-
-**Compact** — small card showing title only, acts as a quick link.
-
-**Expanded live preview** — drag a corner handle past a size threshold; node snaps into live content preview (note body or Track canvas) that adapts continuously as you resize. The snap threshold creates a deliberate mode change, not a gradual degradation.
-
-Applies consistently across Desk and Track canvases, for both node types.
+Canvas nodes exist in compact and expanded live preview states — double-clicking either state opens Quick Look. See [Canvas Nodes](canvas-nodes.md) for the full node model and interaction pattern.
 
 ## Share — explicitly excluded
 

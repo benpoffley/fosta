@@ -9,4 +9,4 @@ layout: default
 
 Global capabilities available across all views — not scoped to any single view.
 
-Foundations are: **Capture**, **Global Actions**, and **Quick Look**.
+Foundations are: **Capture**, **Global Actions**, **Quick Look**, and **Canvas Nodes**.

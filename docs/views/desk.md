@@ -34,17 +34,9 @@ A UUID card pointing at a real note in the library. Created by:
 ### Canvas-reference nodes
 A UUID pointer to a Track canvas file. Renders a live, read-only preview of that Track canvas using tldraw. Not editable from Desk.
 
-## Canvas node two-state model
+## Canvas node model
 
-Both note-reference and canvas-reference nodes exist in two states:
-
-| State | Appearance | Trigger |
-|---|---|---|
-| Compact | Small card showing title only — acts as a quick link | Default |
-| Expanded live preview | Full content preview that adapts as you resize | Drag corner handle past size threshold — snaps into live content mode |
-
-The snap threshold creates a deliberate mode change, not a gradual degradation. Applies consistently across Desk and Track canvases.
-
+Node types, two-state behaviour (compact card / expanded live preview), and interaction patterns are documented in [Canvas Nodes](../foundations/canvas-nodes.md) — the full model applies here.
 ## Interaction model
 
 | Action | Result |
