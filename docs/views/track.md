@@ -103,7 +103,7 @@ Line and Web canvases stored as JSON Canvas format, rendered by tldraw. Thread u
 
 ## Reference wireframe
 
-![track wireframe]({{ site.baseurl }}/assets/wireframes/track.svg)
+<img src="/fosta/assets/wireframes/track.svg" alt="track wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
 *Reference wireframe — Linear vs Spatial layout modes. Annotations anchored to nodes or connections. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
 

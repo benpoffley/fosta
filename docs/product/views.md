@@ -50,19 +50,19 @@ Notes enter via Capture, get processed in Sort, developed in Layer, sequenced in
 Early sketches of all five views and Capture, recreated from hand drawings (June 2026). Reference only — not final UI.
 
 ### Desk / Base
-![desk wireframe]({{ site.baseurl }}/assets/wireframes/desk.svg)
+<img src="/fosta/assets/wireframes/desk.svg" alt="Desk wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
 ### Capture
-![capture wireframe]({{ site.baseurl }}/assets/wireframes/capture.svg)
+<img src="/fosta/assets/wireframes/capture.svg" alt="Capture wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
 ### Sort
-![sort wireframe]({{ site.baseurl }}/assets/wireframes/sort.svg)
+<img src="/fosta/assets/wireframes/sort.svg" alt="Sort wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
 ### Layer
-![layer wireframe]({{ site.baseurl }}/assets/wireframes/layer.svg)
+<img src="/fosta/assets/wireframes/layer.svg" alt="Layer wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
 ### Track
-![track wireframe]({{ site.baseurl }}/assets/wireframes/track.svg)
+<img src="/fosta/assets/wireframes/track.svg" alt="Track wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
 ### Share
-![share wireframe]({{ site.baseurl }}/assets/wireframes/share.svg)
+<img src="/fosta/assets/wireframes/share.svg" alt="Share wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">

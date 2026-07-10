@@ -78,7 +78,7 @@ Single-click opens a note in the middle preview pane. Double-click does nothing.
 
 ## Reference wireframe
 
-![share wireframe]({{ site.baseurl }}/assets/wireframes/share.svg)
+<img src="/fosta/assets/wireframes/share.svg" alt="share wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
 *Reference wireframe — three-pane layout with file navigator, preview pane, and Share note. Drag-to-quote shown mid-gesture. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
 

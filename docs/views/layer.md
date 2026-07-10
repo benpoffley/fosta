@@ -72,7 +72,7 @@ Deferred to v1.1.
 
 ## Reference wireframe
 
-![layer wireframe]({{ site.baseurl }}/assets/wireframes/layer.svg)
+<img src="/fosta/assets/wireframes/layer.svg" alt="layer wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
 *Reference wireframe — three-panel editor with file navigator, block-typed editor, and layers panel. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
 

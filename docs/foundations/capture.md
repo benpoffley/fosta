@@ -45,7 +45,7 @@ The capture flow ends in the Quick Look modal (note variant). This is not a sepa
 
 ## Reference wireframe
 
-![capture wireframe]({{ site.baseurl }}/assets/wireframes/capture.svg)
+<img src="/fosta/assets/wireframes/capture.svg" alt="capture wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
 *Reference wireframe — quick capture state flow from idle through collapsed and expanded to Quick Look modal. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
 

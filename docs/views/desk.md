@@ -71,7 +71,7 @@ Desk canvas stored as JSON Canvas format. See ADR-006.
 
 ## Reference wireframe
 
-![desk wireframe]({{ site.baseurl }}/assets/wireframes/desk.svg)
+<img src="/fosta/assets/wireframes/desk.svg" alt="desk wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
 *Reference wireframe — scratchpad canvas with freeform nodes, note-reference UUID cards, timer pill, and persistent capture bar. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
 

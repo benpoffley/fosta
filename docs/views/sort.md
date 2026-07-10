@@ -50,7 +50,7 @@ This is a Global Action — it works on any tag anywhere it's rendered, not just
 
 ## Reference wireframe
 
-![sort wireframe]({{ site.baseurl }}/assets/wireframes/sort.svg)
+<img src="/fosta/assets/wireframes/sort.svg" alt="sort wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
 *Reference wireframe — inbox grid and tag-frequency bubbles. Larger bubble = more notes carrying that tag. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
 
