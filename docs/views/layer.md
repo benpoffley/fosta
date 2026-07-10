@@ -69,3 +69,10 @@ Deferred to v1.1.
 ## Add to Desk
 
 "Add to Desk" is available as a direct button in the Layer editor (not buried in overflow). See `../foundations/global-actions.md`.
+
+## Reference wireframe
+
+![layer wireframe]({{ site.baseurl }}/assets/wireframes/layer.svg)
+
+*Reference wireframe — three-panel editor with file navigator, block-typed editor, and layers panel. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
+

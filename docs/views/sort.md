@@ -47,3 +47,10 @@ This is a Global Action — it works on any tag anywhere it's rendered, not just
 
 - Tag templates — explicitly out of v1 scope
 - Tag co-occurrence connection lines — downgraded to "maybe later," value unproven
+
+## Reference wireframe
+
+![sort wireframe]({{ site.baseurl }}/assets/wireframes/sort.svg)
+
+*Reference wireframe — inbox grid and tag-frequency bubbles. Larger bubble = more notes carrying that tag. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
+

@@ -1,7 +1,7 @@
 ---
 title: "Future Ideas"
 parent: "Project"
-nav_order: 9
+nav_order: 7
 layout: default
 ---
 

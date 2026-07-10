@@ -100,3 +100,10 @@ All nodes are read-only previews. No inline editing in any mode in v1.
 ## Canvas storage
 
 Line and Web canvases stored as JSON Canvas format, rendered by tldraw. Thread uses the same JSON Canvas format on disk but tldraw is not invoked — the scroll UI reads the node list directly. See ADR-006, ADR-011.
+
+## Reference wireframe
+
+![track wireframe]({{ site.baseurl }}/assets/wireframes/track.svg)
+
+*Reference wireframe — Linear vs Spatial layout modes. Annotations anchored to nodes or connections. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
+

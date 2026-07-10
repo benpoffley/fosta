@@ -68,3 +68,10 @@ SQLite indexes archives — visible in Sort with "scratchpad archive" label.
 ## Canvas storage
 
 Desk canvas stored as JSON Canvas format. See ADR-006.
+
+## Reference wireframe
+
+![desk wireframe]({{ site.baseurl }}/assets/wireframes/desk.svg)
+
+*Reference wireframe — scratchpad canvas with freeform nodes, note-reference UUID cards, timer pill, and persistent capture bar. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
+

@@ -42,3 +42,10 @@ On Desk, the capture bar sits persistently at the bottom of the canvas. The + bu
 ## The Capture / Quick Look connection
 
 The capture flow ends in the Quick Look modal (note variant). This is not a separate component — it is Quick Look. The full editing surface, autosave via `saveNote()`, and "Open in Layer" escape hatch are all inherited from Quick Look.
+
+## Reference wireframe
+
+![capture wireframe]({{ site.baseurl }}/assets/wireframes/capture.svg)
+
+*Reference wireframe — quick capture state flow from idle through collapsed and expanded to Quick Look modal. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
+

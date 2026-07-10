@@ -75,3 +75,10 @@ Quick Look is not available in Share. The middle preview pane already serves thi
 ## File navigator (left panel)
 
 Single-click opens a note in the middle preview pane. Double-click does nothing. Identical behaviour to Layer's file navigator but opens to preview pane instead of editor.
+
+## Reference wireframe
+
+![share wireframe]({{ site.baseurl }}/assets/wireframes/share.svg)
+
+*Reference wireframe — three-pane layout with file navigator, preview pane, and Share note. Drag-to-quote shown mid-gesture. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
+

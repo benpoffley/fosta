@@ -44,3 +44,25 @@ Inbox/
 ```
 
 Notes enter via Capture, get processed in Sort, developed in Layer, sequenced in Track, and published via Share. This is the intended flow — but users can move through views in any order.
+
+## Reference wireframes
+
+Early sketches of all five views and Capture, recreated from hand drawings (June 2026). Reference only — not final UI.
+
+### Desk / Base
+![desk wireframe]({{ site.baseurl }}/assets/wireframes/desk.svg)
+
+### Capture
+![capture wireframe]({{ site.baseurl }}/assets/wireframes/capture.svg)
+
+### Sort
+![sort wireframe]({{ site.baseurl }}/assets/wireframes/sort.svg)
+
+### Layer
+![layer wireframe]({{ site.baseurl }}/assets/wireframes/layer.svg)
+
+### Track
+![track wireframe]({{ site.baseurl }}/assets/wireframes/track.svg)
+
+### Share
+![share wireframe]({{ site.baseurl }}/assets/wireframes/share.svg)
