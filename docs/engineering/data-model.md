@@ -104,54 +104,10 @@ Node types: `freeform`, `note-reference`, `canvas-reference`.
 Node states: `compact` (title card), `expanded` (live preview).
 
 
+
 ## Track canvas files
 
-Track canvases (Line, Web, and Thread) all use the same JSON Canvas format on disk, extended with two additional top-level fields:
-
-```json
-{
-  "layout": "line",
-  "population": {
-    "mode": "live",
-    "tags": ["research", "documentary"],
-    "sort": "created"
-  },
-  "nodes": [
-    {
-      "id": "node-uuid",
-      "type": "note-reference",
-      "noteId": "550e8400-e29b-41d4-a716-446655440000",
-      "x": 100,
-      "y": 200,
-      "state": "compact"
-    },
-    {
-      "id": "annotation-uuid",
-      "type": "annotation",
-      "anchorType": "node",
-      "anchorId": "node-uuid",
-      "text": "Revisit this after the shoot"
-    }
-  ],
-  "connections": [
-    {
-      "id": "connection-uuid",
-      "from": "node-uuid-a",
-      "to": "node-uuid-b"
-    }
-  ]
-}
-```
-
-- `layout`: `"line"`, `"web"`, or `"thread"` — set at creation, cannot change after
-- `population.mode`: `"manual"` or `"live"`
-- `population.tags`: present only when `mode: "live"` — fixed array, ANDed together
-- `population.sort`: `"created"` or `"modified"` — present on `line` and `thread` (Web has no sort axis)
-- `connections`: always exactly two node IDs (`from`/`to`). Web canvases may have `connections: []`
-- Node type `annotation`: anchors via `anchorType` (`"node"` or `"connection"`) + `anchorId`. Never present without an anchor. Not valid on Thread.
-- These are Fosta-specific extensions to the JSON Canvas spec. The spec allows extension fields — these do not conflict with the standard.
-
-**Thread rendering note:** Thread uses the same JSON Canvas file as Line and Web, including `x`/`y` position fields on nodes. tldraw is not invoked to render Thread — the scroll UI reads the node list directly and ignores position fields. This keeps one storage model for all three Track layouts.
+Track canvases extend the standard JSON Canvas format with `layout`, `population`, `connections`, and `annotation` fields. Full schema in [Track](../views/track.md#canvas-storage).
 
 ## SQLite schema (index layer)
 

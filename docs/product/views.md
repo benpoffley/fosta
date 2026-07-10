@@ -47,22 +47,4 @@ Notes enter via Capture, get processed in Sort, developed in Layer, sequenced in
 
 ## Reference wireframes
 
-Early sketches of all five views and Capture, recreated from hand drawings (June 2026). Reference only — not final UI.
-
-### Desk / Base
-<img src="/fosta/assets/wireframes/desk.svg" alt="Desk wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
-
-### Capture
-<img src="/fosta/assets/wireframes/capture.svg" alt="Capture wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
-
-### Sort
-<img src="/fosta/assets/wireframes/sort.svg" alt="Sort wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
-
-### Layer
-<img src="/fosta/assets/wireframes/layer.svg" alt="Layer wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
-
-### Track
-<img src="/fosta/assets/wireframes/track.svg" alt="Track wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
-
-### Share
-<img src="/fosta/assets/wireframes/share.svg" alt="Share wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
+Each view page includes its own reference wireframe — see the individual pages under Views in detail.

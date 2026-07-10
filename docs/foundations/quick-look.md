@@ -49,17 +49,11 @@ Clicking a wikilink inside a note open in Quick Look opens the linked note withi
 - Session-only navigation stack — cleared when the modal is closed
 - Stack is shallow — not persisted between Quick Look sessions
 
-## Interaction model
+## How Quick Look is triggered
 
-| Context | Single click | Double click |
-|---|---|---|
-| Canvas node — compact card (Desk or Track) | Selects the node | Opens Quick Look |
-| Canvas node header — expanded live preview | Selects the frame | Opens Quick Look |
-| Canvas node overflow menu (⋯) | — | "Open in Quick Look" / "Open in Layer or Track" |
-| Layer file navigator | Opens note in editor directly | — |
-| Share file navigator | Opens note in preview pane directly | — |
-| Wikilink within a note or Quick Look | Opens linked note in Quick Look (back stack) | — |
-| Sort inbox grid | TBD — deferred | TBD — deferred |
+Quick Look is opened by double-clicking any canvas node (compact or expanded) on Desk or Track, or by clicking a wikilink within a note. The full interaction model — including single click, double click, and overflow menu behaviour across all contexts — is documented in [Canvas Nodes](canvas-nodes.md).
+
+**File navigators** (Layer and Share) open directly without Quick Look — single click opens the note in the editor or preview pane respectively.
 
 ## Canvas node two-state model
 

@@ -9,56 +9,19 @@ layout: default
 
 **Status:** Final — non-negotiable
 
-These nine principles govern every engineering decision in Fosta. See `decisions/` for full ADRs with context and rationale.
+Nine principles govern every engineering decision in Fosta. Each links to its full ADR with context, rationale, and why it should not be casually revisited.
 
-## The nine principles
-
-### 1. Storage adapter pattern (ADR-004)
-All application code interacts with storage through a `StorageAdapter` interface. Never call filesystem APIs directly.
-
-```typescript
-interface StorageAdapter {
-  listNotes(): Promise<NoteMetadata[]>
-  getNote(id: string): Promise<Note>
-  saveNote(id: string, content: string): Promise<void>
-  deleteNote(id: string): Promise<void>
-  watchForChanges(callback: (id: string) => void): Promise<void>
-}
-```
-
-`LocalFilesAdapter` is the v1 implementation. v2 backends (Google Drive, iCloud) implement the same interface without touching application code.
-
-### 2. UUIDs as stable identity (ADR-005)
-Every note has a UUID in YAML frontmatter. All references use UUID. File paths are incidental.
-
-```yaml
-id: 550e8400-e29b-41d4-a716-446655440000
-```
-
-### 3. Everything is a note (ADR-008)
-Comments, quotes, share documents — all are notes with different frontmatter. No parallel object types. Type is expressed as a `type` field: `comment`, `quote`, `share`. Standard notes have no type field.
-
-### 4. References not copies (ADR-009)
-Notes in Track, Share, or Desk are UUID references to originals. Never duplicate content. Deleted source → warning, not silent break.
-
-### 5. Async everywhere
-Every storage call is async/await. No exceptions.
-
-### 6. Offline-first (ADR-007)
-Core functionality works without internet. Cloudflare is work-access only — not in the critical path.
-
-### 7. YAML frontmatter on every note (ADR-002)
-Required fields: `id`, `created`, `modified`, `tags`. OS file dates are unreliable.
-
-### 8. Block UUIDs are permanent (ADR-012)
-Every Tiptap block gets a UUID at creation, serialised as an HTML comment. Never regenerated. Block comment anchors and transclusion anchors depend on this.
-
-```markdown
-This is a paragraph. <!-- id: 550e8400 -->
-```
-
-### 9. JSON Canvas for canvases (ADR-006, ADR-011)
-Canvas files stored as JSON Canvas format. tldraw is the renderer only — its internal format never written to disk.
+| # | Principle | Summary | ADR |
+|---|---|---|---|
+| 1 | Storage adapter pattern | All storage through `StorageAdapter` — never call filesystem APIs directly | [ADR-004](decisions/adr-004-storage-adapter.md) |
+| 2 | UUIDs as stable identity | Every note has a UUID; all references use UUID; file paths are incidental | [ADR-005](decisions/adr-005-uuids.md) |
+| 3 | Everything is a note | Comments, quotes, share docs — all notes with different frontmatter; no parallel object types | [ADR-008](decisions/adr-008-everything-is-a-note.md) |
+| 4 | References not copies | Notes in Track, Share, Desk are UUID references to originals; content never duplicated | [ADR-009](decisions/adr-009-references-not-copies.md) |
+| 5 | Async everywhere | Every storage call is async/await; no exceptions | — |
+| 6 | Offline-first | Core functionality works without internet; Cloudflare is work-access only | [ADR-007](decisions/adr-007-offline-first.md) |
+| 7 | YAML frontmatter required | Every note needs `id`, `created`, `modified`, `tags`; OS file dates are unreliable | [ADR-002](decisions/adr-002-markdown-source-of-truth.md) |
+| 8 | Block UUIDs permanent | Every Tiptap block gets a UUID at creation, serialised as HTML comment; never regenerated | [ADR-012](decisions/adr-012-block-uuids.md) |
+| 9 | JSON Canvas for canvases | Canvas files stored as JSON Canvas; tldraw renders only, never stores | [ADR-006](decisions/adr-006-json-canvas.md), [ADR-011](decisions/adr-011-tldraw-renderer-only.md) |
 
 ## Data flow
 
@@ -72,16 +35,4 @@ Markdown files (source of truth)
 Markdown files (source of truth)
 ```
 
-## The StorageAdapter pattern in practice
-
-```
-Application code
-      ↓
-StorageAdapter interface
-      ↓
-LocalFilesAdapter (v1)     ←→     Markdown files on disk
-                                        ↕
-                                   SQLite index
-```
-
-Never shortcut through to the filesystem. The adapter is what makes v2 backends possible without touching application logic.
+SQLite is always rebuildable from the Markdown files. If the index is lost or corrupted, re-scan the vault. Never treat SQLite as the source of truth.

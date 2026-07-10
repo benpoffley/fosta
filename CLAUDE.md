@@ -60,44 +60,13 @@ ALWAYS check ADRs before suggesting structural changes
 
 ## Key architectural patterns
 
-### StorageAdapter interface
-All storage goes through this interface — never call Tauri filesystem APIs directly:
-```typescript
-interface StorageAdapter {
-  listNotes(): Promise<NoteMetadata[]>
-  getNote(id: string): Promise<Note>
-  saveNote(id: string, content: string): Promise<void>
-  deleteNote(id: string): Promise<void>
-  watchForChanges(callback: (id: string) => void): Promise<void>
-}
-```
+Full schemas and code examples are in `docs/engineering/data-model.md`. Summaries:
 
-### Note frontmatter (required fields)
-```yaml
----
-id: 550e8400-e29b-41d4-a716-446655440000
-created: 2026-04-24T10:30:00Z
-modified: 2026-04-24T10:30:00Z
-tags: []
----
-```
-
-### Block UUID serialisation
-Every Tiptap block has a stable UUID as an HTML comment — never regenerate:
-```markdown
-This is a paragraph. <!-- id: 550e8400 -->
-```
-
-### Wikilink syntax
-```markdown
-[[display-name|uuid]]
-```
-
-### Note types (via frontmatter)
-- Standard note: no type field
-- Comment: `type: comment`, `parentNote: <uuid>`, `parentBlock: <uuid>`
-- Quote/transclusion: `type: quote`, `sourceNoteId: <uuid>`
-- Share document: `type: share`, `published: true/false`
+- **StorageAdapter** — all storage through this interface, never Tauri filesystem APIs directly. Methods: `listNotes()`, `getNote(id)`, `saveNote(id, content)`, `deleteNote(id)`, `watchForChanges(callback)`.
+- **Note frontmatter** — every note requires `id` (UUID), `created`, `modified`, `tags` in YAML frontmatter.
+- **Block UUIDs** — every Tiptap block has a stable UUID serialised as an HTML comment `<!-- id: uuid -->`. Never regenerate.
+- **Wikilinks** — `[[display-name|uuid]]` syntax. UUID is the reference, display name is human-readable.
+- **Note types** — expressed via `type` frontmatter: `comment`, `quote`, `share`. Standard notes have no type field.
 
 ## Where to find things
 
@@ -105,8 +74,11 @@ This is a paragraph. <!-- id: 550e8400 -->
 |---|---|
 | Full architectural decisions | `docs/engineering/decisions/` |
 | Complete view specs | `docs/views/` |
-| Data model detail | `docs/engineering/data-model.md` |
-| Interaction patterns | `docs/foundations/quick-look.md` |
+| Capture spec | `docs/foundations/capture.md` |
+| Canvas node model + interaction patterns | `docs/foundations/canvas-nodes.md` |
+| Quick Look modal | `docs/foundations/quick-look.md` |
+| Global Actions | `docs/foundations/global-actions.md` |
+| Data model + schemas | `docs/engineering/data-model.md` |
 | Build sequence | `build/build-sequence.md` |
 | Target file structure | `build/file-structure.md` |
 | Out of scope list | `docs/project/scope.md` |

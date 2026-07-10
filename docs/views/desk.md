@@ -21,18 +21,13 @@ The home base and thinking space. A full-canvas scratchpad with floating UI on t
 - Persistent capture bar at centre-bottom, above the toolbar
 - No side panels of any kind
 
-## Three node types
+## Node types
 
-### Freeform nodes
-Ephemeral text content. Not yet a note. User can type freely. "Capture to Inbox" converts a freeform node in-place to a note-reference node and creates the note in `Inbox/`.
+Three node types live on the scratchpad canvas. See [Canvas Nodes](../foundations/canvas-nodes.md) for the full model including two-state behaviour and interaction patterns.
 
-### Note-reference nodes
-A UUID card pointing at a real note in the library. Created by:
-- "Capture to Inbox" on a freeform node (converts in-place)
-- "Add to Desk" from any other view or Quick Look
-
-### Canvas-reference nodes
-A UUID pointer to a Track canvas file. Renders a live, read-only preview of that Track canvas using tldraw. Not editable from Desk.
+- **Freeform** — ephemeral text, not yet a note. "Capture to Inbox" converts it in-place to a note-reference node.
+- **Note-reference** — UUID card pointing at a real note. Created via Capture to Inbox or Add to Desk.
+- **Canvas-reference** — UUID pointer to a Track canvas. Renders a live read-only tldraw preview. Not editable from Desk.
 
 ## Canvas node model
 

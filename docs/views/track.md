@@ -99,7 +99,46 @@ All nodes are read-only previews. No inline editing in any mode in v1.
 
 ## Canvas storage
 
-Line and Web canvases stored as JSON Canvas format, rendered by tldraw. Thread uses the same JSON Canvas format on disk but tldraw is not invoked — the scroll UI reads the node list directly. See ADR-006, ADR-011.
+Line and Web canvases stored as JSON Canvas format, rendered by tldraw. Thread uses the same JSON Canvas format on disk but tldraw is not invoked — the scroll UI reads the node list directly. See [ADR-006](../engineering/decisions/adr-006-json-canvas.md) and [ADR-011](../engineering/decisions/adr-011-tldraw-renderer-only.md).
+
+Fosta extends the JSON Canvas spec with additional top-level fields:
+
+```json
+{
+  "layout": "line",
+  "population": {
+    "mode": "live",
+    "tags": ["research", "documentary"],
+    "sort": "created"
+  },
+  "nodes": [
+    {
+      "id": "node-uuid",
+      "type": "note-reference",
+      "noteId": "550e8400-e29b-41d4-a716-446655440000",
+      "x": 100, "y": 200,
+      "state": "compact"
+    },
+    {
+      "id": "annotation-uuid",
+      "type": "annotation",
+      "anchorType": "node",
+      "anchorId": "node-uuid",
+      "text": "Revisit this after the shoot"
+    }
+  ],
+  "connections": [
+    { "id": "connection-uuid", "from": "node-uuid-a", "to": "node-uuid-b" }
+  ]
+}
+```
+
+- `layout`: `"line"`, `"web"`, or `"thread"` — set at creation, cannot change
+- `population.mode`: `"manual"` or `"live"`
+- `population.tags`: present only when `mode: "live"` — fixed array, ANDed together
+- `population.sort`: `"created"` or `"modified"` — Line and Thread only
+- `connections`: always exactly two node IDs. These are Fosta-specific extensions to the JSON Canvas spec.
+- **Thread has no canvas file** — it renders the same population object as a scrollable list with no tldraw dependency.
 
 ## Reference wireframe
 
