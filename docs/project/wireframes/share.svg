@@ -1,0 +1,91 @@
+<svg viewBox="0 0 900 460" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, sans-serif">
+  <style>
+    .wf-panel { fill: none; stroke: #4A4A55; stroke-width: 1.5; }
+    .wf-label { font-size: 11px; fill: #8A8A98; letter-spacing: 0.5px; }
+    .wf-heading { font-size: 12px; fill: #5A5A68; font-weight: 600; letter-spacing: 1px; }
+    .wf-tilde { stroke: #6A6A78; stroke-width: 1.6; fill: none; stroke-linecap: round; }
+    .wf-row { fill: #F2F1F5; stroke: #C5C5D0; stroke-width: 1; rx: 4; }
+    .wf-line { stroke: #D5D5DC; stroke-width: 1.2; }
+    .wf-selected { fill: #ECEAFB; }
+    .wf-dropzone { fill: #F3F0FF; stroke: #8A7FE0; stroke-width: 1.4; stroke-dasharray: 5,4; rx: 6; }
+    .wf-quote { fill: #F7F6FC; stroke: #8A7FE0; stroke-width: 1.2; border-left: 3px; }
+    .wf-arrow { stroke: #8A7FE0; stroke-width: 1.6; fill: none; }
+  </style>
+  <defs>
+    <marker id="qarrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#8A7FE0"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="460" fill="#FAFAF9"/>
+  <text x="20" y="28" class="wf-label" font-weight="600" letter-spacing="1">SHARE — THREE PANE + DRAG TO QUOTE</text>
+
+  <rect x="20" y="44" width="860" height="370" rx="10" class="wf-panel"/>
+  <line x1="190" y1="44" x2="190" y2="414" stroke="#4A4A55" stroke-width="1.2"/>
+  <line x1="500" y1="44" x2="500" y2="414" stroke="#4A4A55" stroke-width="1.2"/>
+
+  <!-- LEFT: navigator -->
+  <text x="36" y="68" class="wf-heading" font-size="10">FILES</text>
+  <rect x="36" y="80" width="140" height="18" class="wf-row"/>
+  <text x="44" y="93" class="wf-label" font-size="9">▾ Projects</text>
+  <rect x="44" y="102" width="132" height="16" fill="#ECEAFB"/>
+  <text x="52" y="114" class="wf-label" font-size="9" fill="#5A50A8">Interview-01.md</text>
+  <rect x="44" y="122" width="132" height="16" class="wf-row"/>
+  <text x="52" y="134" class="wf-label" font-size="9">Interview-02.md</text>
+  <rect x="44" y="142" width="132" height="16" class="wf-row"/>
+  <text x="52" y="154" class="wf-label" font-size="9">Treatment.md</text>
+  <rect x="36" y="166" width="140" height="18" class="wf-row"/>
+  <text x="44" y="179" class="wf-label" font-size="9">▾ Inbox</text>
+
+  <!-- MIDDLE: preview pane with selection -->
+  <text x="212" y="68" class="wf-heading" font-size="10">PREVIEW — Interview-01.md</text>
+  <line x1="212" y1="220" x2="480" y2="220" class="wf-line"/>
+  <line x1="212" y1="100" x2="470" y2="100" class="wf-line"/>
+  <line x1="212" y1="118" x2="440" y2="118" class="wf-line"/>
+
+  <rect x="208" y="132" width="276" height="48" rx="3" class="wf-selected"/>
+  <line x1="220" y1="146" x2="460" y2="146" stroke="#5A50A8" stroke-width="1.3"/>
+  <line x1="220" y1="162" x2="420" y2="162" stroke="#5A50A8" stroke-width="1.3"/>
+
+  <line x1="212" y1="198" x2="470" y2="198" class="wf-line"/>
+  <line x1="212" y1="216" x2="430" y2="216" class="wf-line"/>
+
+  <!-- drag arrow from selection to dropzone -->
+  <path d="M488,156 C540,156 560,200 590,220" class="wf-arrow" marker-end="url(#qarrow)" stroke-dasharray="2,4"/>
+  <text x="500" y="200" class="wf-label" font-size="8" fill="#8A7FE0">drag</text>
+
+  <!-- RIGHT: Share composition note -->
+  <text x="522" y="68" class="wf-heading" font-size="10">SHARE NOTE — always visible</text>
+  <path d="M536,90 h40" class="wf-tilde" stroke-width="2"/>
+  <line x1="536" y1="110" x2="850" y2="110" class="wf-line"/>
+  <line x1="536" y1="126" x2="800" y2="126" class="wf-line"/>
+
+  <!-- existing quote block already inserted -->
+  <rect x="532" y="142" width="328" height="44" rx="4" class="wf-quote"/>
+  <rect x="532" y="142" width="3" height="44" fill="#8A7FE0"/>
+  <line x1="546" y1="156" x2="760" y2="156" stroke="#7A70C8" stroke-width="1.2"/>
+  <line x1="546" y1="170" x2="700" y2="170" stroke="#7A70C8" stroke-width="1.2"/>
+  <text x="546" y="184" class="wf-label" font-size="7" fill="#7A70C8">‹ live quote — Interview-02.md ›</text>
+
+  <!-- active dropzone -->
+  <rect x="532" y="198" width="328" height="40" class="wf-dropzone"/>
+  <text x="696" y="222" class="wf-label" font-size="9" fill="#8A7FE0" text-anchor="middle">drop to insert live quote</text>
+
+  <line x1="536" y1="254" x2="820" y2="254" class="wf-line"/>
+  <line x1="536" y1="270" x2="780" y2="270" class="wf-line"/>
+
+  <text x="522" y="396" class="wf-label" font-size="9">copy/paste (⌘V) and drag-to-quote both available</text>
+
+  <!-- bottom toolbar -->
+  <rect x="20" y="424" width="860" height="34" rx="17" class="wf-panel"/>
+  <circle cx="44" cy="441" r="9" class="wf-panel"/>
+  <line x1="40" y1="441" x2="48" y2="441" stroke="#4A4A55" stroke-width="1.3"/>
+  <line x1="44" y1="437" x2="44" y2="445" stroke="#4A4A55" stroke-width="1.3"/>
+  <text x="100" y="445" class="wf-label" font-size="10">CAPTURE</text>
+  <text x="280" y="445" class="wf-label" font-size="10">SORT</text>
+  <text x="450" y="445" class="wf-label" font-size="10">LAYER</text>
+  <text x="620" y="445" class="wf-label" font-size="10">TRACK</text>
+  <rect x="760" y="427" width="100" height="28" rx="14" fill="#2A2A32"/>
+  <text x="790" y="445" class="wf-label" fill="#fff" font-size="10">SHARE</text>
+
+</svg>

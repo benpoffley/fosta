@@ -7,4 +7,4 @@ layout: default
 
 # Project
 
-Current development status, roadmap, scope, open questions, story, and changelog.
+Current development status, roadmap, scope, open questions, wireframes, story, and changelog.

@@ -1,0 +1,71 @@
+<svg viewBox="0 0 900 420" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, sans-serif">
+  <style>
+    .wf-box { fill: none; stroke: #4A4A55; stroke-width: 1.5; rx: 10; }
+    .wf-box-thin { fill: none; stroke: #4A4A55; stroke-width: 1.2; rx: 16; }
+    .wf-label { font-size: 11px; fill: #8A8A98; }
+    .wf-text { font-size: 12px; fill: #5A5A68; }
+    .wf-arrow { stroke: #B8B8C5; stroke-width: 2; fill: none; marker-end: url(#arrow); }
+    .wf-icon { fill: none; stroke: #4A4A55; stroke-width: 1.5; }
+    .wf-tilde { stroke: #6A6A78; stroke-width: 1.8; fill: none; stroke-linecap: round; }
+  </style>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L6,3 L0,6 Z" fill="#B8B8C5"/>
+    </marker>
+  </defs>
+
+  <rect width="900" height="420" fill="#FAFAF9"/>
+  <text x="20" y="28" class="wf-label" font-weight="600" letter-spacing="1">QUICK CAPTURE — STATE FLOW</text>
+
+  <!-- Step 1: idle plus button -->
+  <circle cx="50" cy="90" r="14" class="wf-icon"/>
+  <line x1="43" y1="90" x2="57" y2="90" stroke="#4A4A55" stroke-width="1.5"/>
+  <line x1="50" y1="83" x2="50" y2="97" stroke="#4A4A55" stroke-width="1.5"/>
+  <text x="30" y="120" class="wf-label">1 · idle</text>
+
+  <path d="M68,90 C150,80 220,80 290,95" class="wf-arrow"/>
+
+  <!-- Step 2: collapsed capture bar -->
+  <rect x="300" y="72" width="280" height="36" class="wf-box-thin" rx="18"/>
+  <line x1="320" y1="90" x2="326" y2="90" stroke="#4A4A55" stroke-width="1.5"/>
+  <line x1="323" y1="87" x2="323" y2="93" stroke="#4A4A55" stroke-width="1.5"/>
+  <text x="338" y="94" class="wf-text" fill="#9A9AA5">Capture your thought…</text>
+  <path d="M548,87 l5,5 l5,-5" class="wf-icon" fill="none"/>
+  <text x="300" y="120" class="wf-label">2 · collapsed, persistent</text>
+
+  <path d="M598,90 C660,80 700,80 740,95" class="wf-arrow"/>
+
+  <!-- Step 3: expanded, typing -->
+  <rect x="640" y="40" width="240" height="80" class="wf-box" rx="12"/>
+  <line x1="656" y1="58" x2="662" y2="58" stroke="#4A4A55" stroke-width="1.5"/>
+  <line x1="659" y1="55" x2="659" y2="61" stroke="#4A4A55" stroke-width="1.5"/>
+  <path d="M674,58 h40" class="wf-tilde"/>
+  <path d="M850,52 l4,4 l-4,4" class="wf-icon"/>
+  <rect x="848" y="48" width="20" height="16" rx="3" class="wf-icon"/>
+  <path d="M858,60 v-7 M854,56 l4,-4 l4,4" class="wf-icon"/>
+  <line x1="656" y1="80" x2="864" y2="80" stroke="#E5E5EA" stroke-width="1"/>
+  <line x1="656" y1="98" x2="668" y2="98" stroke="#4A4A55" stroke-width="1.5"/>
+  <line x1="662" y1="92" x2="662" y2="104" stroke="#4A4A55" stroke-width="1.5"/>
+  <text x="640" y="138" class="wf-label">3 · expanded, user typing</text>
+
+  <!-- arrow down to full editor card -->
+  <path d="M760,120 C760,150 760,160 760,180" class="wf-arrow"/>
+
+  <!-- Step 4: full note editor card -->
+  <rect x="560" y="190" width="320" height="200" class="wf-box" rx="12"/>
+  <path d="M580,212 h30" class="wf-tilde"/>
+  <rect x="780" y="200" width="84" height="22" rx="11" class="wf-icon"/>
+  <text x="788" y="215" class="wf-label" font-size="9">↗ OPEN IN LAYER</text>
+  <line x1="580" y1="234" x2="864" y2="234" stroke="#D5D5DC" stroke-width="1"/>
+  <line x1="580" y1="252" x2="850" y2="252" stroke="#D5D5DC" stroke-width="1.2"/>
+  <line x1="580" y1="266" x2="850" y2="266" stroke="#D5D5DC" stroke-width="1.2"/>
+  <line x1="580" y1="280" x2="780" y2="280" stroke="#D5D5DC" stroke-width="1.2"/>
+  <path d="M580,300 h26" class="wf-tilde"/>
+  <line x1="580" y1="356" x2="864" y2="356" stroke="#E5E5EA" stroke-width="1"/>
+  <rect x="580" y="364" width="70" height="20" rx="10" class="wf-icon"/>
+  <text x="595" y="378" class="wf-label" font-size="9">DISCARD</text>
+  <rect x="800" y="364" width="56" height="20" rx="10" class="wf-icon" stroke="#3A3A45"/>
+  <text x="818" y="378" class="wf-label" font-size="9" fill="#3A3A45">SAVE</text>
+  <text x="560" y="408" class="wf-label">4 · full quick-capture card (optional expand)</text>
+
+</svg>

@@ -1,0 +1,89 @@
+<svg viewBox="0 0 900 440" xmlns="http://www.w3.org/2000/svg" font-family="-apple-system, sans-serif">
+  <style>
+    .wf-panel { fill: none; stroke: #4A4A55; stroke-width: 1.5; }
+    .wf-label { font-size: 11px; fill: #8A8A98; letter-spacing: 0.5px; }
+    .wf-heading { font-size: 12px; fill: #5A5A68; font-weight: 600; letter-spacing: 1px; }
+    .wf-node { fill: #FFFFFF; stroke: #4A4A55; stroke-width: 1.3; rx: 4; }
+    .wf-annot { fill: #FFF8E8; stroke: #E0B85A; stroke-width: 1.2; }
+    .wf-axis { stroke: #B8B8C5; stroke-width: 2; }
+    .wf-conn { stroke: #B8B8C5; stroke-width: 1.3; fill: none; }
+  </style>
+
+  <rect width="900" height="440" fill="#FAFAF9"/>
+  <text x="20" y="28" class="wf-label" font-weight="600" letter-spacing="1">TRACK — LINEAR vs SPATIAL</text>
+
+  <rect x="20" y="44" width="860" height="350" rx="10" class="wf-panel"/>
+  <line x1="450" y1="44" x2="450" y2="394" stroke="#4A4A55" stroke-width="1.2"/>
+
+  <!-- LINEAR -->
+  <text x="44" y="70" class="wf-heading">LINEAR</text>
+  <text x="44" y="86" class="wf-label" font-size="9">sequence axis · feeds Share</text>
+
+  <line x1="60" y1="220" x2="420" y2="220" class="wf-axis"/>
+  <circle cx="60" cy="220" r="3" fill="#B8B8C5"/>
+  <circle cx="420" cy="220" r="3" fill="#B8B8C5"/>
+
+  <rect x="78" y="180" width="56" height="60" class="wf-node"/>
+  <text x="106" y="214" class="wf-label" font-size="8" text-anchor="middle">note</text>
+  <line x1="106" y1="220" x2="106" y2="240" stroke="#B8B8C5" stroke-width="1.3"/>
+
+  <rect x="160" y="150" width="56" height="60" class="wf-node"/>
+  <text x="188" y="184" class="wf-label" font-size="8" text-anchor="middle">note</text>
+  <line x1="188" y1="210" x2="188" y2="220" stroke="#B8B8C5" stroke-width="1.3"/>
+
+  <rect x="246" y="180" width="56" height="60" class="wf-node"/>
+  <text x="274" y="214" class="wf-label" font-size="8" text-anchor="middle">note</text>
+  <line x1="274" y1="220" x2="274" y2="240" stroke="#B8B8C5" stroke-width="1.3"/>
+
+  <!-- annotation anchored to a node -->
+  <rect x="246" y="260" width="76" height="34" rx="4" class="wf-annot"/>
+  <text x="284" y="280" class="wf-label" font-size="7" text-anchor="middle" fill="#A88634">annotation</text>
+  <line x1="274" y1="240" x2="284" y2="260" stroke="#E0B85A" stroke-width="1.2"/>
+
+  <!-- annotation anchored to a connection -->
+  <circle cx="345" cy="220" r="11" fill="#FFF8E8" stroke="#E0B85A" stroke-width="1.2"/>
+  <text x="345" y="223" class="wf-label" font-size="7" text-anchor="middle" fill="#A88634">①</text>
+
+  <text x="44" y="330" class="wf-label" font-size="9">population: manual or live tag-query</text>
+  <text x="44" y="346" class="wf-label" font-size="9">sort: created · modified</text>
+  <text x="44" y="370" class="wf-label" font-size="9" fill="#A88634">① = annotation anchored to a connection, not a position</text>
+
+  <!-- SPATIAL -->
+  <text x="474" y="70" class="wf-heading">SPATIAL</text>
+  <text x="474" y="86" class="wf-label" font-size="9">free-positioned · exploratory · manual only</text>
+
+  <rect x="600" y="120" width="56" height="50" class="wf-node"/>
+  <text x="628" y="148" class="wf-label" font-size="8" text-anchor="middle">note</text>
+
+  <rect x="510" y="220" width="56" height="50" class="wf-node"/>
+  <text x="538" y="248" class="wf-label" font-size="8" text-anchor="middle">note</text>
+
+  <rect x="670" y="230" width="56" height="50" class="wf-node"/>
+  <text x="698" y="258" class="wf-label" font-size="8" text-anchor="middle">note</text>
+
+  <path d="M628,170 L538,220" class="wf-conn"/>
+  <path d="M628,170 L698,230" class="wf-conn"/>
+  <circle cx="628" cy="198" r="10" fill="#FFF8E8" stroke="#E0B85A" stroke-width="1.2"/>
+  <text x="628" y="201" class="wf-label" font-size="7" text-anchor="middle" fill="#A88634">②</text>
+
+  <circle cx="540" cy="320" r="11" fill="#FFF8E8" stroke="#E0B85A" stroke-width="1.2"/>
+  <text x="540" y="323" class="wf-label" font-size="7" text-anchor="middle" fill="#A88634">③</text>
+  <path d="M540,309 L538,270" stroke="#E0B85A" stroke-width="1.2"/>
+  <path d="M558,326 L674,260" class="wf-conn" stroke-dasharray="3,3"/>
+
+  <text x="474" y="350" class="wf-label" font-size="9">population: manual only — no auto-layout for live nodes</text>
+  <text x="474" y="366" class="wf-label" font-size="9" fill="#A88634">② anchored to connection · ③ anchored to a node</text>
+
+  <!-- bottom toolbar -->
+  <rect x="20" y="404" width="860" height="34" rx="17" class="wf-panel"/>
+  <circle cx="44" cy="421" r="9" class="wf-panel"/>
+  <line x1="40" y1="421" x2="48" y2="421" stroke="#4A4A55" stroke-width="1.3"/>
+  <line x1="44" y1="417" x2="44" y2="425" stroke="#4A4A55" stroke-width="1.3"/>
+  <text x="100" y="425" class="wf-label" font-size="10">CAPTURE</text>
+  <text x="280" y="425" class="wf-label" font-size="10">SORT</text>
+  <text x="450" y="425" class="wf-label" font-size="10">LAYER</text>
+  <rect x="590" y="407" width="148" height="28" rx="14" fill="#2A2A32"/>
+  <text x="630" y="425" class="wf-label" fill="#fff" font-size="10">TRACK</text>
+  <text x="790" y="425" class="wf-label" font-size="10">SHARE</text>
+
+</svg>
