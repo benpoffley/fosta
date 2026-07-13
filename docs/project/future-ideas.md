@@ -57,3 +57,55 @@ The current architecture does not preclude this. Thread is stored as JSON Canvas
 
 *This page will grow as more post-v1 ideas are explored and deferred. Add new sections here rather than losing them to conversation history.*
 
+
+---
+
+## Dual-track Line view — compare two tracks simultaneously
+
+**Status:** Deferred to v1.1+. Currently Line supports one track at a time.  
+**Relevant current docs:** `docs/views/track.md`
+
+### The idea
+
+Two Line tracks rendered simultaneously in a single view, sharing a horizontal axis. Notes from Track A hang above the centreline; notes from Track B hang below. The two tracks face each other across the axis, allowing the user to compare and see relationships across two sequences at the same time.
+
+No connections between tracks — each track remains independent. The dual-track state is ephemeral, living in UI state only. Nothing new is written to disk.
+
+This maps directly to Fosta's DaVinci Resolve inspiration: stacked timeline tracks on a shared axis is the fundamental visual metaphor of video editing software.
+
+### Why it's valuable
+
+Seeing how two sequences of ideas or events relate in time without context-switching. Are these two client projects moving in parallel or diverging? Is the research timeline aligned with the writing timeline? The comparison mode makes temporal relationships visible that would otherwise require mentally holding two separate views at once.
+
+### Architectural fit
+
+Clean. Line tracks are already UUID references to notes — not copies. Displaying two simultaneously requires no data model changes. The two track IDs live in Zustand UI state only. The "merge into one track" action (see below) is just creating a new Manual track populated with UUID references from both source tracks — no new storage required.
+
+### Open questions to resolve before designing
+
+**1. Shared time axis**
+Line tracks sequence notes by `created` or `modified` date, but two tracks will likely have different date ranges and densities. Two options:
+
+- **Absolute dates** — both tracks plotted on a shared calendar axis. Notes appear at their actual dates. The most meaningful comparison but requires implementing a real time axis, which Line doesn't have in v1.
+- **Relative positions** — each track keeps its own internal sequence, displayed above/below without a shared axis. Easier to build but weaker comparison value.
+
+Absolute dates gives the real value but is a bigger build. This decision should be made before designing the feature.
+
+**2. Entry point**
+How does a user get into dual-track mode? Options:
+- "Compare with…" picker when viewing a Line track — select a second track to load below
+- Drag a second track into the view from the file navigator
+- Dedicated "dual view" button that opens a track selector
+
+**3. Merge logic**
+"Create a new track combining the two" is the natural exit action. Does the merge interleave notes by date? Keep them grouped by source track? Prompt the user? Should be decided alongside the time axis question since the answers are related.
+
+### Web and Thread — considered and deferred
+
+**Web (split view):** Two spatial canvases side by side. Architecturally fine but weak value — spatial canvases represent personal mental maps and comparing two side by side is hard to make meaningful.
+
+**Thread (side by side):** Two vertical scrolling full-note lists side by side. Some value, but this is the same pattern as split view in Layer (already deferred to v1.1). If Layer split view ships in v1.1, Thread side-by-side could follow the same pattern.
+
+### Why it was deferred
+
+Line needs to exist and work well as a single-track view before adding a comparison mode. The shared time axis question needs a proper answer before the feature can be designed, and observing how Line is actually used in daily practice will clarify whether the comparison mode is reached for constantly (build in v1.1) or rarely (deprioritise further).
