@@ -11,6 +11,19 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Sort interaction model resolved through prototyping
+**Week 2, 2026 · Design**
+
+The Sort view interaction model was worked through in detail via an interactive HTML prototype, resolving several open questions that had been deferred since the early wireframe phase.
+
+The key decisions: a single search bar at the top of the left panel replaces the two-search-bar approach sketched in early wireframes — the bar filters notes on the left and simultaneously highlights matching tags on the right. The tag cloud has no independent controls.
+
+The select-then-tag model was established: single-clicking a note selects it, and once a selection exists the tag cloud switches mode — tags become apply/remove controls. A three-state toggle (none/partial/full) handles multi-select gracefully, with the partial state surfacing ✓/+ indicators on each card so the user can see exactly which notes will be affected before committing. Colour language was carefully separated: cream rings signal "this tag is already applied" (a state), while sage/amber/rose reveal on hover only when the user is actively deciding on an action (add/extend/remove). The filter mode uses cream too but is mutually exclusive with tagging mode.
+
+The prototype is linked from the Sort view page as a reference for the hi-fi Figma design.
+
+---
+
 ## Track gains a third layout mode — Line, Web, Thread — plus population model finalised
 **Week 2, 2026 · Milestone**
 

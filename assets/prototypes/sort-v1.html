@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fosta — Sort</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+:root {
+  --bg:#0E0C0B; --bg-2:#161311; --bg-3:#211C1A; --bg-4:#2A2320;
+  --rule:#302825; --rule-2:#443C38;
+  --cream:#EAE0D0; --cream-2:#C0AA94; --cream-3:#967E6E;
+  --sage:#7AAF8A; --sage-s:rgba(122,175,138,0.12); --sage-g:rgba(122,175,138,0.22);
+  --rose:#C47A72; --rose-s:rgba(196,122,114,0.12); --rose-d:rgba(196,122,114,0.45);
+  --gold:#C8A055; --gold-s:rgba(200,160,85,0.12); --gold-d:rgba(200,160,85,0.4);
+}
+html,body { height:100%; background:var(--bg); color:var(--cream);
+  font-family:'Inter',sans-serif; font-size:13px; font-weight:300;
+  overflow:hidden; -webkit-font-smoothing:antialiased; }
+.shell { display:flex; flex-direction:column; height:100vh; }
+
+/* TOPBAR */
+.topbar { height:46px; background:var(--bg-2); border-bottom:1px solid var(--rule);
+  display:flex; align-items:center; padding:0 20px; gap:14px; flex-shrink:0; }
+.logo { font-family:'Playfair Display',serif; font-style:italic; font-size:18px; color:var(--cream); }
+.topbar-sep { width:1px; height:16px; background:var(--rule-2); }
+.topbar-view { font-size:11px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; color:var(--cream-3); }
+.sel-status { margin-left:auto; font-size:11px; font-weight:400; color:var(--sage);
+  letter-spacing:0.04em; opacity:0; transition:opacity 0.2s; }
+.sel-status.show { opacity:1; }
+
+/* MAIN */
+.main { display:flex; flex:1; overflow:hidden; }
+
+/* LEFT */
+.notes-panel { width:420px; flex-shrink:0; border-right:1px solid var(--rule);
+  display:flex; flex-direction:column; background:var(--bg); }
+.panel-header { padding:10px 16px 0; border-bottom:1px solid var(--rule);
+  display:flex; flex-direction:column; flex-shrink:0; }
+
+/* Search */
+.search-wrap { position:relative; margin-bottom:10px; }
+.search-input { width:100%; height:30px; background:var(--bg-3); border:1px solid var(--rule-2);
+  border-radius:15px; padding:0 32px; color:var(--cream); font-family:'Inter',sans-serif;
+  font-size:12px; font-weight:300; outline:none; transition:border-color 0.15s; }
+.search-input::placeholder { color:var(--cream-3); }
+.search-input:focus { border-color:var(--sage); }
+.s-icon { position:absolute; left:10px; top:50%; transform:translateY(-50%);
+  color:var(--cream-3); font-size:13px; pointer-events:none; }
+.s-clear { position:absolute; right:10px; top:50%; transform:translateY(-50%);
+  color:var(--cream-3); font-size:11px; cursor:pointer; display:none;
+  background:none; border:none; padding:0; }
+.s-clear:hover { color:var(--cream); }
+
+/* Tabs */
+.tabs-row { display:flex; align-items:center; }
+.tab { font-size:11px; font-weight:400; letter-spacing:0.08em; text-transform:uppercase;
+  color:var(--cream-3); padding:7px 12px; cursor:pointer;
+  border-bottom:2px solid transparent; transition:color 0.12s, border-color 0.12s; }
+.tab.active { color:var(--cream); border-bottom-color:var(--gold); }
+.tab:hover:not(.active) { color:var(--cream-2); }
+.badge { height:16px; min-width:16px; padding:0 4px; background:var(--sage-s);
+  border:1px solid rgba(122,175,138,0.25); color:var(--sage); font-size:9px;
+  font-weight:500; border-radius:8px; display:inline-flex; align-items:center;
+  justify-content:center; margin-left:4px; }
+.controls { margin-left:auto; display:flex; align-items:center; gap:4px; }
+.ctrl-btn { width:26px; height:26px; border-radius:4px; background:none; border:none;
+  cursor:pointer; color:var(--cream-3); font-size:13px; display:flex;
+  align-items:center; justify-content:center; transition:color 0.12s, background 0.12s; }
+.ctrl-btn:hover { color:var(--cream-2); background:var(--bg-3); }
+.ctrl-btn.active { color:var(--cream); background:var(--bg-3); }
+
+/* Grid */
+.note-grid { display:grid; grid-template-columns:1fr 1fr 1fr;
+  gap:6px; padding:12px; overflow-y:auto; flex:1; align-content:start; }
+
+/* Card */
+.note-card { background:var(--bg-3); border:1px solid var(--rule); border-radius:6px;
+  padding:10px; cursor:pointer; position:relative;
+  transition:background 0.12s, border-color 0.12s, transform 0.1s, box-shadow 0.12s;
+  display:flex; flex-direction:column; gap:5px; min-height:100px; user-select:none; }
+.note-card:hover { background:var(--bg-4); border-color:var(--rule-2);
+  transform:translateY(-1px); box-shadow:0 4px 14px rgba(0,0,0,0.35); }
+.note-card.selected { border-color:var(--sage) !important;
+  background:rgba(122,175,138,0.06) !important;
+  box-shadow:0 0 0 1px var(--sage), 0 4px 16px rgba(122,175,138,0.12) !important;
+  transform:none !important; }
+
+/* Checkbox */
+.card-check { position:absolute; top:8px; right:8px; width:16px; height:16px;
+  border-radius:50%; border:1.5px solid var(--rule-2); background:var(--bg-3);
+  display:flex; align-items:center; justify-content:center;
+  font-size:9px; color:transparent; transition:all 0.12s; }
+.note-card.selected .card-check { border-color:var(--sage); background:var(--sage); color:#0E0C0B; }
+
+/* Tag state indicator — shows on cards when hovering a partially-applied tag */
+.card-tag-indicator {
+  position:absolute; bottom:8px; right:8px;
+  font-size:10px; font-weight:500; opacity:0;
+  transition:opacity 0.15s; pointer-events:none;
+  width:16px; height:16px; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+}
+.card-tag-indicator.has-tag { background:rgba(200,160,85,0.15); color:var(--gold); opacity:1; }
+.card-tag-indicator.needs-tag { background:rgba(122,175,138,0.15); color:var(--sage); opacity:1; }
+
+.card-date { font-size:9px; font-weight:400; letter-spacing:0.06em;
+  text-transform:uppercase; color:var(--cream-3); }
+.card-title { font-family:'Playfair Display',serif; font-style:italic;
+  font-size:12px; color:var(--cream); line-height:1.3; flex:1; padding-right:20px; }
+.card-preview { font-size:10px; font-weight:300; color:var(--cream-3);
+  line-height:1.5; display:-webkit-box;
+  -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden; }
+.card-tags { display:flex; flex-wrap:wrap; gap:3px; margin-top:2px; }
+.card-tag { font-size:9px; color:var(--sage);
+  border-bottom:1px solid rgba(122,175,138,0.3); line-height:1.4; }
+
+/* RIGHT */
+.tags-panel { flex:1; display:flex; flex-direction:column; background:var(--bg);
+  position:relative; overflow:hidden; }
+.tags-header { height:46px; padding:0 20px; display:flex; align-items:center; gap:10px;
+  border-bottom:1px solid var(--rule); flex-shrink:0; }
+.tags-label { font-size:10px; font-weight:500; letter-spacing:0.14em;
+  text-transform:uppercase; color:var(--cream-3); }
+.tags-hint { margin-left:auto; font-size:10px; font-weight:300; color:var(--cream-3);
+  letter-spacing:0.04em; font-style:italic; transition:color 0.2s; }
+.tags-hint.tagging { color:var(--sage); font-style:normal; font-weight:400; }
+
+.tags-canvas { flex:1; position:relative; overflow:hidden; }
+.tags-canvas::before { content:''; position:absolute; inset:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='500'%3E%3Cg fill='none' stroke='%23EAE0D0' stroke-width='0.4' opacity='0.03'%3E%3Ccircle cx='120' cy='80' r='40'/%3E%3Cellipse cx='380' cy='200' rx='60' ry='75'/%3E%3Ccircle cx='80' cy='360' r='50'/%3E%3Cellipse cx='440' cy='420' rx='80' ry='55'/%3E%3C/g%3E%3C/svg%3E");
+  pointer-events:none; }
+
+/* Tag bubble */
+.tag-bubble { position:absolute; border-radius:50%;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; user-select:none;
+  transition:transform 0.2s cubic-bezier(0.34,1.3,0.64,1), box-shadow 0.2s; }
+.tag-bubble:hover { transform:scale(1.07); z-index:5; }
+.tag-bubble.faded { opacity:0.2; }
+
+/* TAGGING MODE — cream ring only on tags already applied to selection */
+.tagging-active .tag-bubble.state-partial,
+.tagging-active .tag-bubble.state-full {
+  box-shadow:0 0 0 1.5px rgba(234,224,208,0.45) !important; }
+/* state-none: no ring, looks normal until hovered */
+.tagging-active .tag-bubble.state-none {
+  box-shadow:none !important; }
+.tagging-active .tag-bubble:hover { transform:scale(1.1); z-index:10; }
+
+/* ON HOVER — action colours reveal */
+/* None: sage = add */
+.tagging-active .tag-bubble.state-none:hover {
+  box-shadow:0 0 0 2px var(--sage), 0 0 16px var(--sage-g) !important; }
+.tagging-active .tag-bubble.state-none:hover .tag-name::after {
+  content:' +'; font-size:0.85em; color:var(--sage); }
+
+/* Partial: amber = extend */
+.tagging-active .tag-bubble.state-partial:hover {
+  box-shadow:0 0 0 2px var(--gold), 0 0 14px rgba(200,160,85,0.2) !important; }
+.tagging-active .tag-bubble.state-partial:hover .tag-name::after {
+  content:' –'; font-size:0.85em; color:var(--gold); }
+
+/* Full: rose = remove */
+.tagging-active .tag-bubble.state-full:hover {
+  box-shadow:0 0 0 2.5px var(--rose), 0 0 16px rgba(196,122,114,0.2) !important; }
+.tagging-active .tag-bubble.state-full:hover .tag-name::after {
+  content:' ✕'; font-size:0.85em; color:var(--rose); }
+
+/* Filter mode: active tag gets gold ring */
+.tag-bubble.state-filter {
+  box-shadow:0 0 0 2px rgba(234,224,208,0.7), 0 0 14px rgba(234,224,208,0.1) !important;
+  transform:scale(1.06); z-index:5; }
+
+/* Pulse ring in tagging mode */
+.tag-ring { position:absolute; inset:-4px; border-radius:50%;
+  border:1.5px dashed rgba(122,175,138,0); transition:border-color 0.2s; pointer-events:none; }
+/* Cream pulse ring only on tags that are applied (partial or full) */
+.tagging-active .tag-bubble.state-partial .tag-ring,
+.tagging-active .tag-bubble.state-full .tag-ring {
+  border-color:rgba(234,224,208,0.3);
+  animation:ringPulse 2.2s ease-in-out infinite; }
+/* state-none: no ring at rest */
+.tagging-active .tag-bubble.state-none .tag-ring { border-color:transparent; animation:none; }
+/* Hover: ring colour matches action */
+.tagging-active .tag-bubble.state-none:hover .tag-ring { border-color:rgba(122,175,138,0.5); }
+.tagging-active .tag-bubble.state-partial:hover .tag-ring { border-color:rgba(200,160,85,0.5); }
+.tagging-active .tag-bubble.state-full:hover .tag-ring { border-color:var(--rose-d); animation:none; }
+@keyframes ringPulse { 0%,100%{transform:scale(1);opacity:0.5} 50%{transform:scale(1.08);opacity:1} }
+
+/* Tooltip — Option A: extended hover bridge so mouse can reach it */
+/* Option B: fade-out delay so it lingers after mouseleave */
+.tag-tip {
+  position:absolute; bottom:calc(100% + 6px); left:50%;
+  transform:translateX(-50%);
+  background:var(--bg-2); border:1px solid var(--rule-2); color:var(--cream-2);
+  font-family:'Inter',sans-serif; font-size:11px; font-weight:400;
+  padding:5px 12px; border-radius:3px; white-space:nowrap;
+  box-shadow:0 2px 14px rgba(0,0,0,0.5); z-index:30;
+  opacity:0; pointer-events:none;
+  transition:opacity 0.1s 0s; /* fade out instantly when not hovered */
+}
+/* Invisible bridge between bubble top and tooltip bottom — extends hit area */
+.tag-tip::before {
+  content:''; position:absolute; top:100%; left:0; right:0; height:14px;
+}
+.tag-bubble:hover .tag-tip {
+  opacity:1; pointer-events:auto;
+  transition:opacity 0.15s 0.12s; /* 120ms appear delay */
+}
+/* Grace period: tooltip stays visible briefly when mouse leaves bubble */
+.tag-bubble .tag-tip:hover {
+  opacity:1; pointer-events:auto;
+  transition:opacity 0s 0s;
+}
+/* After mouse leaves both bubble and tooltip, fade out with 280ms grace */
+.tag-bubble:not(:hover) .tag-tip:not(:hover) {
+  opacity:0; pointer-events:none;
+  transition:opacity 0.15s 0.28s;
+}
+
+/* Clickable Create Track link in tooltip */
+.tip-create {
+  color:var(--gold); cursor:pointer; border-bottom:1px solid rgba(200,160,85,0.4);
+}
+.tip-create:hover { color:var(--cream); border-bottom-color:var(--cream); }
+
+/* Tooltip action colours — only visible on hover so safe to colour by state */
+.tagging-active .tag-bubble.state-full .tag-tip { border-color:var(--rose-d); color:var(--rose); }
+.tagging-active .tag-bubble.state-none .tag-tip { color:var(--sage); border-color:rgba(122,175,138,0.4); }
+.tagging-active .tag-bubble.state-partial .tag-tip { color:var(--gold); border-color:var(--gold-d); }
+
+.tag-bubble-inner { display:flex; flex-direction:column; align-items:center;
+  gap:3px; text-align:center; pointer-events:none; padding:8px; }
+.tag-name { font-family:'Playfair Display',serif; font-style:italic;
+  color:var(--cream); line-height:1; }
+.tag-count { font-size:9px; font-weight:300; color:var(--cream-3);
+  letter-spacing:0.08em; line-height:1; }
+
+/* Active filter pill */
+.filter-pill { display:none; position:absolute; top:12px; right:16px;
+  background:rgba(234,224,208,0.08); border:1px solid rgba(234,224,208,0.3); color:var(--cream-2);
+  font-size:10px; font-weight:400; padding:3px 10px 3px 8px; border-radius:10px;
+  align-items:center; gap:5px; cursor:pointer; z-index:20; }
+.filter-pill.show { display:flex; }
+
+/* Escape hint */
+.esc-hint { position:absolute; bottom:14px; left:50%; transform:translateX(-50%);
+  font-size:10px; font-weight:300; color:var(--cream-3); letter-spacing:0.06em;
+  pointer-events:none; opacity:0; transition:opacity 0.3s; white-space:nowrap; }
+.tagging-active .esc-hint { opacity:1; }
+
+/* TOOLBAR */
+.toolbar { height:48px; background:var(--bg-2); border-top:1px solid var(--rule);
+  display:flex; align-items:center; justify-content:center;
+  gap:4px; padding:0 20px; flex-shrink:0; }
+.toolbar-cap { width:26px; height:26px; border-radius:50%;
+  border:1px solid var(--rule-2); background:var(--bg-3);
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; margin-right:14px; transition:all 0.15s; }
+.toolbar-cap:hover { border-color:rgba(122,175,138,0.5); background:var(--sage-s); }
+.toolbar-cap svg { width:10px; height:10px; stroke:var(--cream-3); }
+.toolbar-item { height:34px; padding:0 13px; font-size:11px; font-weight:300;
+  letter-spacing:0.1em; text-transform:uppercase; color:var(--cream-3);
+  cursor:pointer; transition:color 0.12s; user-select:none;
+  position:relative; display:flex; align-items:center; }
+.toolbar-item::after { content:''; position:absolute; bottom:5px; left:13px; right:13px;
+  height:1px; background:var(--gold); opacity:0; transition:opacity 0.15s; }
+.toolbar-item:hover { color:var(--cream-2); }
+.toolbar-item.active { color:var(--cream); }
+.toolbar-item.active::after { opacity:0.8; }
+
+/* TOAST */
+.toast { position:fixed; bottom:64px; left:50%;
+  transform:translateX(-50%) translateY(10px);
+  background:var(--bg-2); border:1px solid var(--rule-2); color:var(--cream-2);
+  font-size:11px; font-weight:300; font-style:italic;
+  font-family:'Playfair Display',serif; padding:6px 16px; border-radius:2px;
+  opacity:0; transition:all 0.2s; pointer-events:none; white-space:nowrap; z-index:200; }
+.toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+/* Empty */
+.empty { grid-column:1/-1; display:flex; flex-direction:column; align-items:center;
+  justify-content:center; gap:10px; padding:40px; min-height:120px; }
+.empty-text { font-family:'Playfair Display',serif; font-style:italic;
+  font-size:13px; color:var(--cream-3); text-align:center; }
+
+::-webkit-scrollbar { width:3px; }
+::-webkit-scrollbar-track { background:transparent; }
+::-webkit-scrollbar-thumb { background:var(--rule-2); border-radius:2px; }
+</style>
+</head>
+<body>
+<div class="shell">
+  <div class="topbar">
+    <div class="logo">fosta</div>
+    <div class="topbar-sep"></div>
+    <div class="topbar-view">Sort</div>
+    <div class="sel-status" id="sel-status"></div>
+  </div>
+  <div class="main">
+    <div class="notes-panel">
+      <div class="panel-header">
+        <div class="search-wrap">
+          <span class="s-icon">⌕</span>
+          <input class="search-input" id="search" type="text"
+            placeholder="Search notes and tags…" autocomplete="off">
+          <button class="s-clear" id="s-clear">✕</button>
+        </div>
+        <div class="tabs-row">
+          <div class="tab active" onclick="switchTab('inbox',this)">Inbox <span class="badge" id="badge">12</span></div>
+          <div class="tab" onclick="switchTab('all',this)">All notes</div>
+          <div class="controls">
+            <button class="ctrl-btn" onclick="toast('Sorted by date')" title="Sort">↕</button>
+            <button class="ctrl-btn active" id="view-btn" onclick="toggleView()" title="Toggle view">⊞</button>
+          </div>
+        </div>
+      </div>
+      <div class="note-grid" id="note-grid"></div>
+    </div>
+    <div class="tags-panel" id="tags-panel">
+      <div class="tags-header">
+        <span class="tags-label">Tags</span>
+        <span class="tags-hint" id="tags-hint">hover to create track · click to filter</span>
+      </div>
+      <div class="tags-canvas" id="tags-canvas">
+        <div class="filter-pill" id="filter-pill" onclick="clearFilter()">
+          <span id="filter-label"></span><span style="font-size:11px">✕</span>
+        </div>
+        <div class="esc-hint">click a tag to apply or remove · Esc to cancel</div>
+      </div>
+    </div>
+  </div>
+  <div class="toolbar">
+    <div class="toolbar-cap">
+      <svg viewBox="0 0 10 10" fill="none">
+        <line x1="5" y1="1" x2="5" y2="9" stroke-width="1.3" stroke-linecap="round"/>
+        <line x1="1" y1="5" x2="9" y2="5" stroke-width="1.3" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="toolbar-item" onclick="nav(this,'desk')">Desk</div>
+    <div class="toolbar-item active" onclick="nav(this,'sort')">Sort</div>
+    <div class="toolbar-item" onclick="nav(this,'layer')">Layer</div>
+    <div class="toolbar-item" onclick="nav(this,'track')">Track</div>
+    <div class="toolbar-item" onclick="nav(this,'share')">Share</div>
+  </div>
+</div>
+<div class="toast" id="toast-el"></div>
+
+<script>
+// ── DATA ──────────────────────────────────────────────────────────────
+const notes = [
+  {id:1, title:"Interview notes — opening sequence", preview:"The long take approach versus fast cutting to establish rhythm.", date:"Today", tags:["film"], inbox:true},
+  {id:2, title:"Colour grade reference", preview:"Teal-orange contrast, desaturate midtones. Reference: Arrival.", date:"Today", tags:["film","reference"], inbox:true},
+  {id:3, title:"Client call — Thursday", preview:"Budget sign-off needed. Send revised treatment by Friday.", date:"Yesterday", tags:["client-x"], inbox:true},
+  {id:4, title:"Voiceover script draft", preview:"'There's a particular quality to the light in November…'", date:"Yesterday", tags:[], inbox:true},
+  {id:5, title:"Location scouting notes", preview:"Warehouse district south of the bridge. Industrial, warm.", date:"2 days ago", tags:[], inbox:true},
+  {id:6, title:"Music reference playlist", preview:"Nils Frahm, Ólafur Arnalds. Sparse. Room for silence.", date:"2 days ago", tags:["film","reference"], inbox:true},
+  {id:7, title:"Edit structure thoughts", preview:"Three act structure feels wrong. More fragmented, cyclical.", date:"3 days ago", tags:[], inbox:true},
+  {id:8, title:"Budget revision notes", preview:"Equipment hire overrun ~12%. Offset by shorter shoot days.", date:"3 days ago", tags:["client-x"], inbox:true},
+  {id:9, title:"Storyboard session recap", preview:"15 boards completed. Opening montage approved.", date:"4 days ago", tags:["film"], inbox:true},
+  {id:10, title:"Sound design brief", preview:"Diegetic sound should outweigh score in the first act.", date:"4 days ago", tags:[], inbox:true},
+  {id:11, title:"Treatment revision v3", preview:"Less exposition. Let the visuals carry more meaning.", date:"5 days ago", tags:["client-x","draft"], inbox:true},
+  {id:12, title:"Post production schedule", preview:"Eight week post window. Grade week seven.", date:"5 days ago", tags:[], inbox:true},
+];
+
+const tagData = [
+  {name:"film",        count:18, size:108, x:24, y:20, a:1.0 },
+  {name:"client-x",   count:31, size:142, x:56, y:42, a:1.0 },
+  {name:"ideas",      count:9,  size:70,  x:14, y:58, a:0.65},
+  {name:"draft",      count:14, size:88,  x:78, y:18, a:0.75},
+  {name:"reference",  count:11, size:76,  x:72, y:66, a:0.70},
+  {name:"documentary",count:6,  size:58,  x:38, y:70, a:0.55},
+  {name:"misc",       count:3,  size:40,  x:86, y:50, a:0.40},
+];
+
+// ── STATE ──────────────────────────────────────────────────────────────
+let tab       = 'inbox';
+let query     = '';
+let selected  = new Set();   // selected note IDs
+let filterTag = null;        // active filter tag (browse mode)
+let viewMode  = 'grid';
+let hoveredTag = null;       // tag bubble being hovered in tagging mode
+
+// ── HELPERS ────────────────────────────────────────────────────────────
+const inTaggingMode = () => selected.size > 0;
+
+function tagStateFor(tagName) {
+  // Returns 'none' | 'partial' | 'full' based on selected notes
+  if (!inTaggingMode()) return 'browse';
+  const ids = [...selected];
+  const haveIt = ids.filter(id => notes.find(n=>n.id===id)?.tags.includes(tagName));
+  if (haveIt.length === 0)       return 'none';
+  if (haveIt.length === ids.length) return 'full';
+  return 'partial';
+}
+
+function getVisible() {
+  let ns = tab === 'inbox' ? notes.filter(n=>n.inbox) : notes;
+  if (filterTag) ns = ns.filter(n=>n.tags.includes(filterTag));
+  if (query) {
+    const q = query.toLowerCase();
+    ns = ns.filter(n =>
+      n.title.toLowerCase().includes(q) ||
+      n.preview.toLowerCase().includes(q) ||
+      n.tags.some(t=>t.toLowerCase().includes(q))
+    );
+  }
+  return ns;
+}
+
+// ── RENDER NOTES ───────────────────────────────────────────────────────
+function renderNotes() {
+  const grid = document.getElementById('note-grid');
+  const visible = getVisible();
+  document.getElementById('badge').textContent = notes.filter(n=>n.inbox).length;
+  grid.style.gridTemplateColumns = viewMode==='list' ? '1fr' : '1fr 1fr 1fr';
+
+  if (visible.length === 0) {
+    grid.innerHTML = `<div class="empty"><div class="empty-text">${query?`No notes matching "${query}"`:'Inbox is clear'}</div></div>`;
+    return;
+  }
+
+  grid.innerHTML = '';
+  const q = query.toLowerCase();
+
+  visible.forEach(note => {
+    const isSel = selected.has(note.id);
+    const card = document.createElement('div');
+    card.className = 'note-card' + (isSel ? ' selected' : '');
+    card.dataset.id = note.id;
+
+    // Tag indicator (shows when hovering a partially-applied tag)
+    let indicator = '';
+    if (inTaggingMode() && isSel && hoveredTag) {
+      const hasIt = note.tags.includes(hoveredTag);
+      const state = tagStateFor(hoveredTag);
+      if (state === 'partial') {
+        indicator = `<div class="card-tag-indicator ${hasIt?'has-tag':'needs-tag'}">${hasIt?'✓':'+'}</div>`;
+      }
+    }
+
+    card.innerHTML = `
+      <div class="card-check">✓</div>
+      ${indicator}
+      <div class="card-date">${note.date}</div>
+      <div class="card-title">${q?hl(note.title,q):note.title}</div>
+      <div class="card-preview">${q?hl(note.preview,q):note.preview}</div>
+      ${note.tags.length?`<div class="card-tags">${note.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>`:''}
+    `;
+    card.addEventListener('click', ()=>toggleSelect(note.id));
+    grid.appendChild(card);
+  });
+}
+
+function hl(text, q) {
+  const re = new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`, 'gi');
+  return text.replace(re,'<mark style="background:rgba(200,160,85,0.2);color:var(--gold);border-radius:2px">$1</mark>');
+}
+
+// ── SELECTION ──────────────────────────────────────────────────────────
+function toggleSelect(id) {
+  selected.has(id) ? selected.delete(id) : selected.add(id);
+  const wasTagging = inTaggingMode();
+  updateSelStatus();
+  document.getElementById('tags-panel').classList.toggle('tagging-active', inTaggingMode());
+  updateTagsHint();
+  renderNotes();
+  renderTags();
+}
+
+function clearSelection() {
+  selected.clear(); hoveredTag = null;
+  document.getElementById('tags-panel').classList.remove('tagging-active');
+  updateSelStatus(); updateTagsHint(); renderNotes(); renderTags();
+}
+
+function updateSelStatus() {
+  const el = document.getElementById('sel-status');
+  if (selected.size > 0) {
+    el.textContent = `${selected.size} note${selected.size>1?'s':''} selected`;
+    el.classList.add('show');
+  } else {
+    el.classList.remove('show');
+  }
+}
+
+// ── TAG ACTIONS ────────────────────────────────────────────────────────
+function handleTagClick(tagName) {
+  if (!inTaggingMode()) {
+    // Browse mode: toggle filter
+    filterTag = filterTag === tagName ? null : tagName;
+    document.getElementById('filter-label').textContent = tagName;
+    document.getElementById('filter-pill').classList.toggle('show', !!filterTag);
+    updateTagsHint(); renderNotes(); renderTags();
+    return;
+  }
+
+  // Tagging mode: toggle based on state
+  const state = tagStateFor(tagName);
+  const ids = [...selected];
+
+  if (state === 'full') {
+    // Remove from all
+    ids.forEach(id => {
+      const note = notes.find(n=>n.id===id);
+      if (note) note.tags = note.tags.filter(t=>t!==tagName);
+    });
+    toast(`Removed "${tagName}" from ${ids.length} note${ids.length>1?'s':''}`);
+  } else {
+    // Add to all that don't have it (handles both 'none' and 'partial')
+    const added = ids.filter(id => {
+      const note = notes.find(n=>n.id===id);
+      if (note && !note.tags.includes(tagName)) { note.tags.push(tagName); return true; }
+      return false;
+    });
+    if (state === 'partial') {
+      toast(`Extended "${tagName}" to ${added.length} remaining note${added.length>1?'s':''}`);
+    } else {
+      toast(`Applied "${tagName}" to ${ids.length} note${ids.length>1?'s':''}`);
+    }
+  }
+
+  clearSelection();
+  renderNotes();
+  renderTags();
+}
+
+function clearFilter() {
+  filterTag = null;
+  document.getElementById('filter-pill').classList.remove('show');
+  updateTagsHint(); renderNotes(); renderTags();
+}
+
+// ── RENDER TAGS ────────────────────────────────────────────────────────
+function renderTags() {
+  const canvas = document.getElementById('tags-canvas');
+  Array.from(canvas.querySelectorAll('.tag-bubble')).forEach(b=>b.remove());
+
+  const q = query.toLowerCase();
+  const matchTags = q ? tagData.filter(t=>t.name.toLowerCase().includes(q)).map(t=>t.name) : null;
+
+  tagData.forEach(tag => {
+    const s = tag.size;
+    const state = tagStateFor(tag.name);
+    const isFaded = matchTags && !matchTags.includes(tag.name);
+    const isFilter = filterTag === tag.name && !inTaggingMode();
+
+    const el = document.createElement('div');
+    el.className = 'tag-bubble';
+    if (isFaded) el.classList.add('faded');
+    if (state === 'partial') el.classList.add('state-partial');
+    if (state === 'full')    el.classList.add('state-full');
+    if (isFilter)            el.classList.add('state-filter');
+
+    el.style.cssText = `
+      width:${s}px;height:${s}px;
+      left:calc(${tag.x}% - ${s/2}px);top:calc(${tag.y}% - ${s/2}px);
+      background:radial-gradient(circle at 38% 32%,
+        rgba(122,175,138,${tag.a*0.2}) 0%, rgba(78,110,86,${tag.a*0.12}) 50%, rgba(45,65,52,${tag.a*0.07}) 100%);
+      border:1px solid rgba(122,175,138,${tag.a*0.3});
+      box-shadow:0 0 ${Math.round(s*0.3)}px rgba(122,175,138,${tag.a*0.12});
+    `;
+
+    // Tooltip text depends on mode and state
+    let tipText = '';
+    if (inTaggingMode()) {
+      const n = selected.size;
+      if (state === 'none')    tipText = `Apply to all ${n} note${n>1?'s':''}`;
+      if (state === 'partial') {
+        const missing = [...selected].filter(id=>!notes.find(nObj=>nObj.id===id)?.tags.includes(tag.name)).length;
+        tipText = `Extend to ${missing} remaining note${missing>1?'s':''}`;
+      }
+      if (state === 'full')    tipText = `Remove from all ${n} note${n>1?'s':''}`;
+    } else {
+      tipText = isFilter ? '✕ Clear filter' : `<span class="tip-create" data-tag="${tag.name}">+ Create Track</span> · click to filter`;
+    }
+
+    const fs = Math.round(9 + s*0.036);
+    el.innerHTML = `
+      <div class="tag-ring"></div>
+      <div class="tag-bubble-inner">
+        <span class="tag-name" style="font-size:${fs}px">${tag.name}</span>
+        <span class="tag-count">${tag.count}</span>
+      </div>
+      <span class="tag-tip">${tipText}</span>
+    `;
+
+    // Hover in tagging mode — show indicators on cards
+    el.addEventListener('mouseenter', () => {
+      if (inTaggingMode()) {
+        hoveredTag = tag.name;
+        renderNotes(); // re-render to show indicators
+      }
+    });
+    el.addEventListener('mouseleave', () => {
+      if (inTaggingMode()) {
+        hoveredTag = null;
+        renderNotes();
+      }
+    });
+
+    el.addEventListener('click', () => handleTagClick(tag.name));
+    canvas.appendChild(el);
+  });
+}
+
+// ── TAGS HINT ─────────────────────────────────────────────────────────
+function updateTagsHint() {
+  const hint = document.getElementById('tags-hint');
+  const q = query.toLowerCase();
+  if (inTaggingMode()) {
+    hint.textContent = 'click a tag to apply or remove';
+    hint.classList.add('tagging');
+  } else if (filterTag) {
+    hint.textContent = `Filtered by "${filterTag}" — click bubble or ✕ to clear`;
+    hint.classList.remove('tagging');
+  } else if (q) {
+    const m = tagData.filter(t=>t.name.toLowerCase().includes(q));
+    hint.textContent = m.length ? `${m.length} tag${m.length>1?'s':''} matching "${q}"` : `No tags matching "${q}"`;
+    hint.classList.remove('tagging');
+  } else {
+    hint.textContent = 'hover to create track · click to filter';
+    hint.classList.remove('tagging');
+  }
+}
+
+// ── SEARCH ────────────────────────────────────────────────────────────
+document.getElementById('search').addEventListener('input', e => {
+  query = e.target.value.trim();
+  document.getElementById('s-clear').style.display = query ? 'block' : 'none';
+  updateTagsHint(); renderNotes(); renderTags();
+});
+document.getElementById('s-clear').addEventListener('click', () => {
+  document.getElementById('search').value = ''; query = '';
+  document.getElementById('s-clear').style.display = 'none';
+  updateTagsHint(); renderNotes(); renderTags();
+  document.getElementById('search').focus();
+});
+
+// ── TAB / VIEW / NAV ──────────────────────────────────────────────────
+function switchTab(t, el) {
+  tab = t; clearSelection(); filterTag = null;
+  document.getElementById('filter-pill').classList.remove('show');
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+  el.classList.add('active');
+  renderNotes();
+}
+function toggleView() {
+  viewMode = viewMode==='grid'?'list':'grid';
+  document.getElementById('view-btn').textContent = viewMode==='grid'?'⊞':'☰';
+  renderNotes();
+}
+function nav(el, name) {
+  document.querySelectorAll('.toolbar-item').forEach(i=>i.classList.remove('active'));
+  el.classList.add('active');
+  if (name!=='sort') toast(`Opening ${name}…`);
+}
+
+// ── KEYBOARD ──────────────────────────────────────────────────────────
+document.addEventListener('keydown', e => {
+  if (e.key==='Escape' && inTaggingMode()) clearSelection();
+});
+document.getElementById('note-grid').addEventListener('click', e => {
+  if (e.target===document.getElementById('note-grid')) clearSelection();
+});
+
+// ── TOAST ─────────────────────────────────────────────────────────────
+let tt;
+function toast(msg) {
+  const t = document.getElementById('toast-el');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(tt); tt = setTimeout(()=>t.classList.remove('show'), 2400);
+}
+
+// ── INIT ──────────────────────────────────────────────────────────────
+// Delegate Create Track clicks from tooltip
+document.getElementById('tags-canvas').addEventListener('click', e => {
+  const btn = e.target.closest('.tip-create');
+  if (btn) {
+    e.stopPropagation();
+    toast(`Track created from "${btn.dataset.tag}"`);
+  }
+});
+
+renderNotes(); renderTags();
+</script>
+</body>
+</html>

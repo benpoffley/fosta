@@ -21,6 +21,7 @@ layout: default
 | Data model design | ✅ Complete |
 | Product wiki (this repo) | ✅ Complete |
 | Hi-fi Sort view (Figma) | 🔄 In progress |
+| Sort interaction model (prototype) | ✅ Complete — see Sort page |
 | Three view name decisions | ⏳ Deferred to hi-fi phase |
 | Dev environment setup | ⏳ Week 4 |
 | First GitHub commit | ⏳ Week 4 |
