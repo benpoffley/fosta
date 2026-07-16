@@ -22,6 +22,7 @@ layout: default
 | Product wiki (this repo) | ✅ Complete |
 | Hi-fi Sort view (Figma) | 🔄 In progress |
 | Sort interaction model (prototype) | ✅ Complete — see Sort page |
+| Sort view design (all interactions) | ✅ Complete — ready for hi-fi Figma |
 | Three view name decisions | ⏳ Deferred to hi-fi phase |
 | Dev environment setup | ⏳ Week 4 |
 | First GitHub commit | ⏳ Week 4 |

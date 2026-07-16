@@ -13,22 +13,39 @@ layout: default
 
 The triage and organisation view. A deliberate session activity — not ambient navigation. The user enters Sort specifically to process their inbox, apply tags, and create structure. Think of a filmmaker sitting down to review and label a day's footage.
 
-It is distinct from the Layer file navigator, which is ambient browsing. Sort is where you go to process, not to browse.
-
 ---
 
 ## Layout
 
-Two panels side by side:
+Two panels divided by a continuous vertical rule:
 
 | Panel | Contents |
 |---|---|
-| Left | Note grid — inbox or all notes, with search, tabs, sort and view controls |
-| Right | Tag cloud — the user's full tag vocabulary, sized by frequency |
+| Left — Notes | Note grid with search, tabs, sort and view controls |
+| Right — Tags | Tag cloud — the user's full tag vocabulary as glowing orbs |
 
-**Single search bar** at the top of the left panel. Typing filters the note grid on the left and simultaneously highlights matching tags on the right. There is no separate search bar for tags — the single bar serves both panels.
+**Shared top bar** spans the full width with three zones:
+- "Notes" label (left, large Playfair italic)
+- Search bar (floating, centred over the vertical dividing line)
+- "Tags" label (right, large Playfair italic)
 
-This was a deliberate decision: two search bars (one per panel) felt duplicated and unclear. The tag cloud reacts to search rather than having its own independent search.
+The vertical dividing line runs the full height of the view — through the title row, behind the floating search bar, and through the sub-row below. This makes the two-panel structure immediately clear.
+
+Below the title row, a second row contains:
+- Left half: Inbox / All tabs + sort and view toggle controls
+- Right half: contextual hint text + "+ New tag" button
+
+---
+
+## Search bar
+
+Single search bar, shared between both panels. Typing simultaneously:
+- Filters the note grid on the left
+- Highlights matching tag orbs on the right (non-matching tags fade back)
+
+**Search-to-create:** if the search term doesn't match any existing tag, a dashed "Create *[term]* as a new tag" row appears at the top of the tag panel. Clicking it creates the tag immediately and clears the search.
+
+Two search bars were explicitly considered and rejected — the single shared bar is cleaner and makes the relationship between notes and tags explicit.
 
 ---
 
@@ -36,20 +53,31 @@ This was a deliberate decision: two search bars (one per panel) felt duplicated 
 
 | Control | Location | Behaviour |
 |---|---|---|
-| Search bar | Top of left panel | Filters notes + highlights tags simultaneously |
-| Inbox / All tabs | Below search | Inbox = unsorted notes only; All = full vault |
-| Sort | Tab row, right | Cycle sort order (date, title) |
-| View toggle | Tab row, right | Grid view ↔ list view |
+| Search bar | Top bar, centred | Filters notes + highlights tags simultaneously |
+| Inbox / All tabs | Sub-row, left | Inbox = unsorted notes; All = full vault |
+| Sort | Sub-row, controls | Cycle sort order (date, title) |
+| View toggle | Sub-row, controls | Grid ↔ list |
+| Clear sorted | Bottom of panel | Slides up when tagged notes exist in inbox |
 
 ---
 
 ## Tag cloud (right panel)
 
-Tags displayed as organic bubbles, sized by usage frequency — computed from SQLite `note_tags` count at query time, not stored. Larger bubble = more notes carrying that tag.
+Tags displayed as glowing orbs, sized by usage frequency — computed from SQLite at query time. Larger orb = more notes carrying that tag.
 
-Tags are flat and single-level. No hierarchy. The frequency sizing is the only visual encoding of importance.
+**Visual treatment:** orbs have no stroke or hard edge at rest. They are pure radial gradient glows that fade to transparent. A stroke only appears when the tag is actively selected (filter mode) or when hovering in tagging mode to signal an action. This keeps the panel calm and uncluttered at rest.
 
-The right panel has **no controls of its own**. It reacts to what is happening in the left panel.
+Tags are flat and single-level. No hierarchy.
+
+### Tag creation
+
+Two paths to create a new tag:
+
+**"+ New tag" button** (sub-row, right side) — opens a compact inline input that slides in from the top of the tag panel. Type a name and press Enter or click Create. Escape cancels.
+
+**Search-to-create** — type any name in the shared search bar. If it doesn't match an existing tag, a dashed create row appears in the tag panel. Fast path for users who know the pattern.
+
+Tag names are normalised on creation: lowercase, spaces to hyphens.
 
 ---
 
@@ -61,55 +89,63 @@ The tag cloud operates in two distinct modes depending on whether notes are sele
 
 | Action | Result |
 |---|---|
-| Click a tag bubble | Filters the note grid to notes carrying that tag. Cream ring appears on the active tag. |
-| Click same tag again | Clears the filter |
-| Click ✕ pill | Clears the filter |
-| Hover a tag | "Create Track" tooltip appears — clickable to create a Track pre-filled with that tag |
+| Click a tag orb | Adds tag to active filter. Cream ring appears. |
+| Click another tag | Added to filter (AND logic — notes must carry all active tags) |
+| Click an active tag | Removes it from filter |
+| Click ✕ pill | Clears all active filters |
+| Hover a tag | "Create Track" tooltip appears (clickable) |
+
+**Multi-tag filter:** multiple tags can be active simultaneously. The note grid shows only notes that carry **all** active filter tags. Active tags sort to the top of the cloud. A filter pill in the top-right of the tag panel shows the active combination (e.g. "film + client-x").
 
 ### Selection mode (one or more notes selected)
 
-Single-clicking a note card selects it. Multiple cards can be selected. Once a selection exists, the tag cloud switches to tagging mode — tags become apply/remove controls rather than filters.
+Single-clicking a note card selects it. Multiple cards can be selected. Once selected, the tag cloud switches to tagging mode.
+
+**Selection persists after tagging** — clicking a tag applies or removes it but does not clear the selection. The user can apply as many tags as needed in one session, then press Escape or click the grid background to finish.
 
 **Three-state tag toggle:**
 
-Each tag bubble can be in one of three states relative to the current selection:
+Each tag orb can be in one of three states relative to the current selection:
 
 | State | Visual at rest | Hover visual | Click action |
 |---|---|---|---|
-| **None** — no selected notes have this tag | No ring (default) | Sage ring + "+" suffix | Add tag to all selected notes |
-| **Partial** — some selected notes have it | Cream dashed ring | Amber ring + "–" suffix | Extend tag to remaining notes |
-| **Full** — all selected notes have it | Cream dashed ring | Rose ring + "✕" suffix | Remove tag from all selected notes |
+| **None** — no selected notes have this tag | No stroke, default glow | Sage ring + "+" suffix | Add to all selected |
+| **Partial** — some selected notes have it | Cream dashed ring | Amber ring + "–" suffix | Extend to remaining |
+| **Full** — all selected notes have it | Cream dashed ring, brighter glow | Rose ring + "✕" suffix | Remove from all selected |
 
 **Colour language:**
-- **Cream ring (at rest)** — neutral state signal: "this tag is applied to your selection." Not an action colour.
-- **Sage** — add (positive action)
+- **Cream ring (at rest)** — neutral: "this tag is applied to part or all of your selection"
+- **Sage** — add (positive)
 - **Amber/gold** — extend to remaining (completing something)
-- **Rose** — remove (destructive action)
+- **Rose** — remove (destructive)
 
-Action colours only appear **on hover** — never at rest. This prevents misreading the ring state as an action intent.
+Action colours only appear **on hover** — never at rest.
 
-**Card indicators in partial state:**
-When hovering a partially-applied tag, each selected note card shows a small indicator:
-- ✓ — this note already has the tag
-- + — this note will receive the tag on click
+**Card indicators in partial state:** hovering a partially-applied tag shows ✓ or + on each selected card, previewing which notes will be affected before clicking.
 
-This gives the user a clear preview of what will change across all selected notes before committing.
-
-**Clearing selection:** press Escape or click the grid background.
+**Topbar status** shows "X notes selected — keep clicking tags · Esc to finish" while a selection is active.
 
 ---
 
-## Sort inbox interaction model
+## Inbox management
 
-Single-click in the Sort inbox grid is **TBD** — deferred until the interaction design is fully resolved. The selection model described above covers what happens once a note is selected, not how that selection is initiated. Current prototype uses single-click to select; this is provisional.
+### Within a Sort session — manual clear
+
+Tagged notes remain visible in the inbox grid during a session. This is intentional: removing notes immediately on tagging would disrupt flow, make it harder to review decisions, and prevent easy undo.
+
+When at least one inbox note has been tagged, a **"✦ Clear sorted (N)"** button slides up at the bottom of the notes panel. Clicking it animates tagged cards out with a stagger, leaving only genuinely untagged notes. The empty state confirms "Inbox clear — X notes sorted."
+
+### On navigation away — automatic clear
+
+When the user navigates to another view and returns to Sort, the inbox automatically shows only untagged notes. Tagged notes still exist in "All notes" — they have simply graduated out of the triage queue. Inbox is a display filter, not a folder.
 
 ---
 
 ## Create Track from tag
 
-Hovering any tag bubble (in browse mode) surfaces a "Create Track" tooltip. Clicking "Create Track" opens Track's creation modal pre-filled with that tag as the first population criteria.
+Hovering any tag orb (in browse mode) surfaces a "Create Track" tooltip. The tooltip has a 120ms appear delay, a 280ms hover grace period, and an invisible bridge between the orb and the tooltip so the user can move their mouse to click it without it disappearing.
 
-The tooltip uses a grace period (280ms) and an invisible hover bridge so the user can move their mouse to the tooltip and click it without it disappearing. See [Global Actions](../foundations/global-actions.md).
+Clicking "Create Track" opens Track's creation modal pre-filled with that tag as the first population criteria. See [Global Actions](../foundations/global-actions.md).
 
 ---
 
@@ -117,19 +153,23 @@ The tooltip uses a grace period (280ms) and an invisible hover bridge so the use
 
 <img src="/fosta/assets/wireframes/sort.svg" alt="Sort wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
-*Reference wireframe — inbox grid and tag-frequency bubbles. Recreated from early hand sketches, June 2026. Not final UI.*
+*Early reference wireframe — June 2026. Not final UI.*
 
 ---
 
 ## Design prototype
 
-An interactive HTML prototype explores the Sort layout and interaction model. It is a reference for the hi-fi Figma design — not a locked specification.
+An interactive HTML prototype documents the Sort layout and interaction model. Reference for the hi-fi Figma design — not a locked specification.
 
 **[View Sort prototype](/fosta/assets/prototypes/sort-v1.html)**
 
-Key decisions explored in the prototype:
-- Single search bar filtering both notes and tags simultaneously
-- Select-then-tag interaction model (select notes, then click tag to apply/remove)
-- Three-state tag toggle (none / partial / full) with hover-reveal action colours
+Decisions explored in the prototype:
+- Shared top bar with floating centred search and large panel labels
+- Single search bar filtering both panels simultaneously
+- Tag orbs as pure glowing gradients with no resting stroke
+- Multi-tag filter (AND logic, cream ring, active tags sort to top)
+- Select-then-tag model with persistent selection across multiple tag applications
+- Three-state toggle (none / partial / full) with hover-reveal action colours
 - Card ✓/+ indicators in partial state
-- Tag filter mode vs tagging mode colour distinction (cream = applied state, not action)
+- "Clear sorted" button at bottom of notes panel with staggered exit animation
+- Tag creation via "+ New tag" button and search-to-create

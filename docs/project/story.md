@@ -11,6 +11,27 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Sort view design completed through interactive prototyping
+**16 July 2026 · Design milestone**
+
+The Sort view interaction model was fully worked out through a series of iterative HTML prototypes, resolving every major open question and producing a design ready for hi-fi Figma work.
+
+**Layout settled:** a shared top bar spans the full width with the "Notes" and "Tags" panel labels prominent in large Playfair italic, and the search bar floating centred over the vertical dividing line — which runs the full height of the view. The two panels are clearly divided but the search visually belongs to both.
+
+**Tag visual treatment:** tags are pure glowing orbs — radial gradients with no stroke or hard edge at rest. Strokes only appear when a tag is actively selected or being hovered with an action intent, keeping the panel calm and uncluttered by default. Bubble sizing by frequency was retained; a flat grid alternative was explored and rejected.
+
+**Multi-tag filter:** multiple tags can be active simultaneously (AND logic). Cream ring signals "active filter" — distinct from the action colours (sage/amber/rose) which only appear on hover.
+
+**Selection model:** single-click selects notes. Selection persists after applying a tag, so the user can apply multiple tags in one session without re-selecting. Three-state toggle (none/partial/full) handles multi-note selections gracefully, with card ✓/+ indicators previewing partial-state changes before commit.
+
+**Inbox management:** "Clear sorted" button slides up at the bottom of the notes panel when tagged notes exist. Staggered exit animation. Auto-clears on navigation away — inbox is a display filter, not a folder.
+
+**Tag creation:** two paths — "+ New tag" button (inline input slides in from top of tag panel) and search-to-create (type a non-existent name, create row appears). Both normalise names on creation.
+
+Prototype linked from Sort view page. Sort is now ready for hi-fi Figma.
+
+---
+
 ## Sort interaction model resolved through prototyping
 **13 July 2026 · Design**
 

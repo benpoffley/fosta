@@ -34,6 +34,8 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 - Future Ideas page added — Line/Thread zoom model exploration documented for post-v1
 - Updated Desk, Layer, Capture docs to reflect new interaction model
 - Restructured nav: Product / Market / Engineering / Foundations / Views / Project
+- Sort prototype updated: shared top bar layout, floating search, vertical dividing line, tag orb visual treatment (no resting stroke), multi-tag filter (AND logic), persistent selection for multi-tag apply, Clear sorted button, tag creation (+ New tag button + search-to-create)
+- Sort view page fully rewritten with all interaction decisions documented
 
 ## v0.1.0 — June 2026
 
