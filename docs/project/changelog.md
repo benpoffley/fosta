@@ -36,6 +36,9 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 - Restructured nav: Product / Market / Engineering / Foundations / Views / Project
 - Sort prototype updated: shared top bar layout, floating search, vertical dividing line, tag orb visual treatment (no resting stroke), multi-tag filter (AND logic), persistent selection for multi-tag apply, Clear sorted button, tag creation (+ New tag button + search-to-create)
 - Sort view page fully rewritten with all interaction decisions documented
+- ADR-001 expanded with full Tauri decision rationale
+- ADR-013 added: platform and mobile strategy — Mac-only v1, mobile deferred, full cloud-first trade-off analysis documented
+- ADR index updated with full table of all 13 decisions
 
 ## v0.1.0 — June 2026
 

@@ -36,3 +36,7 @@ Markdown files (source of truth)
 ```
 
 SQLite is always rebuildable from the Markdown files. If the index is lost or corrupted, re-scan the vault. Never treat SQLite as the source of truth.
+
+## Platform and mobile strategy
+
+The decision to build Mac-native with Tauri, and the reasoning for deferring mobile and cross-device support, is documented in [ADR-013](decisions/adr-013-platform-strategy.md). This includes the full trade-off analysis of local-first vs cloud-first, options for future mobile development, and the conditions under which the platform strategy should be revisited.
