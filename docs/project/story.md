@@ -11,6 +11,19 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Pinned nodes introduced on Desk — reopens and refines a previously rejected idea
+**23 July 2026 · Design decision**
+
+Desk gains a "pinned" property, available on any canvas node (freeform, note-reference, canvas-reference). A pinned node is excluded from the timer's wipe cycle and persists on the canvas indefinitely, in place, until unpinned.
+
+This directly revisits an earlier rejected concept — dedicated Focus and Pinned side panels on Desk, rejected on the grounds that a fixed UI region undermines Desk's core promise as a blank, chrome-free canvas. The new approach avoids that problem entirely: pinning is a property on ordinary canvas content, not a new UI surface. A pinned node looks and behaves exactly like its unpinned counterpart — same position, same two-state model, same interactions — except it survives wipes.
+
+The most useful consequence is for freeform nodes specifically. A freeform node — plain text typed directly onto the canvas, with no underlying note — can now be pinned to create a persistent list or set of reminders, edited directly in place, without ever being converted to a real note via Capture to Inbox. This gives users a lightweight, always-available scratch list without reopening the "everything is a note" principle: unpinned freeform nodes were already the one accepted exception to that rule, and pinning simply extends their lifecycle rather than creating a new exception.
+
+Schema: `pinned` boolean added to the JSON Canvas node object, default `false`, Desk-only behaviour (no effect on Track canvases, which have no wipe cycle).
+
+---
+
 ## Sort view design completed through interactive prototyping
 **16 July 2026 · Design milestone**
 

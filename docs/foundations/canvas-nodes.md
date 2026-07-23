@@ -30,6 +30,28 @@ Every note-reference and canvas-reference node exists in one of two states:
 
 The snap threshold creates a deliberate mode change — not a gradual degradation of a tiny card into unreadable text. Below the threshold: compact card. Above it: live preview.
 
+## Pinned nodes (Desk only)
+
+Any canvas node on Desk — freeform, note-reference, or canvas-reference — can be marked **pinned**. Pinning is a property on the node, not a new node type or a new UI component.
+
+**What pinning does:** a pinned node is excluded from Desk's timed wipe cycle (see `desk.md` — Timer pill). When the canvas wipes, the current state is archived as normal, non-pinned nodes clear from the live canvas, and pinned nodes remain exactly where they are, in whatever state they were in.
+
+**What pinning does not change:** a pinned node behaves identically to an unpinned node of the same type in every other respect — same two-state model, same editing behaviour, same interaction pattern. Pinning only affects wipe behaviour.
+
+### Why this matters for freeform nodes specifically
+
+Freeform nodes are ephemeral by default — text typed directly onto the canvas with no underlying note, intended to either be converted to a real note via "Capture to Inbox" or cleared at the next wipe.
+
+Pinning a freeform node creates a third lifecycle option: **content that stays freeform indefinitely, edited directly in place, and is never intended to become a note.** A user can type a running list, a set of quick reminders, or any short-lived-but-recurring text directly onto the canvas, pin it, and it persists across every wipe cycle without ever being captured to Inbox.
+
+This does not conflict with "everything is a note" (see Architecture Principles). Unpinned freeform nodes were already the one explicit exception to that rule — content that exists on the canvas without being a note. Pinning does not create a new exception; it extends the lifecycle of an existing one.
+
+### Why this is not a "panel"
+
+An earlier proposal for persistent Focus/Pinned panels on Desk was explicitly rejected (see Decisions Explicitly Rejected, `docs/project/scope.md` or `current-development.md`) on the grounds that a fixed UI region competes with the canvas and undermines Desk's core promise as a blank, chrome-free thinking surface.
+
+Pinned nodes are not a panel. They are ordinary canvas content — positioned anywhere on the canvas by the user, rendered identically to any other node — that simply persists through the wipe cycle. There is no new docked region, no fixed sidebar, no dedicated UI surface. The distinction is deliberate: pinning changes *when a node is cleared*, not *where it lives or how it looks*.
+
 ## Interaction model
 
 The same interaction pattern applies to canvas nodes on both Desk and Track:

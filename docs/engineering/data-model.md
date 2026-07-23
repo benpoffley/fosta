@@ -93,7 +93,8 @@ Canvas files (Desk scratchpad, Track canvases) are stored as JSON Canvas format:
       "y": 200,
       "width": 200,
       "height": 150,
-      "state": "compact"
+      "state": "compact",
+      "pinned": false
     }
   ],
   "edges": []
@@ -102,6 +103,8 @@ Canvas files (Desk scratchpad, Track canvases) are stored as JSON Canvas format:
 
 Node types: `freeform`, `note-reference`, `canvas-reference`.
 Node states: `compact` (title card), `expanded` (live preview).
+
+`pinned`: boolean, default `false`. Desk-only behaviour — when `true`, the node is excluded from the timer's wipe cycle (see `docs/views/desk.md`). Valid on any node type, including `freeform`. Has no effect on Track canvases, since Track has no wipe cycle.
 
 
 

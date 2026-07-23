@@ -39,6 +39,9 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 - ADR-001 expanded with full Tauri decision rationale
 - ADR-013 added: platform and mobile strategy — Mac-only v1, mobile deferred, full cloud-first trade-off analysis documented
 - ADR index updated with full table of all 13 decisions
+- Desk: pinned nodes introduced — any canvas node (including freeform) can be pinned to survive the wipe cycle; revisits and refines the previously rejected Focus/Pinned panels concept
+- JSON Canvas schema: added `pinned` boolean field to node objects (Desk-only behaviour)
+- Canvas Nodes foundation page: added Pinned nodes section with full reasoning
 
 ## v0.1.0 — June 2026
 

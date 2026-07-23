@@ -42,15 +42,25 @@ Node types, two-state behaviour (compact card / expanded live preview), and inte
 | Overflow (⋯) on hover | "Open in Quick Look" · "Open in Layer/Track" · "Add to Desk" |
 | "Open in Layer/Track" from Quick Look | Opens in full native view |
 
+## Pinned nodes
+
+Any node on the canvas — freeform, note-reference, or canvas-reference — can be pinned. Pinned nodes are excluded from the timer's wipe cycle and remain on the canvas indefinitely, in place, until unpinned or removed manually.
+
+This is a property on the node, not a new component or panel — pinned nodes look and behave exactly like their unpinned counterparts in every respect except wipe behaviour. See [Canvas Nodes — Pinned nodes](../foundations/canvas-nodes.md#pinned-nodes-desk-only) for full reasoning, including why this is distinct from the previously-rejected Focus/Pinned panel concept.
+
+**Common use:** a freeform node containing a running list or set of quick reminders, pinned so it survives every wipe without ever being converted to a real note. Edited directly in place — no Quick Look required.
+
 ## Timer pill
 
 Located centre-top of the canvas. Controls:
-- **Wipe now** — clears the current canvas (archived first)
+- **Wipe now** — clears the current canvas (archived first). Pinned nodes are excluded and remain on the live canvas.
 - **History** — browse past archives (read-only, amber border + banner)
 - **Frequency** — how often the canvas auto-archives (default: 24h)
 
 Archives saved to: `Scratchpad/Archive/YYYY-MM-DD-HHmm.canvas`  
 SQLite indexes archives — visible in Sort with "scratchpad archive" label.
+
+Archives capture the full canvas state at the moment of wipe, including pinned nodes, even though pinned nodes also remain live. This means a pinned node's state at any past wipe is always recoverable from history, even as its live version continues to change.
 
 ## Canvas storage
 
