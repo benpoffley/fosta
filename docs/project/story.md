@@ -11,6 +11,15 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Comment visibility rules made explicit
+**23 July 2026 · Clarification**
+
+A gap was identified: comments were defined as full notes (`type: comment`) per "everything is a note," but the wiki never explicitly stated whether comments should appear in the file navigator, Sort's inbox/tags, or search — leaving this to inference.
+
+Resolved with an explicit visibility table in the Layer view page. Comments remain full notes architecturally — UUID, frontmatter, disk file, SQLite-indexed, no parallel object type — but are excluded from every view that presents "notes" for browsing, tagging, or referencing (file navigator, Sort inbox/tags, Quick Look, canvas note-reference nodes). The one exception is search: comments are real content and should be findable, even though they aren't meant to be browsed as standalone notes. The canonical access point for a comment remains the parent note's Layers panel.
+
+---
+
 ## Pinned nodes introduced on Desk — reopens and refines a previously rejected idea
 **23 July 2026 · Design decision**
 

@@ -40,6 +40,7 @@ type: comment
 parentNote: <uuid-of-parent-note>
 parentBlock: <uuid-of-block-being-commented-on>
 ```
+Full note architecturally (UUID, frontmatter, SQLite-indexed) — but excluded from the file navigator, Sort inbox/tags, Quick Look, and canvas note-reference nodes. Surfaced only via the parent note's Layers panel and via search. See `docs/views/layer.md` — "Comments and the rest of the app" for the full visibility table.
 
 **Quote / transclusion**
 ```yaml

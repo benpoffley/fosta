@@ -42,6 +42,7 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 - Desk: pinned nodes introduced — any canvas node (including freeform) can be pinned to survive the wipe cycle; revisits and refines the previously rejected Focus/Pinned panels concept
 - JSON Canvas schema: added `pinned` boolean field to node objects (Desk-only behaviour)
 - Canvas Nodes foundation page: added Pinned nodes section with full reasoning
+- Layer: comment visibility rules made explicit — full notes architecturally, but excluded from file navigator/Sort/Quick Look/canvas nodes, included in search
 
 ## v0.1.0 — June 2026
 

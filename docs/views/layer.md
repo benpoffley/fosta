@@ -56,6 +56,21 @@ parentBlock: <block-uuid>
 
 Anchored to the block UUID. If the block is moved within the note, the comment follows. If the block is deleted, the comment is orphaned (warning shown).
 
+### Comments and the rest of the app — where they do and don't appear
+
+Comments are full notes architecturally (UUID, frontmatter, disk file, SQLite-indexed) per "everything is a note." But they are content *bound to a specific block in a specific note*, not standalone thinking material, and are surfaced accordingly:
+
+| Location | Comments appear? | Reasoning |
+|---|---|---|
+| File navigator (Layer left panel) | ❌ No | Would clutter the vault browser with entries that aren't "notes" in the user's mental model — a note with 20 comments shouldn't produce 20 extra navigator rows |
+| Layers panel, block selected (Layer right panel) | ✅ Yes | This is the canonical, intended access point — comments are accessed through their parent note, not browsed independently |
+| Global / Sort search | ✅ Yes | Comments are real content with real UUIDs; excluding them from search would hide genuine information from the user |
+| Sort inbox / tag cloud | ❌ No | Comments are not standalone triage material — they don't carry independent tags and aren't meant to be sorted as if they were freestanding notes |
+| Quick Look | ❌ No | Comments are not opened as a standalone note-editing surface; they're edited inline within the Layers panel |
+| Track / Desk (as note-reference nodes) | ❌ No | Comments cannot be added to a canvas as a reference node — only standard notes can |
+
+**The general rule:** comments are full notes for storage, indexing, and architectural purposes (this is what "everything is a note" guarantees — no parallel object type, no special-cased storage). But every *view* that presents "notes" to the user for browsing, tagging, or referencing treats comments as out of scope, since they are context-bound annotations rather than freestanding ideas. Search is the one exception, because comments are still real content a user may need to find.
+
 ## Wikilinks
 
 Syntax: `[[display-name|uuid]]`
