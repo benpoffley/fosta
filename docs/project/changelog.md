@@ -43,6 +43,8 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 - JSON Canvas schema: added `pinned` boolean field to node objects (Desk-only behaviour)
 - Canvas Nodes foundation page: added Pinned nodes section with full reasoning
 - Layer: comment visibility rules made explicit — full notes architecturally, but excluded from file navigator/Sort/Quick Look/canvas nodes, included in search
+- CLAUDE.md renamed to AGENTS.md (open cross-tool standard); CLAUDE.md kept as a minimal pointer for Claude Code compatibility
+- Added guidance for AI tools to fetch wiki content via raw.githubusercontent.com rather than the Pages URL, to avoid stale CDN caching
 
 ## v0.1.0 — June 2026
 

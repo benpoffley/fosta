@@ -8,11 +8,11 @@ layout: default
 # Fosta Build Guide
 
 **For:** AI coding agents (Claude Code, Cursor) and future collaborators  
-**Read first:** `../CLAUDE.md` — contains the hard constraints and guardrails
+**Read first:** `../AGENTS.md` — contains the hard constraints and guardrails
 
 ## Before writing any code
 
-1. Read `CLAUDE.md` — the guardrails are non-negotiable
+1. Read `AGENTS.md` — the guardrails are non-negotiable
 2. Read `../docs/engineering/architecture.md` — the nine principles
 3. Read the relevant ADRs in `../docs/engineering/decisions/`
 4. Check `../docs/project/current-development.md` — build the right thing right now

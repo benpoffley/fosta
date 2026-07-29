@@ -30,14 +30,14 @@ This repo contains the Fosta product wiki — the single canonical source of tru
 
 ## For AI coding tools
 
-**Start with [`CLAUDE.md`](CLAUDE.md)** — it contains the guardrails and a map of the codebase. Read it before writing any code.
+**Start with [`AGENTS.md`](AGENTS.md)** — it contains the guardrails and a map of the codebase. Read it before writing any code. (A `CLAUDE.md` pointer file also exists for tools that specifically look for that filename.)
 
 ## Order of authority
 
 When sections conflict, higher beats lower:
 
 1. Architectural Decision Records (ADRs) — `docs/engineering/decisions/`
-2. AI Guardrails — `CLAUDE.md` and `docs/engineering/ai-guardrails.md`
+2. AI Guardrails — `AGENTS.md` and `docs/engineering/ai-guardrails.md`
 3. Product philosophy + architecture — `docs/product/` and `docs/engineering/`
 4. Feature specifications — `docs/views/` and `docs/foundations/`
 5. Current development — `docs/project/current-development.md`

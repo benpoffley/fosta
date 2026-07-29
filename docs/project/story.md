@@ -11,6 +11,15 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## AI agent entry point migrated to AGENTS.md; raw GitHub URL guidance added
+**23 July 2026 · Infrastructure**
+
+Two related fixes. First: a stale-cache issue was discovered where AI tools fetching wiki pages via the GitHub Pages URL (`benpoffley.github.io/fosta/...`) could receive old cached content even when the live site was current — confirmed by comparing a hard-refreshed browser view (current) against a tool fetch (stale, showing pre-rename "Linear/Spatial" Track content from weeks earlier). The fix: any AI tool should fetch wiki content via the raw GitHub URL (`raw.githubusercontent.com/benpoffley/fosta/main/...`) instead, which bypasses the Pages CDN entirely. This guidance is now documented at the top of the agent instructions file itself, so it travels with the wiki.
+
+Second: `CLAUDE.md` was renamed to `AGENTS.md`, adopting the open, cross-tool standard (Linux Foundation-governed, read natively by Cursor, Codex, Copilot, Gemini CLI, and others) rather than the Anthropic-specific convention. A minimal `CLAUDE.md` pointer file remains, since Claude Code specifically still only reads that filename and does not yet read AGENTS.md natively. All other wiki references updated to point to AGENTS.md as the source of truth.
+
+---
+
 ## Comment visibility rules made explicit
 **23 July 2026 · Clarification**
 
