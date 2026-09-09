@@ -39,9 +39,17 @@ Deferred to the hi-fi Figma phase. Will resolve when real screens and real copy 
 - Organisation view: **Sort** vs **Curate**
 - Editor view: **Layer** vs **Work** vs **Develop**
 
+## Figma → specs process
+
+Sort hi-fi is in progress in Figma. Before any coding begins, visual decisions made during hi-fi must be recorded back in the wiki:
+
+- Colour values, typography sizes, and spacing confirmed in Figma → `docs/engineering/design-tokens.md`
+- Interaction or layout changes that diverge from the lo-fi spec → relevant view spec (e.g. `docs/views/sort.md`)
+
+This is a required process step, not optional cleanup. Code must reflect the documented spec, not a Figma file that has not been reconciled.
+
 ## Known blockers
 
-- Sort inbox interaction model not finalised — drag-to-tag vs click-to-select model still being resolved
 - Three view names deferred
 
 ## Build sequence (high level)
