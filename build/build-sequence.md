@@ -56,7 +56,7 @@ The first real view. Build and use daily before building Layer.
 - [ ] Build `TagBubble` component (size by frequency from SQLite)
 - [ ] Compute tag frequency from SQLite `note_tags` table
 - [ ] Build "Create Track" hover affordance on `TagBubble`
-- [ ] Resolve Sort inbox interaction model (TBD — see open questions)
+- [x] Resolve Sort inbox interaction model
 - [ ] **Gate:** Inbox shows captured notes. Tag bubbles reflect actual tag frequency. Can assign a tag to a note.
 
 ## Phase 4 — Cloudflare work capture (Month 4–5)
@@ -105,8 +105,9 @@ Reassess timing after Layer is working and in daily use.
 - [ ] Build tldraw ↔ JSON Canvas adapter
 - [ ] Build canvas with note-reference nodes (compact state)
 - [ ] Build expanded live preview state (drag corner → snap)
-- [ ] Build Linear layout mode (sequence axis)
-- [ ] Build Spatial layout mode (free-position)
+- [ ] Build Line layout (sequence axis)
+- [ ] Build Web layout (free-position)
+- [ ] Build Thread layout (linear thread view)
 - [ ] Build connection tool (exactly two nodes, visual-only)
 - [ ] Build annotation nodes (anchor to node or connection)
 - [ ] Build "Add new item" modal (search vault, add as reference node)
