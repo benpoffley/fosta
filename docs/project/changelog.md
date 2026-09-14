@@ -45,6 +45,8 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 - Layer: comment visibility rules made explicit — full notes architecturally, but excluded from file navigator/Sort/Quick Look/canvas nodes, included in search
 - CLAUDE.md renamed to AGENTS.md (open cross-tool standard); CLAUDE.md kept as a minimal pointer for Claude Code compatibility
 - Added guidance for AI tools to fetch wiki content via raw.githubusercontent.com rather than the Pages URL, to avoid stale CDN caching
+- Desk: freeform node timestamps added — creation moment recorded automatically, shown subtly on hover/select, maps to `created` on note capture with `modified` set at capture time
+- JSON Canvas schema: added `createdAt` field to freeform nodes
 
 ## v0.1.0 — June 2026
 

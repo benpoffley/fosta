@@ -30,6 +30,23 @@ Every note-reference and canvas-reference node exists in one of two states:
 
 The snap threshold creates a deliberate mode change — not a gradual degradation of a tiny card into unreadable text. Below the threshold: compact card. Above it: live preview.
 
+## Freeform node timestamps
+
+Every freeform node silently records the moment it was first created — the instant the first character is typed — with no action required from the user. This is the node's **only** timestamp for as long as it remains freeform. Freeform nodes do not have a `modified` field; nothing about "last modified" is meaningful until the node becomes a tracked object in the system.
+
+**Visual treatment:** the creation timestamp is not shown by default. It appears subtly — low-opacity, small — only on hover or when the node is selected. This preserves Desk's blank-canvas, no-chrome feel while keeping the information available the moment a user wants to check it.
+
+### What happens at conversion (Capture to Inbox)
+
+When a freeform node is converted to a real note, the note's required frontmatter (`created`, `modified` — see Data Model) is populated as follows:
+
+- **`created`** — backdated to the freeform node's original entry timestamp, not the moment of capture. The note's true origin is preserved: an idea jotted down three days ago and only captured today still shows `created: 3 days ago`.
+- **`modified`** — set to the moment of capture, since converting the node into a real note is itself a genuine change to the object. From this point on, `modified` updates normally with every subsequent edit, exactly like any other note.
+
+This means a freeform node's single timestamp becomes the note's `created` date, and the note only begins tracking `modified` from the moment it becomes a note — not before. The two fields are not parallel-tracked at different stages; `modified` simply does not exist until the frontmatter contract begins.
+
+**Pinned nodes:** pinning does not add a second timestamp. A pinned freeform node retains only its original creation date — there is no separate "pinned on" field.
+
 ## Pinned nodes (Desk only)
 
 Any canvas node on Desk — freeform, note-reference, or canvas-reference — can be marked **pinned**. Pinning is a property on the node, not a new node type or a new UI component.
