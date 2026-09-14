@@ -11,6 +11,19 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Freeform node timestamps — automatic, no manual dating required
+**30 July 2026 · Design decision**
+
+Freeform nodes on Desk now silently record their creation moment — the instant the first character is typed — with no user action required. This is the node's only timestamp for as long as it stays freeform; `modified` has no meaning until a node becomes a tracked note, so freeform nodes simply don't carry that field.
+
+Shown subtly: low-opacity, visible only on hover or when selected, keeping Desk's blank-canvas feel intact.
+
+On "Capture to Inbox," the freeform node's original timestamp becomes the new note's `created` date — preserving the idea's true origin even if it sits on the canvas for days before being captured. `modified` is set to the moment of capture and updates normally from there. Pinning a node does not add a second "pinned on" timestamp — only the original creation date is tracked.
+
+Schema: `createdAt` added to the JSON Canvas node object, present on `freeform` nodes only.
+
+---
+
 ## AI agent entry point migrated to AGENTS.md; raw GitHub URL guidance added
 **23 July 2026 · Infrastructure**
 

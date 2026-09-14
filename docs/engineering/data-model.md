@@ -107,6 +107,8 @@ Node states: `compact` (title card), `expanded` (live preview).
 
 `pinned`: boolean, default `false`. Desk-only behaviour — when `true`, the node is excluded from the timer's wipe cycle (see `docs/views/desk.md`). Valid on any node type, including `freeform`. Has no effect on Track canvases, since Track has no wipe cycle.
 
+`createdAt`: ISO timestamp. Present on `freeform` nodes only — recorded automatically the instant the node is created, never updated afterward. Not present on `note-reference` or `canvas-reference` nodes, since those already carry `created`/`modified` on the note itself. See [Canvas Nodes — Freeform node timestamps](../foundations/canvas-nodes.md#freeform-node-timestamps) for how this maps to note frontmatter on capture.
+
 
 
 ## Track canvas files
