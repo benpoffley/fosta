@@ -1,7 +1,8 @@
 ---
 title: "ADR Template"
-parent: "Engineering"
-nav_order: 7
+parent: "Decision Records"
+grand_parent: "Engineering"
+nav_order: 14
 layout: default
 ---
 

@@ -47,12 +47,7 @@ Tiptap block-typed editor. Features:
 
 ## Block-level comments
 
-Comments are notes with this frontmatter:
-```yaml
-type: comment
-parentNote: <note-uuid>
-parentBlock: <block-uuid>
-```
+Comments are notes with `type: comment`, carrying `parentNote` and `parentBlock` references. Full comment schema: [Data Model](../engineering/data-model.md#note-types).
 
 Anchored to the block UUID. If the block is moved within the note, the comment follows. If the block is deleted, the comment is orphaned (warning shown).
 

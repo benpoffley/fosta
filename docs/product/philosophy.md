@@ -7,7 +7,7 @@ layout: default
 
 # Product Philosophy
 
-**Status:** Decided — Final
+**Status:** Final
 
 ## Core principles
 

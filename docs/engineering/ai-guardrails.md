@@ -7,7 +7,7 @@ layout: default
 
 # AI Guardrails
 
-**Status:** Final — Non-negotiable  
+**Status:** Final — non-negotiable  
 **Audience:** AI coding agents (Claude Code, Cursor, etc.)
 
 These constraints exist to prevent architectural drift. Violating them is not a style issue — it breaks fundamental product principles. See the full ADRs in `decisions/` for the reasoning behind each constraint.
@@ -44,18 +44,10 @@ These constraints exist to prevent architectural drift. Violating them is not a 
 
 ## Scope discipline
 
-If asked to implement something on the out-of-scope list, stop and flag it. These are deliberately excluded, not forgotten features.
-
-**Out of scope for v1:** Google Drive sync · iPad app · Web app · AI features · Plugin system · Collaboration · Real-time sync · Bi-directional graph links · User accounts/auth · Tag templates · Tag hierarchy · Co-occurrence lines in Sort · Live transclusion across Cloudflare · Split view in Layer · Track (moves to v1.1 if not ready post-Sort)
+If asked to implement something on the out-of-scope list, stop and flag it. These are deliberately excluded, not forgotten features. Full out-of-scope list: `docs/project/scope.md`.
 
 ## Naming — do not change
 
-Three tab names are pending final decision. Use these placeholders:
-
-| View | Placeholder | Candidates |
-|---|---|---|
-| First tab | Desk / Base | Desk, Base |
-| Organisation view | Sort | Sort, Curate |
-| Editor view | Layer | Layer, Work, Develop |
+Three view names are pending final decision — use the current placeholders (Desk, Sort, Layer) until resolved. Candidates and status: `docs/project/open-questions.md`.
 
 Canonical terms that must not be renamed: Quick Look · Global Actions · Add to Desk · Create Track from tag · QuoteBlock

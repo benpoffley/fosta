@@ -1,11 +1,13 @@
 ---
 title: "Changelog"
 parent: "Project"
-nav_order: 6
+nav_order: 7
 layout: default
 ---
 
 # Changelog
+
+**Role:** the terse record of *what* changed and *when*. For the narrative of *why* a decision was made, see [Story](story.md).
 
 Documentation milestones. Records meaningful changes — not every wording edit.
 

@@ -7,7 +7,7 @@ layout: default
 
 # Views Overview
 
-**Status:** Decided — Final  
+**Status:** Final  
 **Note:** Three view names are deferred to hi-fi Figma phase. See naming decisions below.
 
 ## The five views
@@ -25,11 +25,7 @@ Fosta has five views accessible from the persistent bottom toolbar, plus one glo
 
 ## Naming decisions — deferred
 
-Three names are held until the hi-fi Figma phase, when real screens with real copy will make the right answer obvious:
-
-- **First tab:** Desk vs Base
-- **Organisation view:** Sort vs Curate  
-- **Editor view:** Layer vs Work vs Develop — "Layer" fails the CTA test ("Open in Layer" reads oddly)
+Three view names are held until the hi-fi Figma phase, when real screens with real copy will make the right answer obvious. Candidates and status: [Open Questions](../project/open-questions.md).
 
 ## Layout
 

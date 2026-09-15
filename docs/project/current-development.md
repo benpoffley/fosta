@@ -33,11 +33,7 @@ layout: default
 
 ## Three naming decisions pending
 
-Deferred to the hi-fi Figma phase. Will resolve when real screens and real copy make the right answer obvious.
-
-- First tab: **Desk** vs **Base**
-- Organisation view: **Sort** vs **Curate**
-- Editor view: **Layer** vs **Work** vs **Develop**
+Deferred to the hi-fi Figma phase. Will resolve when real screens and real copy make the right answer obvious. Candidates and status: [Open Questions](open-questions.md).
 
 ## Figma → specs process
 
