@@ -9,7 +9,7 @@ layout: default
 
 **Role:** the narrative record of *why* decisions were made. For a terse list of *what* changed and *when*, see [Changelog](changelog.md).
 
-A log of how Fosta was built — decisions made, problems solved, things learned. Most recent first.
+A log of how Fosta was built — decisions made, problems solved, things learned. Most recent first. The story begins in February 2026; the June 2026 wiki entries below consolidated foundational decisions first explored in that earlier period.
 
 ---
 
@@ -235,3 +235,24 @@ All nine architecture principles finalised: StorageAdapter pattern, UUIDs as ide
 **11 June 2026**
 
 Fosta began with a clear product thesis: notes should flow through a pipeline — capture fast, sort later, develop in layers, sequence, then publish. The DaVinci Resolve page-based layout became the structural inspiration. Five views, one bottom toolbar, each view a different mode of working on the same underlying data.
+
+---
+
+## Dedicated workspace set up as work resumed
+**17 April 2026**
+
+After the initial exploration, a dedicated "fosta studio" workspace was set up to carry the project forward — the home for the design and strategy work that would later be consolidated into the June wiki.
+
+---
+
+## Early concept explored
+**February–March 2026**
+
+The foundational shape of the product was worked out through an extended exploration of how to develop design and strategy with an AI tool as a thinking partner. The decisions that still anchor Fosta today were made here: targeting the Mac platform, the five-view model, and the overall flow of notes through those views. The pipeline metaphor and the "non-linear editor for thought" positioning both date from this period. Much of what the June wiki later formalised was first discovered in these early conversations.
+
+---
+
+## Genesis
+**23 February 2026**
+
+Fosta began — the first concept work, in a dedicated Claude project, exploring the idea of a note-taking and idea-development app shaped around how creative work actually flows. The starting question was simple: what would it look like to build a single tool for the whole arc from raw capture to finished, published thought, instead of stitching it together across many apps? `fosta.studio` was secured early.
