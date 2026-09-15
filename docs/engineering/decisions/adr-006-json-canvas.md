@@ -14,6 +14,8 @@ layout: default
 ## Decision
 Canvas files (Desk scratchpad, Track canvases) are stored as JSON Canvas format on disk. tldraw is the renderer only — its internal format is never written to disk.
 
+This ADR covers the storage **format** choice (JSON Canvas). The closely related [ADR-011](adr-011-tldraw-renderer-only.md) covers tldraw's **role** (renderer only, never the source of truth). The two are split deliberately — one locks the on-disk format, the other locks the library's boundary — so neither can be reopened by appealing to the other.
+
 ## Context
 Fosta uses tldraw as its canvas renderer. tldraw has its own internal data format. Storing tldraw's internal format would couple on-disk representation to a specific version of a third-party library.
 

@@ -13,7 +13,7 @@ layout: default
 - Desk / Base (scratchpad canvas, freeform + note-reference + canvas-reference nodes, timer pill)
 - Sort (inbox grid, tag-frequency bubbles, Create Track from tag)
 - Layer / Work / Develop (three-panel editor, Tiptap, block comments, wikilinks)
-- Track (Linear + Spatial modes, note-reference nodes, annotations, connections)
+- Track (Line + Web + Thread modes, note-reference nodes, annotations, connections)
 - Share (three-panel, QuoteBlocks, drag-to-quote, Smart Paste, publish)
 - Quick Look (note + canvas variants, wikilink back-stack)
 - Global Actions (Add to Desk, Create Track from tag)

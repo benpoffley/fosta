@@ -14,6 +14,8 @@ layout: default
 ## Decision
 tldraw renders canvases at runtime. A thin adapter translates between JSON Canvas (on-disk format) and tldraw's internal format. tldraw's internal representation is never written to disk.
 
+This ADR covers tldraw's **role** (renderer only, never the source of truth). The closely related [ADR-006](adr-006-json-canvas.md) covers the storage **format** choice (JSON Canvas). The two are split deliberately — one locks the library's boundary, the other locks the on-disk format — so neither can be reopened by appealing to the other.
+
 ## Why this separation
 - If tldraw is upgraded or replaced, canvas files remain readable — only the adapter needs updating
 - JSON Canvas is an open standard; tldraw's format is not

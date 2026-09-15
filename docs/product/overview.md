@@ -7,7 +7,7 @@ layout: default
 
 # Fosta — Product Overview
 
-**Status:** Decided — Final  
+**Status:** Final  
 **Version:** v0.2.0
 
 ## What it is

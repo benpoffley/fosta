@@ -1,11 +1,13 @@
 ---
 title: "Story"
 parent: "Project"
-nav_order: 5
+nav_order: 6
 layout: default
 ---
 
 # Story
+
+**Role:** the narrative record of *why* decisions were made. For a terse list of *what* changed and *when*, see [Changelog](changelog.md).
 
 A log of how Fosta was built — decisions made, problems solved, things learned. Most recent first.
 

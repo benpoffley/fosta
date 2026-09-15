@@ -29,24 +29,13 @@ Three node types live on the scratchpad canvas. See [Canvas Nodes](../foundation
 - **Note-reference** — UUID card pointing at a real note. Created via Capture to Inbox or Add to Desk.
 - **Canvas-reference** — UUID pointer to a Track canvas. Renders a live read-only tldraw preview. Not editable from Desk.
 
-## Canvas node model
-
-Node types, two-state behaviour (compact card / expanded live preview), and interaction patterns are documented in [Canvas Nodes](../foundations/canvas-nodes.md) — the full model applies here.
 ## Interaction model
 
-| Action | Result |
-|---|---|
-| Single click on node | Selects the node |
-| Double click on compact node | Opens Quick Look modal |
-| Double click on expanded node header | Opens Quick Look modal |
-| Overflow (⋯) on hover | "Open in Quick Look" · "Open in Layer/Track" · "Add to Desk" |
-| "Open in Layer/Track" from Quick Look | Opens in full native view |
+Node interactions — two-state compact/expanded behaviour, click and overflow actions, drag-to-expand — are identical across Desk and Track and documented in [Canvas Nodes — Interaction model](../foundations/canvas-nodes.md#interaction-model). Desk nodes carry an "Add to Desk" overflow action.
 
 ## Pinned nodes
 
-Any node on the canvas — freeform, note-reference, or canvas-reference — can be pinned. Pinned nodes are excluded from the timer's wipe cycle and remain on the canvas indefinitely, in place, until unpinned or removed manually.
-
-This is a property on the node, not a new component or panel — pinned nodes look and behave exactly like their unpinned counterparts in every respect except wipe behaviour. See [Canvas Nodes — Pinned nodes](../foundations/canvas-nodes.md#pinned-nodes-desk-only) for full reasoning, including why this is distinct from the previously-rejected Focus/Pinned panel concept.
+Pinning excludes a node from the timer's wipe cycle, so it stays on the canvas indefinitely, in place, until unpinned or removed. Any node type can be pinned. Full reasoning — including why this is distinct from the previously-rejected Focus/Pinned panel concept — is in [Canvas Nodes — Pinned nodes](../foundations/canvas-nodes.md#pinned-nodes-desk-only).
 
 **Common use:** a freeform node containing a running list or set of quick reminders, pinned so it survives every wipe without ever being converted to a real note. Edited directly in place — no Quick Look required.
 

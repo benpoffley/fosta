@@ -65,7 +65,7 @@ This does not conflict with "everything is a note" (see Architecture Principles)
 
 ### Why this is not a "panel"
 
-An earlier proposal for persistent Focus/Pinned panels on Desk was explicitly rejected (see Decisions Explicitly Rejected, `docs/project/scope.md` or `current-development.md`) on the grounds that a fixed UI region competes with the canvas and undermines Desk's core promise as a blank, chrome-free thinking surface.
+An earlier proposal for persistent Focus/Pinned panels on Desk was explicitly rejected (see [Story](../project/story.md) — the pinned-nodes entry) on the grounds that a fixed UI region competes with the canvas and undermines Desk's core promise as a blank, chrome-free thinking surface.
 
 Pinned nodes are not a panel. They are ordinary canvas content — positioned anywhere on the canvas by the user, rendered identically to any other node — that simply persists through the wipe cycle. There is no new docked region, no fixed sidebar, no dedicated UI surface. The distinction is deliberate: pinning changes *when a node is cleared*, not *where it lives or how it looks*.
 

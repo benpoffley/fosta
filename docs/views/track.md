@@ -101,7 +101,7 @@ All nodes are read-only previews. No inline editing in any mode in v1.
 
 Line and Web canvases stored as JSON Canvas format, rendered by tldraw. Thread uses the same JSON Canvas format on disk but tldraw is not invoked — the scroll UI reads the node list directly. See [ADR-006](../engineering/decisions/adr-006-json-canvas.md) and [ADR-011](../engineering/decisions/adr-011-tldraw-renderer-only.md).
 
-Fosta extends the JSON Canvas spec with additional top-level fields:
+The base canvas and node schema (`nodes`, `edges`, node types, `state`) lives in [Data Model — Canvas files](../engineering/data-model.md#canvas-files). Track extends it with additional top-level fields and a Track-only `annotation` node type:
 
 ```json
 {
@@ -112,13 +112,6 @@ Fosta extends the JSON Canvas spec with additional top-level fields:
     "sort": "created"
   },
   "nodes": [
-    {
-      "id": "node-uuid",
-      "type": "note-reference",
-      "noteId": "550e8400-e29b-41d4-a716-446655440000",
-      "x": 100, "y": 200,
-      "state": "compact"
-    },
     {
       "id": "annotation-uuid",
       "type": "annotation",
@@ -137,6 +130,7 @@ Fosta extends the JSON Canvas spec with additional top-level fields:
 - `population.mode`: `"manual"` or `"live"`
 - `population.tags`: present only when `mode: "live"` — fixed array, ANDed together
 - `population.sort`: `"created"` or `"modified"` — Line and Thread only
+- `annotation` nodes: freeform text anchored to exactly one node or connection — Line and Web only
 - `connections`: always exactly two node IDs. These are Fosta-specific extensions to the JSON Canvas spec.
 - **Thread has no canvas file** — it renders the same population object as a scrollable list with no tldraw dependency.
 
@@ -144,5 +138,5 @@ Fosta extends the JSON Canvas spec with additional top-level fields:
 
 <img src="/fosta/assets/wireframes/track.svg" alt="track wireframe" style="width:100%;border:1px solid #302825;border-radius:6px;margin:1rem 0">
 
-*Reference wireframe — Linear vs Spatial layout modes. Annotations anchored to nodes or connections. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
+*Reference wireframe — Line / Web / Thread layout modes. Annotations anchored to nodes or connections. Recreated from early hand sketches, June 2026 — reference only, not final UI.*
 
