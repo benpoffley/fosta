@@ -14,7 +14,7 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 ---
 
 ## Freeform node timestamps — automatic, no manual dating required
-**30 July 2026 · Design decision**
+**14 September 2026 · Design decision**
 
 Freeform nodes on Desk now silently record their creation moment — the instant the first character is typed — with no user action required. This is the node's only timestamp for as long as it stays freeform; `modified` has no meaning until a node becomes a tracked note, so freeform nodes simply don't carry that field.
 
