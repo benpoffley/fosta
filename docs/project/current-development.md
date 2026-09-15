@@ -8,7 +8,7 @@ layout: default
 # Current Development
 
 **Status:** Updated regularly — lowest authority section  
-**Current milestone:** Month 1 — Pre-code foundation
+**Current phase:** Pre-code — design & strategy
 
 ## Status overview
 
@@ -24,8 +24,8 @@ layout: default
 | Sort interaction model (prototype) | ✅ Complete — see Sort page |
 | Sort view design (all interactions) | ✅ Complete — ready for hi-fi Figma |
 | Three view name decisions | ⏳ Deferred to hi-fi phase |
-| Dev environment setup | ⏳ Week 4 |
-| First GitHub commit | ⏳ Week 4 |
+| Dev environment setup (M0) | ⏳ Not started |
+| First GitHub commit | ✅ Complete — wiki repo initialised July 2026 |
 
 ## Current priority
 
@@ -50,13 +50,16 @@ This is a required process step, not optional cleanup. Code must reflect the doc
 
 ## Build sequence (high level)
 
-See `../../build/build-sequence.md` for the full phased build plan.
+See `../../build/build-sequence.md` for the full milestone build plan. Milestones are sequential and dependency-gated, not calendar-scheduled — each begins when the prior one is complete and in daily use.
 
-| Phase | Timeline | Focus |
-|---|---|---|
-| 1 | Month 1 | Foundation — brief, wireframes, hi-fi Sort |
-| 2 | Month 1 Week 4 | Dev environment, first commit |
-| 3a | Months 2–4 | Capture + Sort |
-| 3b | Months 4–5 | Cloudflare backend |
-| 4 | Months 5–8 | Layer → Share → Track |
-| v1.0 | Months 8–9 | Polish + launch |
+| Milestone | Focus |
+|---|---|
+| M0 · Dev Environment | Tauri + React scaffold, tooling, first app commit |
+| M1 · Data Foundation | Storage adapter, vault scanner, SQLite index |
+| M2 · Capture | Capture bar, Quick Look, note intake |
+| M3 · Sort | Inbox grid, tag bubbles, tagging model |
+| M4 · Cloudflare Work Capture | Browser capture, D1 staging, R2 vault snapshot |
+| M5–M6 · Layer → Share | Tiptap editor, block UUIDs, transclusion, publishing |
+| M7 · Track | Line / Web / Thread canvases (provisionally v1) |
+| M8 · Desk | Full scratchpad canvas, timer, history mode |
+| M9 · Polish + Launch | Error states, performance, onboarding, payments, ship |
