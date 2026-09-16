@@ -24,6 +24,10 @@ The back-arrow navigation stack within Quick Look needs testing across edge case
 - Circular links (A → B → A)
 - Notes that link to themselves
 
+## Track file navigator — what does it browse?
+
+Whether Track's file navigator (when open) shows notes (for dragging into Manual tracks, matching Layer's pattern) or shows other Track canvases (for quickly switching between open Tracks without leaving the view). Three options were sketched — navigator shows Tracks only, a two-mode Notes/Tracks toggle, or a separate quick-switcher UI distinct from the navigator entirely — but none was chosen. See `docs/foundations/view-state-persistence.md` for the navigator-visibility rules that apply once this is decided.
+
 ## Track in v1.0 or v1.1?
 
 Track is provisionally v1.0, but this will be reassessed after Capture + Sort are built and in daily use. If they take longer than expected or reveal fundamental questions about the data model, Track moves to v1.1.
