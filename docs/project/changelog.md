@@ -1,11 +1,13 @@
 ---
 title: "Changelog"
 parent: "Project"
-nav_order: 6
+nav_order: 7
 layout: default
 ---
 
 # Changelog
+
+**Role:** the terse record of *what* changed and *when*. For the narrative of *why* a decision was made, see [Story](story.md).
 
 Documentation milestones. Records meaningful changes — not every wording edit.
 
@@ -59,3 +61,11 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 - Reference wireframes recreated from hand sketches
 - Capture restructured as a Foundation, not a view
 - Global Actions principle established; two v1 implementations documented
+
+## v0.0 — Origin (February–April 2026)
+
+- Project began 23 February 2026 — first concept work in a dedicated Claude project
+- Foundational decisions explored: Mac platform, five-view model, note-flow pipeline
+- Pipeline metaphor and "non-linear editor for thought" positioning established
+- `fosta.studio` domain secured
+- Dedicated "fosta studio" workspace set up 17 April 2026

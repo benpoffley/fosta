@@ -11,7 +11,7 @@ layout: default
 Fosta is a macOS-native note-taking and idea-development app built around a pipeline metaphor. Notes flow through five views switchable via a persistent bottom toolbar.
 
 **Domain:** fosta.studio  
-**Status:** Month 1 — Pre-code foundation  
+**Status:** Pre-code — design & strategy phase  
 **Stack:** Tauri 2 · React 18 + TypeScript · Tailwind · Tiptap · tldraw · SQLite · Cloudflare
 
 ---

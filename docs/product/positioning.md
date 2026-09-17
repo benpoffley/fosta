@@ -39,7 +39,7 @@ Creative professionals who:
 
 ## Competitive positioning
 
-See `docs/engineering/` for the full competitive landscape. High-level:
+High-level, against the main alternatives:
 
 - **vs Obsidian:** More opinionated workflow, better publishing, no plugin complexity
 - **vs Notion:** Local-first, offline, plain text — no lock-in

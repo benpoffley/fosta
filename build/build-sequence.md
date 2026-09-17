@@ -7,9 +7,11 @@ layout: default
 
 # Build Sequence
 
-**Principle:** Build phase by phase. Each phase must be working and in daily use before the next begins.
+**Principle:** Build milestone by milestone. Each milestone must be working and in daily use before the next begins.
 
-## Phase 0 — Dev environment (Week 4, Month 1)
+Milestones are sequential and dependency-gated, not calendar-scheduled. Each begins when the prior one is complete and in daily use — there are no target dates.
+
+## M0 · Dev Environment
 
 - [ ] Install Tauri 2 CLI + Rust
 - [ ] Create new Tauri 2 project with React + TypeScript template
@@ -18,7 +20,7 @@ layout: default
 - [ ] Create GitHub repo, first commit
 - [ ] Confirm app launches as a native macOS window
 
-## Phase 1 — Data foundation (start of Month 2)
+## M1 · Data Foundation
 
 Build the data layer before any UI. Nothing else works without this.
 
@@ -32,7 +34,7 @@ Build the data layer before any UI. Nothing else works without this.
 - [ ] Write tests: create note → save → reload → confirm frontmatter intact
 - [ ] **Gate:** Can create a note via code, find it in the vault, update it, delete it
 
-## Phase 2 — Capture (Month 2)
+## M2 · Capture
 
 Build the intake mechanism first. Every other view depends on notes existing.
 
@@ -46,7 +48,7 @@ Build the intake mechanism first. Every other view depends on notes existing.
 - [ ] Capture bar behaviour: persistent on Desk, transient on other views
 - [ ] **Gate:** Can capture a note, find it as a Markdown file in Inbox/, see it has correct frontmatter
 
-## Phase 3 — Sort (Months 2–4)
+## M3 · Sort
 
 The first real view. Build and use daily before building Layer.
 
@@ -59,7 +61,7 @@ The first real view. Build and use daily before building Layer.
 - [x] Resolve Sort inbox interaction model
 - [ ] **Gate:** Inbox shows captured notes. Tag bubbles reflect actual tag frequency. Can assign a tag to a note.
 
-## Phase 4 — Cloudflare work capture (Month 4–5)
+## M4 · Cloudflare Work Capture
 
 - [ ] Create Cloudflare Worker (receive POST from browser form)
 - [ ] Set up D1 database (staging inbox)
@@ -70,7 +72,7 @@ The first real view. Build and use daily before building Layer.
 - [ ] Build read-only vault viewer (R2 → static site)
 - [ ] **Gate:** Can submit a note from a browser, see it appear in Mac inbox within polling interval
 
-## Phase 5 — Layer (Months 5–7)
+## M5 · Layer
 
 - [ ] Integrate Tiptap editor
 - [ ] Configure block types (paragraph, heading, list, code, etc.) with slash command
@@ -85,7 +87,7 @@ The first real view. Build and use daily before building Layer.
 - [ ] Build wikilink back-arrow navigation stack in Quick Look
 - [ ] **Gate:** Can write a note in Tiptap, save, reload, confirm block UUIDs intact. Can add a wikilink, click it, see Quick Look open.
 
-## Phase 6 — Share (Month 7–8)
+## M6 · Share
 
 - [ ] Build three-panel Share layout
 - [ ] Build Share note (`type: share` frontmatter)
@@ -97,7 +99,7 @@ The first real view. Build and use daily before building Layer.
 - [ ] Implement publish (freeze transclusions, set `published: true`)
 - [ ] **Gate:** Can drag content from a note into Share. On reload, QuoteBlock shows live content. On publish, snapshot is frozen.
 
-## Phase 7 — Track (Month 7–8, provisionally)
+## M7 · Track (provisionally v1)
 
 Reassess timing after Layer is working and in daily use.
 
@@ -113,7 +115,7 @@ Reassess timing after Layer is working and in daily use.
 - [ ] Build "Add new item" modal (search vault, add as reference node)
 - [ ] **Gate:** Can create a Track, add notes, connect them, annotate. Canvas saves as valid JSON Canvas format.
 
-## Phase 8 — Desk (integrated throughout, finalised here)
+## M8 · Desk (integrated throughout, finalised here)
 
 Desk canvas is partially built during other phases. Finalise here.
 
@@ -126,7 +128,7 @@ Desk canvas is partially built during other phases. Finalise here.
 - [ ] History mode (read-only, amber border)
 - [ ] **Gate:** All three node types work. Timer wipes and archives correctly. History mode is read-only.
 
-## Phase 9 — Polish + launch (Months 8–9)
+## M9 · Polish + Launch
 
 - [ ] Keyboard shortcuts throughout
 - [ ] Error states (deleted source note, missing reference, corrupt file)

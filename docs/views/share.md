@@ -7,7 +7,7 @@ layout: default
 
 # Share
 
-**Status:** Decided — Final
+**Status:** Final
 
 ## What it is
 
@@ -23,12 +23,7 @@ The composition and publishing view. Where notes are assembled into a publishabl
 
 ## The Share document
 
-A Share document is a note with `type: share` in frontmatter — not a separate document model.
-
-```yaml
-type: share
-published: false
-```
+A Share document is a note with `type: share` in frontmatter — not a separate document model. Full share schema: [Data Model](../engineering/data-model.md#note-types).
 
 Content is composed of QuoteBlocks — live transclusions that resolve from SQLite at render time.
 
@@ -48,16 +43,7 @@ Both methods coexist.
 
 ## QuoteBlocks (live transclusion)
 
-A QuoteBlock references a source note and specific blocks within it:
-```yaml
-type: quote
-sourceNoteId: <uuid>
-sourceBlocks:
-  - blockId: <uuid>
-    charStart: 0
-    charEnd: 142
-snapshot_text: "Fallback text if source is unavailable"
-```
+A QuoteBlock is a note with `type: quote` that references a source note and specific blocks within it (`sourceNoteId`, `sourceBlocks`, `snapshot_text`). Full quote schema: [Data Model](../engineering/data-model.md#note-types).
 
 Content resolves dynamically from SQLite at render time. If the source note is edited, the QuoteBlock reflects the change.
 

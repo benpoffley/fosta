@@ -11,13 +11,20 @@ layout: default
 
 ## v1.0 — The core pipeline
 
-| Phase | Milestone | Key deliverables |
-|---|---|---|
-| Mo 1 | Foundation | Product brief ✓, wireframes ✓, hi-fi Sort, dev env |
-| Mo 2–4 | Capture + Sort | Working inbox, tag bubbles, capture flow, local storage |
-| Mo 4–5 | Cloudflare | Work capture, read-only vault snapshot |
-| Mo 5–8 | Layer → Share → Track | Editor, transclusion, publishing, timeline/spatial canvas |
-| Mo 8–9 | v1.0 | Polish, testing, launch |
+Milestones are sequential and dependency-gated, not calendar-scheduled — each begins when the prior one is complete and in daily use.
+
+| Milestone | Key deliverables |
+|---|---|
+| M0 · Dev Environment | Tauri + React scaffold, tooling, first app commit |
+| M1 · Data Foundation | Storage adapter, vault scanner, SQLite index, local storage |
+| M2 · Capture | Capture bar, Quick Look, note intake |
+| M3 · Sort | Working inbox, tag bubbles, capture flow, tagging model |
+| M4 · Cloudflare Work Capture | Work capture, read-only vault snapshot |
+| M5 · Layer | Tiptap editor, block UUIDs, wikilinks |
+| M6 · Share | Transclusion, publishing |
+| M7 · Track | Line / Web / Thread canvases |
+| M8 · Desk | Full scratchpad canvas, timer, history mode |
+| M9 · Polish + Launch | Polish, testing, launch |
 
 ## v1.1 — Deferred from v1.0
 

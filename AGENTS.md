@@ -28,21 +28,26 @@ A macOS-native, offline-first note-taking and idea-development app. Notes flow t
 
 The thesis: *capture fast, sort later, develop in layers, sequence, publish.*
 
+## Order of authority
+
+When sections conflict, higher beats lower:
+
+1. Architectural Decision Records (ADRs) — `docs/engineering/decisions/`
+2. AI Guardrails — `AGENTS.md` and `docs/engineering/ai-guardrails.md`
+3. Product philosophy + architecture — `docs/product/` and `docs/engineering/`
+4. Feature specifications — `docs/views/` and `docs/foundations/`
+5. Current development — `docs/project/current-development.md`
+6. Roadmap — lowest authority
+
 ## Stack — final, do not suggest alternatives
 
-| Layer | Choice |
-|---|---|
-| Desktop shell | Tauri 2 |
-| UI | React 18 + TypeScript |
-| Styling | Tailwind CSS |
-| Editor | Tiptap |
-| Canvas renderer | tldraw (renderer only — never storage) |
-| Storage: source of truth | Markdown files on disk + YAML frontmatter |
-| Storage: index/query | SQLite via Tauri SQL plugin |
-| State | Zustand |
-| Backend (work access only) | Cloudflare Workers + R2 + D1 |
+Tauri 2 · React 18 + TypeScript · Tailwind · Tiptap · tldraw (renderer only, never storage) · Markdown-on-disk source of truth (YAML frontmatter) · SQLite index (via Tauri SQL plugin) · Zustand · Cloudflare (work-access only).
+
+Full stack table with rationale: `docs/engineering/stack.md`.
 
 ## Hard constraints — never violate these
+
+The canonical, ADR-cited version of these constraints lives in `docs/engineering/ai-guardrails.md` — consult it for the authoritative per-ADR detail. The list below is a compact fast reference; if the two ever diverge, ai-guardrails.md wins.
 
 ```
 NEVER suggest Electron — Tauri is final (ADR-001)
@@ -98,14 +103,10 @@ Full schemas and code examples are in `docs/engineering/data-model.md`. Summarie
 | Out of scope list | `docs/project/scope.md` |
 | Known compromises | `docs/engineering/known-compromises.md` |
 
-## Three tab names are pending — use these placeholders
+## Three tab names are pending
 
-| View | Placeholder | Candidates |
-|---|---|---|
-| First tab | Desk / Base | Desk, Base |
-| Organisation view | Sort | Sort, Curate |
-| Editor view | Layer | Layer, Work, Develop |
+Three view names are unresolved (first tab, organisation view, editor view). Use the current placeholders — Desk, Sort, Layer — until decided. Candidates and status: `docs/project/open-questions.md`.
 
 ## Out of scope for v1 — do not implement or suggest
 
-Google Drive sync · iPad app · Web app · AI features · Plugin system · Collaboration · Real-time sync · Bi-directional graph links · User accounts/auth · Tag templates · Tag hierarchy · Co-occurrence lines in Sort · Live transclusion across Cloudflare · Split view in Layer · Track (if not ready post-Sort, moves to v1.1)
+Do not implement or suggest AI features, real-time sync / collaboration, or a plugin system, among others. Full list: `docs/project/scope.md`.

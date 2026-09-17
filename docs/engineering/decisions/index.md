@@ -1,7 +1,7 @@
 ---
 title: "Decision Records"
 parent: "Engineering"
-nav_order: 6
+nav_order: 7
 has_children: true
 layout: default
 ---

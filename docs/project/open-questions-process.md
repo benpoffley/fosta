@@ -41,6 +41,20 @@ When a question in `open-questions.md` is resolved:
 `current-development.md` is the lowest-authority document in the wiki — it reflects the current moment and goes stale quickly. Review it:
 - Whenever an open question is resolved
 - Whenever a milestone status changes
-- At the start of each new month or build phase
+- At each milestone transition (when one milestone completes and the next begins)
 
-The status table and Known blockers section are the most likely to drift. Treat any entry that has not been touched in four weeks as a candidate for removal or update.
+The status table and Known blockers section are the most likely to drift. Treat any entry left untouched across a milestone as a candidate for removal or update.
+
+---
+
+## Status label vocabulary
+
+Doc and decision `**Status:**` lines use a small controlled set. Pick the closest term; an em-dash qualifier may follow (e.g. `Final — non-negotiable`).
+
+| Label | Meaning |
+|---|---|
+| **Final** | Decided, do not revisit |
+| **Decided** | Chosen, could revisit if context changes |
+| **In Progress** | Actively being worked out |
+| **Directional** | Rough direction, not locked |
+| **Deferred** | Pushed to a later version or phase |
