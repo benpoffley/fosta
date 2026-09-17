@@ -46,6 +46,8 @@ Located centre-top of the canvas. Controls:
 - **History** — browse past archives (read-only, amber border + banner)
 - **Frequency** — how often the canvas auto-archives (default: 24h). The dropdown reads from a shared, editable list of frequency options — see [Settings — Desk wipe frequency options](../foundations/settings.md#desk--wipe-frequency-options-the-list-not-the-current-selection). An "Add custom frequency…" option within this same dropdown lets a new value be added on the spot; editing or deleting an existing custom frequency is Settings-only.
 
+**After a wipe:** an empty-canvas message ("A clean desk") shows briefly — full opacity for a few seconds, then fading out over a couple more — rather than the canvas just silently going blank. A small, deliberate moment of acknowledgment that the wipe happened, confirmed as worth keeping during hi-fi prototyping.
+
 Archives saved to: `Scratchpad/Archive/YYYY-MM-DD-HHmm.canvas`  
 SQLite indexes archives — visible in Sort with "scratchpad archive" label.
 

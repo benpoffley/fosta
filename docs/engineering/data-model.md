@@ -105,7 +105,9 @@ Canvas files (Desk scratchpad, Track canvases) are stored as JSON Canvas format:
 Node types: `freeform`, `note-reference`, `canvas-reference`.
 Node states: `compact` (title card), `expanded` (live preview).
 
-`pinned`: boolean, default `false`. Desk-only behaviour — when `true`, the node is excluded from the timer's wipe cycle (see `docs/views/desk.md`). Valid on any node type, including `freeform`. Has no effect on Track canvases, since Track has no wipe cycle.
+`freeform`: valid on Desk and on Track's Web layout only — Track's Line and Thread layouts never contain freeform nodes. See [Canvas Nodes — Freeform nodes](../foundations/canvas-nodes.md#freeform-nodes) and `docs/views/track.md`.
+
+`pinned`: boolean, default `false`. Desk-only behaviour — when `true`, the node is excluded from the timer's wipe cycle (see `docs/views/desk.md`). Valid on any node type, including `freeform`. Has no effect on Track canvases (any layout), since Track has no wipe cycle — a freeform node on Web is permanent by default and never needs this property.
 
 `createdAt`: ISO timestamp. Present on `freeform` nodes only — recorded automatically the instant the node is created, never updated afterward. Not present on `note-reference` or `canvas-reference` nodes, since those already carry `created`/`modified` on the note itself. See [Canvas Nodes — Freeform node timestamps](../foundations/canvas-nodes.md#freeform-node-timestamps) for how this maps to note frontmatter on capture.
 

@@ -54,10 +54,18 @@ Two search bars were explicitly considered and rejected — the single shared ba
 | Control | Location | Behaviour |
 |---|---|---|
 | Search bar | Top bar, centred | Filters notes + highlights tags simultaneously |
-| Inbox / All tabs | Sub-row, left | Inbox = unsorted notes; All = full vault |
+| Inbox / All tabs | Sub-row, left | Inbox = unsorted notes; All = full vault, unified across content types (see below) |
 | Sort | Sub-row, controls | Cycle sort order (date, title) |
 | View toggle | Sub-row, controls | Grid ↔ list |
 | Clear sorted | Bottom of panel | Slides up when tagged notes exist in inbox |
+
+### The All tab is a unified content browser, not just notes
+
+Confirmed during hi-fi prototyping: the **All** tab mixes notes, Track canvases, and Desk's Scratchpad archives in one grid, each carrying a distinguishing badge (`TRACK` / `ARCHIVE`). This makes Sort's All tab the closest thing Fosta has to "search and browse everything," not just a note inbox.
+
+- **Double-clicking a Track card** opens that Track directly (in a new tab — see [View State Persistence](../foundations/view-state-persistence.md))
+- **Double-clicking an Archive card** opens Desk directly into history mode at that specific archive
+- **Inbox tab is unaffected** — it stays notes-only, since its whole purpose is showing the unsorted pile specifically
 
 ---
 

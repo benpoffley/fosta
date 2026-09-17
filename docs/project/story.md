@@ -13,6 +13,27 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Deep prototype review, round two: Web redefined, freeform extended, several architectural questions resolved
+**14 September 2026 · Architecture decision**
+
+A second, much deeper pass through the same hi-fi prototype (full read of every view's interaction logic, not just structural/naming decisions) surfaced a genuine architectural question and several smaller confirmed findings.
+
+**Track's own definition was slightly wrong, and is now corrected.** The prototype's Web layout was built to fully mirror Desk's capabilities — including unanchored, freely-positioned freeform nodes, directly extending Desk's freeform concept rather than reusing Track's existing (and strictly anchor-required) annotation nodes. Testing this against Line confirmed freeform text has no sensible meaning there — it just appends into the sequence. This forced a real question: is Web even still a Track, once it fully mirrors Desk? Resolved as: yes, but Track's own opening definition needed correcting. Track was described as "explicitly NOT a free-form canvas" — true of Line and Thread, never actually true of Web. What actually unifies the three layouts is **persistence and naming** (a Track is created, named, and kept; Desk is disposable and wipes on a timer), not "constraint." Web is the free-form member of the Track family specifically because it's permanent and named, not because it shares Line/Thread's sequence discipline. A separate "Explore" view was considered and rejected — it would have just been Desk's twin, with no real behavioural difference to justify a fourth view existing.
+
+**Freeform nodes now have two hosts with two different lifecycles.** Desk: ephemeral by default, pinning available as an opt-in third lifecycle option. Track's Web layout: permanent by default, no wipe cycle exists at all, so pinning doesn't apply — every Web node is already effectively "pinned" without needing the property. Timestamps, editing, and "Capture to Inbox" conversion behave identically on both hosts. Right-click was confirmed as an equivalent trigger to double-click for opening the "add freeform item / add from library" menu on empty canvas — worth building both, not just double-click.
+
+**Three things the prototype simplified were deliberately NOT carried into the wiki, since the simplifications were build shortcuts, not reconsidered positions:**
+- **Delete behaviour stays as documented** — "if a source note is deleted, references surface a warning rather than silently breaking." The prototype's actual delete function cascades and cleans up silently everywhere (Desk, every Track) with no warning; this was confirmed as a prototyping shortcut, not the desired real behaviour, and needs to be built correctly (warn + orphaned reference, not auto-cleanup) in the real app.
+- **Smart Paste keeps its richer, previously-decided form** — ⌘V for a paste-choice menu (live quote vs. plain text), ⌘⇧V for always-plain. The prototype simplified to a single always-live-quote ⌘V action; this was not a reconsideration.
+- **Backlinks stay UUID-based**, per the existing wikilink syntax (`[[display-name|uuid]]`). The prototype matched backlinks by title text as a static-data shortcut; the real implementation must match by UUID.
+
+**Smaller confirmed findings, all documented as real decisions:**
+- "Create Track from tag" reuses an existing Live track for that exact tag rather than duplicating — the hover tooltip itself reflects this ("Open live Track" vs. "+ Create Track")
+- Sort's All tab is a unified content browser — notes, Track canvases, and Desk archives together, each with a distinguishing badge and its own double-click destination
+- A brief "A clean desk" message after a Desk wipe, fading out over a couple of seconds rather than the canvas silently going blank
+
+---
+
 ## Findings from a hi-fi prototyping session reviewed; Develop confirmed as final view name
 **14 September 2026 · Design review**
 
