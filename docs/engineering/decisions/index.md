@@ -25,3 +25,4 @@ Numbered records of every major architectural decision. Highest authority in thi
 | [ADR-011](adr-011-tldraw-renderer-only.md) | tldraw as renderer only | tldraw renders JSON Canvas; never stores data in its own format | Final |
 | [ADR-012](adr-012-block-uuids.md) | Block UUIDs | Permanent stable UUIDs for every Tiptap block | Final |
 | [ADR-013](adr-013-platform-strategy.md) | Platform and mobile strategy | Mac-only v1, mobile deferred, full cloud-first trade-off analysis documented | Decided |
+| [ADR-014](adr-014-multi-vault.md) | Multi-vault support | Swappable StorageAdapter root path; work-access scoped to one designated vault for v1 | Decided |

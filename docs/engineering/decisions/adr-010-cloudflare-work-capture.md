@@ -25,5 +25,9 @@ Browser form → Cloudflare Worker → D1 → home Mac polls and pulls → markd
 - Read-only vault at work — accepted for v1
 - Live transclusion does not work across Cloudflare — work vault displays `snapshot_text` only
 
+## Multi-vault addendum (ADR-014)
+
+With multi-vault support, this architecture is scoped to exactly one designated vault for v1 — not every vault syncs to Cloudflare. See ADR-014 for the full reasoning. Left open for v2: syncing more than one vault independently, or letting the user choose a destination vault at the point of capture.
+
 ## Future
 v2 may introduce a proper sync engine via the StorageAdapter pattern. This ADR documents the deliberate v1 simplification.

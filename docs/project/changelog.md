@@ -49,6 +49,10 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 - Added guidance for AI tools to fetch wiki content via raw.githubusercontent.com rather than the Pages URL, to avoid stale CDN caching
 - Desk: freeform node timestamps added — creation moment recorded automatically, shown subtly on hover/select, maps to `created` on note capture with `modified` set at capture time
 - JSON Canvas schema: added `createdAt` field to freeform nodes
+- ADR-014 added: multi-vault support decided for v1 — swappable StorageAdapter root path, work-access scoped to one designated vault
+- ADR-004 and ADR-010 updated with multi-vault addenda
+- New Foundations page: View State Persistence — documents per-view state rules, Sort's exception, explicit-navigation override rule, Track tabs, and per-layout default zoom on reopen (this content existed only in prior conversation, never previously written to the wiki)
+- Open Questions: added the still-unresolved question of what Track's file navigator browses (notes vs. other Tracks vs. a mode toggle)
 - New Foundations page: Settings — global config surface, accessed via Fosta → Settings… (⌘,), separate from the vault switcher
 - Vault switcher confirmed as a persistent top-left control, separate from Settings — quick-add in the switcher, manage (rename/remove) in Settings
 - Desk: Timer pill's frequency dropdown now reads from an editable list (defaults non-deletable, custom frequencies addable inline, edit/delete in Settings)

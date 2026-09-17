@@ -26,6 +26,19 @@ Two things were explicitly confirmed as out of scope: no wipe-confirmation promp
 
 ---
 
+## Multi-vault support decided; view state persistence gap discovered and filled
+**8 August 2026 · Architecture decision**
+
+Fosta will support multiple independent vaults, switchable via a global selector — each vault a fully sealed folder with its own notes, SQLite index, and view state. The key insight that made this straightforward rather than heavy: since a vault's contents were always going to live in a user-chosen folder anyway, the only real requirement is that `StorageAdapter` takes its root path as runtime configuration rather than a fixed value — something worth building correctly from day one regardless, since retrofitting it later would touch every call site that assumed a single implicit vault.
+
+Cloudflare work-access (ADR-010) is deliberately scoped to exactly one designated vault for v1, rather than syncing every vault or building vault-selection into the capture flow immediately — kept simple until there's real evidence multiple users need simultaneous remote capture into more than one vault. Multi-vault sync and capture-time vault selection are explicitly left open for v2, with no architectural changes required to add them later.
+
+While writing this up, a real gap was found: an earlier session had worked through view state persistence in detail — per-view state, Sort's deliberate reset-to-Inbox exception, the rule that explicit navigation only overrides "what's open" and never a view's configuration, Track gaining tabs, and per-layout-mode default zoom behaviour on reopen (zoom-to-fit for Web, fixed zoom at the working end for Line, scroll-to-top for Thread) — but none of it had actually been written into the wiki. This is now documented as its own Foundations page, View State Persistence, and cross-referenced from the new multi-vault ADR.
+
+One question surfaced during that write-up remains genuinely open and is now logged: what Track's file navigator actually browses when open — notes, other Tracks, or both via a mode toggle.
+
+---
+
 ## Freeform node timestamps — automatic, no manual dating required
 **14 September 2026 · Design decision**
 

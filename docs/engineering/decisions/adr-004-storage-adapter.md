@@ -33,5 +33,9 @@ v1 stores notes as local Markdown files. v2 will need alternative backends (Goog
 - Testable — swap adapter for a mock in tests
 - Enforces separation between "how notes are stored" and "what the app does with notes"
 
+## Multi-vault addendum (ADR-014)
+
+`LocalFilesAdapter`'s root path is runtime configuration, passed in at instantiation — never a fixed constant. This was always good practice under the adapter pattern, and became a hard requirement once multi-vault support (ADR-014) was decided: switching vaults means tearing down and re-instantiating the adapter against a new root path.
+
 ## Why not to revisit
 Bypassing the adapter for "simplicity" creates technical debt that becomes expensive when v2 backends are introduced.
