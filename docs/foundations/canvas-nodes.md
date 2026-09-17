@@ -42,9 +42,9 @@ The same interaction pattern applies to canvas nodes on both Desk and Track:
 |---|---|
 | Single click | Selects the node |
 | Double click (compact or expanded header) | Opens Quick Look modal |
-| Overflow menu (⋯) on hover | "Open in Quick Look" · "Open in Layer/Track" · "Add to Desk" |
+| Overflow menu (⋯) on hover | "Open in Quick Look" · "Open in Develop/Track" · "Add to Desk" |
 | Drag corner handle past threshold | Snaps to expanded live preview state |
-| "Open in Layer/Track" from Quick Look or overflow | Opens item in its full native view |
+| "Open in Develop/Track" from Quick Look or overflow | Opens item in its full native view |
 
 ## Relationship to Quick Look
 

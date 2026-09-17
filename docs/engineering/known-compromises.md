@@ -31,7 +31,7 @@ These are not bugs. They are deliberate decisions that accept a known limitation
 | Track Web mode: manual population only | Auto-layout algorithm for node placement is out of scope for v1 (formerly called Spatial mode). | v2 consideration |
 | Track Thread mode: read-only in v1 | Inline editing would require live editor instances per note in the scroll stack, not just static rendered content — a materially bigger build. | v1.1 candidate |
 | Sort inbox interaction model not finalised | Drag-to-tag model still being designed. Deferring prevents building interactions that need rebuilding. | Sort hi-fi design phase |
-| Split view in Layer deferred | Multiple editor instances with independent state adds significant React complexity. | v1.1 |
+| Split view in Develop deferred | Multiple editor instances with independent state adds significant React complexity. | v1.1 |
 | No tag templates | Insufficient value to justify v1 scope. | Evaluate post-v1 |
 
 ## Data model compromises

@@ -31,7 +31,7 @@ It also gives a clean portability property: pointing a vault at a specific folde
 
 A folder on disk containing:
 - The user's notes as markdown files, exactly as today
-- A hidden `.fosta/` folder holding that vault's own SQLite index (`.fosta/index.sqlite`) and its own persisted view state (which notes are open in Layer, which Track tabs are open and their zoom/pan, Desk's canvas state — see [View State Persistence](../../foundations/view-state-persistence.md))
+- A hidden `.fosta/` folder holding that vault's own SQLite index (`.fosta/index.sqlite`) and its own persisted view state (which notes are open in Develop, which Track tabs are open and their zoom/pan, Desk's canvas state — see [View State Persistence](../../foundations/view-state-persistence.md))
 
 Switching vaults means: tear down the current `StorageAdapter` instance, instantiate a new one pointed at the new root path, and reset all view state to whatever that vault's own `.fosta/` folder has recorded (or a fresh default, if the vault is new). This mirrors the existing principle that Sort always resets to Inbox — switching vaults is the same idea applied at the vault level: everything reloads to that vault's own last-known state, nothing carries over from the previous vault.
 

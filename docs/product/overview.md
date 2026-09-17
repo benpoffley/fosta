@@ -38,7 +38,7 @@ The creator (Ben) is the primary target user.
 |---|---|---|
 | Capture | Capture (global) | Fast intake — notes always land in Inbox/ |
 | Triage | Sort | Process inbox, apply tags, create structure |
-| Develop | Layer | Deep work — block editing, backlinks, comments |
+| Develop | Develop | Deep work — block editing, backlinks, comments |
 | Sequence | Track | Arrange notes into timelines or spatial maps |
 | Publish | Share | Compose and publish from note references |
 

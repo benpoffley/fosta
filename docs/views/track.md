@@ -36,7 +36,7 @@ Layout mode is chosen at creation and cannot be changed after.
 - Full note content stacked vertically, scrollable — not a canvas, no tldraw rendering involved
 - Shares Line's population model: manual or Live tag-combination, sorted by created/modified
 - No connections, no annotations — note-reference nodes only, by design. This is a type-level restriction: there is no spatial or sequential structure for a connection or annotation to anchor to in a scroll
-- Read-only in v1 — clicking a note opens it in Quick Look/Layer to edit. Inline editing (editing note content directly within the Thread scroll) is a v1.1 candidate — it would require live editor instances per note in the stack rather than static rendered content
+- Read-only in v1 — clicking a note opens it in Quick Look/Develop to edit. Inline editing (editing note content directly within the Thread scroll) is a v1.1 candidate — it would require live editor instances per note in the stack rather than static rendered content
 - Stored as JSON Canvas on disk (same format as Line and Web) — tldraw is not invoked for rendering. The scroll UI reads the node list directly, ignoring position fields
 
 ## Population model
@@ -66,8 +66,14 @@ One-way. Freezes current membership — notes in the Track at conversion become 
 
 ## File navigator
 
-- **Manual tracks (any layout):** navigator panel shown, matching the Layer/Share shell. Notes can be dragged directly onto the canvas/timeline/scroll, alongside the "Add new item" search modal.
+- **Manual tracks (any layout):** navigator panel shown, matching the Develop/Share shell. Notes can be dragged directly onto the canvas/timeline/scroll, alongside the "Add new item" search modal.
 - **Live tracks (any layout):** no file navigator. Only item-creation action is Create new.
+
+### Content — combined Tracks + Notes panel
+
+The navigator is one combined panel, resolved after hi-fi prototyping: a **Tracks** section (click any Track to open it as a new tab — see [View State Persistence](../foundations/view-state-persistence.md) for tab behaviour) sits above a **Notes** section (search, with a "+" to add the result to the currently active Manual track).
+
+**Untagged Inbox notes are hidden from the Notes section's default list, but remain findable via its search** — the same browsable-vs-reachable rule applied in Develop's navigator and Share's library panel. See `docs/views/develop.md` for the full reasoning. This means "Add new item" search can still surface an untagged note if a user deliberately searches for it, even though it won't appear by default.
 
 ## Node types
 
@@ -93,7 +99,7 @@ Freeform text annotations. Must anchor to exactly one target — a single node (
 |---|---|---|
 | Single click | Selects the node | Selects the note (enables remove via backspace or overflow) |
 | Double click | Opens Quick Look | Opens Quick Look |
-| Overflow (⋯) | "Open in Quick Look" / "Open in Layer" / "Remove from Track" | "Open in Quick Look" / "Open in Layer" / "Remove from Track" |
+| Overflow (⋯) | "Open in Quick Look" / "Open in Develop" / "Remove from Track" | "Open in Quick Look" / "Open in Develop" / "Remove from Track" |
 
 All nodes are read-only previews. No inline editing in any mode in v1.
 

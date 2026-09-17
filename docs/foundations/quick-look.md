@@ -29,10 +29,10 @@ The Capture expanded state is Quick Look — they are the same surface.
 
 ### Note variant — editable
 - Shows title and body only
-- No right panel (no metadata, backlinks, or block comments — those are Layer's domain)
+- No right panel (no metadata, backlinks, or block comments — those are Develop's domain)
 - Autosaves immediately via `saveNote()` on every change
 - "Add to Desk" as a direct button at top
-- "Open in Layer" escape hatch
+- "Open in Develop" escape hatch
 - Reuses the expanded capture card component
 
 ### Track canvas variant — read-only
@@ -53,7 +53,7 @@ Clicking a wikilink inside a note open in Quick Look opens the linked note withi
 
 Quick Look is opened by double-clicking any canvas node (compact or expanded) on Desk or Track, or by clicking a wikilink within a note. The full interaction model — including single click, double click, and overflow menu behaviour across all contexts — is documented in [Canvas Nodes](canvas-nodes.md).
 
-**File navigators** (Layer and Share) open directly without Quick Look — single click opens the note in the editor or preview pane respectively.
+**File navigators** (Develop and Share) open directly without Quick Look — single click opens the note in the editor or preview pane respectively.
 
 ## Canvas node two-state model
 

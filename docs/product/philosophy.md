@@ -12,7 +12,7 @@ layout: default
 ## Core principles
 
 ### All views are lenses on the same data
-The user's mode of working determines which view they're in, not which data they can access. Sort, Layer, Track, and Share all operate on the same underlying vault. There is no "Sort data" vs "Layer data" — there is only one set of notes, seen differently.
+The user's mode of working determines which view they're in, not which data they can access. Sort, Develop, Track, and Share all operate on the same underlying vault. There is no "Sort data" vs "Develop data" — there is only one set of notes, seen differently.
 
 ### Everything is a note
 Comments, quote blocks, share documents, Track annotations — all resolve to notes with different frontmatter metadata. No separate object types. One storage interface, one query model, one set of rules.
@@ -35,7 +35,7 @@ Certain actions belong to a UI element, not a view. They work wherever that elem
 
 - **Capture bar** — available from any view
 - **Create Track from tag** — hover any tag anywhere it renders
-- **Add to Desk** — overflow menu on any note, direct button in Quick Look and Layer
+- **Add to Desk** — overflow menu on any note, direct button in Quick Look and Develop
 
 The broader principle — "create or send any item from any context where it makes sense" — is a direction for future expansion. v1 implements these three.
 

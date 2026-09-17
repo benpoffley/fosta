@@ -47,6 +47,8 @@ A QuoteBlock is a note with `type: quote` that references a source note and spec
 
 Content resolves dynamically from SQLite at render time. If the source note is edited, the QuoteBlock reflects the change.
 
+**Visual treatment:** an unpublished QuoteBlock shows a subtle live/pulsing indicator to signal it will update if the source changes. Once published and frozen, this is replaced with a static "Frozen" label — a clear visual distinction between "still tracking the source" and "permanently fixed."
+
 ## Publishing
 
 On publish:
@@ -60,7 +62,9 @@ Quick Look is not available in Share. The middle preview pane already serves thi
 
 ## File navigator (left panel)
 
-Single-click opens a note in the middle preview pane. Double-click does nothing. Identical behaviour to Layer's file navigator but opens to preview pane instead of editor.
+Single-click opens a note in the middle preview pane. Double-click does nothing. Identical behaviour to Develop's file navigator but opens to preview pane instead of editor.
+
+**Untagged Inbox notes are hidden from the navigator's default list, but remain findable via its search** — the same browsable-vs-reachable rule applied in Develop's navigator and Track's "Add new item" search. See `docs/views/develop.md` for the full reasoning.
 
 ## Reference wireframe
 

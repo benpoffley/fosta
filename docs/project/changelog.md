@@ -17,6 +17,12 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 
 ## v0.2.0 — July 2026
 
+- Layer renamed to Develop across the entire wiki — confirmed final after hi-fi prototyping
+- Views naming question closed: Layer vs Work vs Develop resolved as Develop; Desk vs Base and Sort vs Curate remain open
+- Track file navigator question resolved: combined Tracks + Notes panel with tabs
+- New rule: Inbox notes hidden from default browsing lists (Develop, Track, Share) but findable via search; Sort remains the exception
+- Confirmed folders remain out of scope — reappeared in a prototype as an unintentional default, not a reconsidered decision
+- Share: added visual distinction between live and frozen QuoteBlocks
 - Migrated wiki from single HTML file to multi-file Markdown repo
 - Added CLAUDE.md as primary AI agent entry point
 - Added build/ layer (BUILD-GUIDE.md, build-sequence.md, file-structure.md, acceptance-criteria.md)
