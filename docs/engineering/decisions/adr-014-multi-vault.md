@@ -49,6 +49,10 @@ ADR-010 assumes exactly one vault syncing a read-only snapshot to R2 for remote 
 
 **Left open for v2 or later:** allowing more than one vault to sync independently, or letting the user choose which vault a captured note should land in at the point of capture (e.g. a work-capture form that lets the user pick "Work" vs "Personal" before submitting). Nothing in this decision forecloses either — the D1/R2 architecture in ADR-010 does not need to change to add this later, only the routing logic that currently assumes a single destination vault.
 
+## Where vault switching and management live in the UI
+
+The vault switcher is a persistent, always-visible control — separate from the app's Settings surface, since switching vaults is a frequent action and Settings is reserved for rare, global configuration. Adding a new vault is exposed directly in the switcher (quick-add, low friction, since adding is always safe); renaming or removing a vault from the known-vaults list is Settings-only. See [Settings](../../foundations/settings.md) for the full mechanic and reasoning.
+
 ## What this requires, concretely
 
 - `StorageAdapter` and `LocalFilesAdapter` (ADR-004): root path passed in as configuration at instantiation, not read from a fixed constant

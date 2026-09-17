@@ -13,6 +13,19 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Settings defined as its own Foundation; vault switcher separated from it
+**8 August 2026 · Architecture decision**
+
+Fosta gains a proper global Settings surface, accessed via the standard macOS `Fosta → Settings…` menu (⌘,) rather than a bottom-toolbar icon — keeping the toolbar's identity as the view switcher plus Capture intact.
+
+A deliberate split was made between vault switching and Settings, even though both initially seemed like the same feature. Vault switching is something a user might do many times a day; Settings is touched rarely. Bundling them would bury a frequent action inside a rare-action menu. The vault switcher is instead a persistent, always-visible control in the top-left of the window — exact visual treatment deferred to the hi-fi Sort Figma pass, where it will be designed as part of the same visual system.
+
+A general pattern emerged and was applied consistently to both vaults and Desk's wipe-frequency options: **quick-add lives at the point of use, edit/delete lives in Settings.** Adding a new vault or a new custom wipe frequency is safe and additive, so it's exposed directly in the vault switcher dropdown and the Timer pill's frequency dropdown respectively, with no detour required. Renaming or removing a vault, and editing or deleting a custom wipe frequency, are Settings-only — actions that could affect something already depended on get deliberate friction, actions that can't break anything don't.
+
+Two things were explicitly confirmed as out of scope: no wipe-confirmation prompt (all wipe behaviour stays in Desk's Timer pill, unchanged), and no user accounts in v1 (no login, no sign-out, no cross-device sync — work-access is a device-level pairing, not an identity system).
+
+---
+
 ## Multi-vault support decided; view state persistence gap discovered and filled
 **8 August 2026 · Architecture decision**
 
