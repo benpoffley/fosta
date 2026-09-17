@@ -17,6 +17,14 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 
 ## v0.2.0 — July 2026
 
+- Track: redefined around persistence/naming rather than "constraint" — Web is Track's free-form member by design, mirroring Desk's capabilities
+- Freeform nodes extended to Track's Web layout (not Line, not Thread) — confirmed distinct from Track's existing anchor-required annotation nodes
+- Canvas Nodes: freeform lifecycle now documented per-host (Desk: ephemeral + pinnable; Web: permanent by default, no pinning concept needed)
+- Right-click confirmed as an equivalent trigger to double-click for the add-item menu on empty canvas (Desk, Track Web)
+- Global Actions: "Create Track from tag" now documented to reuse an existing Live track for the same tag rather than duplicating
+- Sort: All tab confirmed as a unified browser across notes, Track canvases, and Desk archives, each with its own double-click destination
+- Desk: added the brief "A clean desk" fade-out message shown after a wipe
+- Confirmed NOT changing, despite prototype simplifications: delete-with-warning (not cascade-delete), Smart Paste's full paste-choice menu, UUID-based backlinks
 - Layer renamed to Develop across the entire wiki — confirmed final after hi-fi prototyping
 - Views naming question closed: Layer vs Work vs Develop resolved as Develop; Desk vs Base and Sort vs Curate remain open
 - Track file navigator question resolved: combined Tracks + Notes panel with tabs
