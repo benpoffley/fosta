@@ -23,26 +23,26 @@ Each view remembers its own state independently, scoped to the current vault (se
 |---|---|
 | Desk | Canvas pan position, zoom level, which nodes are expanded vs. compact |
 | Sort | Nothing — always resets to Inbox tab, cleared search, no active filter (see above) |
-| Layer | Which note is open, editor scroll position, panel widths (if resizable) |
+| Develop | Which note is open, editor scroll position, panel widths (if resizable) |
 | Track | Which tabs are open (see "Track tabs" below), each tab's own zoom/pan/scroll, whether the file navigator is open or closed |
 | Share | Which Share document is open, which note is in the preview pane |
 
 ## Two categories of state — and how explicit navigation interacts with them
 
-Per-view state splits into two categories that behave differently when the user explicitly navigates somewhere (e.g. "Open in Layer," "Create Track from tag," "Open in Track" from an overflow menu):
+Per-view state splits into two categories that behave differently when the user explicitly navigates somewhere (e.g. "Open in Develop," "Create Track from tag," "Open in Track" from an overflow menu):
 
-1. **"What's open"** — the active note in Layer, the active Track in Track, the active document in Share. **Explicit navigation always overrides this.** Clicking "Open in Layer" makes that specific note the open note in Layer, full stop.
+1. **"What's open"** — the active note in Develop, the active Track in Track, the active document in Share. **Explicit navigation always overrides this.** Clicking "Open in Develop" makes that specific note the open note in Develop, full stop.
 2. **Everything else** — panel widths, scroll position, zoom/pan, tab structure, navigator open/closed state. **This persists regardless of how the view was arrived at.** Explicit navigation changes *what's* open, never *how the view looks or is configured*.
 
-For example: clicking "Open in Layer" from a Quick Look switches to Layer, opens that specific note — but the file navigator's width, whether the layers panel is expanded, and any other configuration stay exactly as they were the last time Layer was used. The same principle applies to "Create Track from tag": Track becomes active, the newly created Track becomes the open tab, but Track's navigator open/closed state and any other open tabs are untouched.
+For example: clicking "Open in Develop" from a Quick Look switches to Develop, opens that specific note — but the file navigator's width, whether the Layers panel is expanded, and any other configuration stay exactly as they were the last time Develop was used. The same principle applies to "Create Track from tag": Track becomes active, the newly created Track becomes the open tab, but Track's navigator open/closed state and any other open tabs are untouched.
 
 ## Track tabs
 
-Track adopts the same tab pattern as Layer — multiple Tracks can be open simultaneously in tabs. Each open tab keeps its own state (zoom, pan, scroll position) independently while open.
+Track adopts the same tab pattern as Develop — multiple Tracks can be open simultaneously in tabs. Each open tab keeps its own state (zoom, pan, scroll position) independently while open.
 
 **Navigator open/closed state is view-level, not tab-level.** Whether Track's file navigator is open or closed is a single setting shared across every tab, not scoped per-tab — switching tabs never causes the navigator to flicker open or closed. This follows directly from the "everything else persists independent of what's open" rule above: navigator visibility is configuration, not "what's open."
 
-**What the Track navigator browses is a separate, still-open design question** — whether it shows notes (for dragging into Manual tracks, matching Layer's pattern) or shows other Track canvases (for quickly switching between Tracks without leaving the view). See Open Questions.
+**What the Track navigator browses — resolved.** It is one combined panel, not a toggle between modes: a "Tracks" section (click any Track to open it as a new tab) sits above a "Notes" section (search, with a "+" to add to the currently active Track — the Manual-track drag/add pattern). This gives quick switching between Tracks and the ability to populate a Manual track from the same panel, without needing a separate quick-switcher UI.
 
 ## Per-canvas zoom and pan — scoped to the canvas, not the view
 
@@ -62,4 +62,4 @@ This gives one consistent mental model: closing and reopening a Track always sho
 
 ## Fallback behaviour for deleted or missing content
 
-If the note, Track, or document that was open in a view no longer exists when the view is returned to (deleted, moved, or otherwise missing), the view falls back to an empty state rather than erroring. This applies uniformly across Layer, Track, and Share.
+If the note, Track, or document that was open in a view no longer exists when the view is returned to (deleted, moved, or otherwise missing), the view falls back to an empty state rather than erroring. This applies uniformly across Develop, Track, and Share.

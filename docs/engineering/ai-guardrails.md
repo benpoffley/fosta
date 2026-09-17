@@ -48,6 +48,6 @@ If asked to implement something on the out-of-scope list, stop and flag it. Thes
 
 ## Naming — do not change
 
-Three view names are pending final decision — use the current placeholders (Desk, Sort, Layer) until resolved. Candidates and status: `docs/project/open-questions.md`.
+Two view names are pending final decision — use the current placeholders (Desk, Sort) until resolved; Develop is final. Candidates and status: `docs/project/open-questions.md`.
 
 Canonical terms that must not be renamed: Quick Look · Global Actions · Add to Desk · Create Track from tag · QuoteBlock

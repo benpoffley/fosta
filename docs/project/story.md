@@ -13,6 +13,25 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Findings from a hi-fi prototyping session reviewed; Develop confirmed as final view name
+**14 September 2026 · Design review**
+
+A substantial hi-fi prototype (five fully interactive views built in Claude Design, with realistic seed data) was reviewed against the wiki to surface what should carry forward as real decisions versus what was a prototyping artefact that shouldn't.
+
+**Confirmed final: the view previously called Layer is now Develop.** The prototype consistently used "Develop" throughout — file names, navigation labels, cross-references — and after working with it directly, this was confirmed as the right name over "Layer" (which had already failed the CTA test) and "Work." This closes one of the three view-naming questions that had been deferred to the hi-fi phase; Desk vs Base and Sort vs Curate remain open.
+
+**Rejected: folders reappeared in the prototype, but this was not a deliberate reversal.** The prototype's Sort and Develop navigators showed folder groups (Inbox/Treatment/Reference/Admin), directly contradicting the earlier decision to drop folder-based organisation in favour of flat tags. Confirmed this was an unintentional prototyping default, not a reconsidered position — folders remain out of Fosta's data model and UI entirely. Noted explicitly in `docs/views/develop.md` so this doesn't quietly resurface without this context in a future prototype.
+
+**Superseded: a Settings icon appeared in the prototype's toolbar.** This predates (and is now superseded by) the recent decision that Settings lives under the macOS `Fosta → Settings…` menu, not a toolbar icon. No wiki change needed — noted here so the discrepancy isn't mistaken for a future reversal.
+
+**Resolved: Track's file navigator content**, previously an open question. The prototype's answer — one combined panel with a "Tracks" section (click to open as a tab) above a "Notes" section (search, with "+" to add to the active Manual track) — was confirmed as the right design and is now documented in `docs/foundations/view-state-persistence.md` and `docs/views/track.md`.
+
+**New rule: Inbox notes are hidden from browsing, but stay findable by search.** Working through *why* an untagged note should or shouldn't appear in Develop's, Track's, and Share's navigators surfaced a genuine distinction: browsable lists show organised (tagged) material by default, since an untagged note has no meaningful place to sit yet — but search still reaches it, since search reflects deliberate intent rather than passive browsing. Sort remains the explicit exception, since showing the unsorted pile is its whole purpose. Documented once in `docs/views/develop.md` and referenced from Track and Share rather than repeated three times.
+
+**Minor addition:** Share's QuoteBlocks now have a documented visual distinction between live (pulsing indicator) and frozen (static label) states, taken directly from the prototype's treatment.
+
+---
+
 ## Settings defined as its own Foundation; vault switcher separated from it
 **8 August 2026 · Architecture decision**
 

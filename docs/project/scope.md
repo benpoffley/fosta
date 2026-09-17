@@ -12,7 +12,7 @@ layout: default
 - Capture (global action, Quick Look modal, Inbox)
 - Desk / Base (scratchpad canvas, freeform + note-reference + canvas-reference nodes, timer pill)
 - Sort (inbox grid, tag-frequency bubbles, Create Track from tag)
-- Layer / Work / Develop (three-panel editor, Tiptap, block comments, wikilinks)
+- Develop (three-panel editor, Tiptap, block comments, wikilinks)
 - Track (Line + Web + Thread modes, note-reference nodes, annotations, connections)
 - Share (three-panel, QuoteBlocks, drag-to-quote, Smart Paste, publish)
 - Quick Look (note + canvas variants, wikilink back-stack)
@@ -39,5 +39,5 @@ layout: default
 | Tag hierarchy / nesting | Flat tags only |
 | Co-occurrence lines in Sort | Downgraded to maybe-later |
 | Live transclusion across Cloudflare | snapshot_text only at work |
-| Split view in Layer | v1.1 |
+| Split view in Develop | v1.1 |
 | Track (if not ready post-Sort) | Moves to v1.1 |

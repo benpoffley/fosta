@@ -83,7 +83,7 @@ Before choosing a mobile technical approach, it's worth establishing what Fosta 
 |---|---|---|
 | Capture | ✅ Yes | Quick capture on mobile is a genuine need |
 | Sort | ⚠️ Maybe | Tagging and triaging could work on iPad; phone is tight |
-| Layer | ✅ Yes | Reading and writing notes on mobile makes sense |
+| Develop | ✅ Yes | Reading and writing notes on mobile makes sense |
 | Track | ❌ Probably not | Timeline canvases on a 6" screen is a stretch |
 | Share | ❌ Probably not | Composition is desktop work |
 

@@ -18,7 +18,7 @@ Fosta has five views accessible from the persistent bottom toolbar, plus one glo
 |---|---|---|
 | Desk / Base | TBD: Desk or Base | Scratchpad canvas — thinking space |
 | Sort / Curate | TBD: Sort or Curate | Inbox triage and organisation |
-| Layer / Work / Develop | TBD: Layer, Work, or Develop | Deep writing and editing |
+| Develop | Final | Deep writing and editing |
 | Track | Final | Timeline and relationship tool |
 | Share | Final | Composition and publishing |
 | Capture | Final (not a tab) | Global intake action — documented under Foundations, not Views |
@@ -34,12 +34,12 @@ All views share a persistent bottom toolbar for navigation. Capture is accessibl
 ## The pipeline flow
 
 ```
-Capture → Sort → Layer → Track → Share
+Capture → Sort → Develop → Track → Share
   ↓
 Inbox/
 ```
 
-Notes enter via Capture, get processed in Sort, developed in Layer, sequenced in Track, and published via Share. This is the intended flow — but users can move through views in any order.
+Notes enter via Capture, get processed in Sort, developed in Develop, sequenced in Track, and published via Share. This is the intended flow — but users can move through views in any order.
 
 ## Reference wireframes
 

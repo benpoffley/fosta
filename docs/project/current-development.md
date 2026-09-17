@@ -59,7 +59,7 @@ See `../../build/build-sequence.md` for the full milestone build plan. Milestone
 | M2 · Capture | Capture bar, Quick Look, note intake |
 | M3 · Sort | Inbox grid, tag bubbles, tagging model |
 | M4 · Cloudflare Work Capture | Browser capture, D1 staging, R2 vault snapshot |
-| M5–M6 · Layer → Share | Tiptap editor, block UUIDs, transclusion, publishing |
+| M5–M6 · Develop → Share | Tiptap editor, block UUIDs, transclusion, publishing |
 | M7 · Track | Line / Web / Thread canvases (provisionally v1) |
 | M8 · Desk | Full scratchpad canvas, timer, history mode |
 | M9 · Polish + Launch | Error states, performance, onboarding, payments, ship |

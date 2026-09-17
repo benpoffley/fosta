@@ -104,7 +104,7 @@ How does a user get into dual-track mode? Options:
 
 **Web (split view):** Two spatial canvases side by side. Architecturally fine but weak value — spatial canvases represent personal mental maps and comparing two side by side is hard to make meaningful.
 
-**Thread (side by side):** Two vertical scrolling full-note lists side by side. Some value, but this is the same pattern as split view in Layer (already deferred to v1.1). If Layer split view ships in v1.1, Thread side-by-side could follow the same pattern.
+**Thread (side by side):** Two vertical scrolling full-note lists side by side. Some value, but this is the same pattern as split view in Develop (already deferred to v1.1). If Develop split view ships in v1.1, Thread side-by-side could follow the same pattern.
 
 ### Why it was deferred
 

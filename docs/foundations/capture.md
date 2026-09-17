@@ -33,7 +33,7 @@ The expanded capture state is the Quick Look modal — they are the same surface
 1. User types in the capture bar / Quick Look modal
 2. On save: note created as Markdown file in `Inbox/`
 3. SQLite index updated
-4. Capture surface closes (or stays open if user triggered "Open in Layer")
+4. Capture surface closes (or stays open if user triggered "Open in Develop")
 
 ## Capture from Desk
 
@@ -41,7 +41,7 @@ On Desk, the capture bar sits persistently at the bottom of the canvas. The + bu
 
 ## The Capture / Quick Look connection
 
-The capture flow ends in the Quick Look modal (note variant). This is not a separate component — it is Quick Look. The full editing surface, autosave via `saveNote()`, and "Open in Layer" escape hatch are all inherited from Quick Look.
+The capture flow ends in the Quick Look modal (note variant). This is not a separate component — it is Quick Look. The full editing surface, autosave via `saveNote()`, and "Open in Develop" escape hatch are all inherited from Quick Look.
 
 ## Reference wireframe
 

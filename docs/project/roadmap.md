@@ -20,7 +20,7 @@ Milestones are sequential and dependency-gated, not calendar-scheduled — each 
 | M2 · Capture | Capture bar, Quick Look, note intake |
 | M3 · Sort | Working inbox, tag bubbles, capture flow, tagging model |
 | M4 · Cloudflare Work Capture | Work capture, read-only vault snapshot |
-| M5 · Layer | Tiptap editor, block UUIDs, wikilinks |
+| M5 · Develop | Tiptap editor, block UUIDs, wikilinks |
 | M6 · Share | Transclusion, publishing |
 | M7 · Track | Line / Web / Thread canvases |
 | M8 · Desk | Full scratchpad canvas, timer, history mode |
@@ -28,7 +28,7 @@ Milestones are sequential and dependency-gated, not calendar-scheduled — each 
 
 ## v1.1 — Deferred from v1.0
 
-- Split view in Layer
+- Split view in Develop
 - Track (if not ready post-Sort)
 - Live transclusion across Cloudflare
 
