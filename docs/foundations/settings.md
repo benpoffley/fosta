@@ -22,7 +22,7 @@ This deliberately splits two things that might otherwise be bundled together:
 
 ## Vault switcher — separate from Settings, always visible
 
-The vault switcher is a persistent control, showing the name of the currently open vault. Clicking it opens a dropdown of known vaults. It lives inside the [App Header](app-header.md), immediately to the right of the Fosta logo — confirmed during hi-fi prototyping on Sort. (Earlier documentation described it as a standalone top-left control; it is now a header element instead. The interaction model below is unchanged.)
+The vault switcher is a persistent control, showing the name of the currently open vault. Clicking it opens a dropdown of known vaults. It lives inside the [App Header](app-header.md), immediately to the right of the Fosta logo.
 
 ### Quick-add vs. manage — the general pattern
 

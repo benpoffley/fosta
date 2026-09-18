@@ -18,7 +18,7 @@ Two candidate palettes exist, extracted directly from the two current prototypes
 
 ### Action colours (Sort interaction model)
 
-These four names appear throughout the Sort spec to describe tag chip states (chips replaced the earlier tag-orb model — see `docs/views/sort.md`).
+These four names appear throughout the Sort spec to describe tag chip states — see `docs/views/sort.md`.
 
 | Name | Role | Dark value | Light value |
 |---|---|---|---|

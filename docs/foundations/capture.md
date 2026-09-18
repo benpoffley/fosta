@@ -18,13 +18,13 @@ The expanded capture state is the Quick Look modal — they are the same surface
 
 ## Trigger — the global header
 
-Capture is now triggered from a single, consistently-placed button in the [App Header](app-header.md) — far right, same position on every view. This supersedes the earlier model of a transient toolbar + button that varied by view.
+Capture is triggered from a single, consistently-placed button in the [App Header](app-header.md) — far right, same position on every view.
 
 ## Behaviour by view
 
 | View | Capture behaviour |
 |---|---|
-| Desk / Base | **Open question.** Desk currently also has its own persistent, always-visible capture bar built into the canvas (see `docs/views/desk.md`). Whether that bar remains alongside the header's Capture button, or is superseded by it, has not been decided — see [App Header](app-header.md#consistency-across-views). Treat the existing Desk-specific documentation below as still valid until this is resolved. |
+| Desk / Base | **Open question.** Desk also has its own persistent, always-visible capture bar built into the canvas (see `docs/views/desk.md`). Whether that bar remains alongside the header's Capture button, or is superseded by it, is not decided — see [App Header](app-header.md#consistency-across-views). Treat the Desk-specific documentation below as valid until this is resolved. |
 | All other views | Header Capture button opens the Capture surface (Quick Look, note variant) |
 
 ## Triggers
@@ -39,9 +39,9 @@ Capture is now triggered from a single, consistently-placed button in the [App H
 3. SQLite index updated
 4. Capture surface closes (or stays open if user triggered "Open in Develop")
 
-## Capture from Desk (existing, pending reconciliation with the global header)
+## Capture from Desk
 
-On Desk, the capture bar sits persistently at the bottom of the canvas — this predates the global header decision and has not yet been reconciled with it. See [App Header](app-header.md#consistency-across-views) for the open question.
+On Desk, the capture bar sits persistently at the bottom of the canvas. See [App Header](app-header.md#consistency-across-views) for the open question about how this relates to the header's Capture button.
 
 ## The Capture / Quick Look connection
 
