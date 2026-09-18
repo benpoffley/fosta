@@ -13,6 +13,30 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Sort becomes the home for tag management, not just tag application
+**18 September 2026 · Design decision**
+
+Sort gains the ability to rename any tag and delete a tag with no notes attached, directly from the tag panel — not just apply and filter tags, as before. Renaming works on any tag regardless of use, since a tag is just a name and renaming it updates every note carrying it in one safe operation. Deletion is scoped to empty tags only: an in-use tag cannot be deleted from Sort, or from anywhere else — there is no bulk "strip this tag from all its notes" action in v1. Retiring an in-use tag means removing it from its remaining notes first, which naturally brings its count to zero and makes it deletable.
+
+This is a deliberate exception to the quick-add/manage split already established for vaults and Desk wipe frequencies, where "manage" actions are pushed into Settings, one step removed from where the item is used. Tags don't follow that pattern: they're worked with continuously as part of Sort's own core activity, not an occasional app-wide configuration change, so their management stays directly in Sort rather than being pulled into Settings. Settings' own documentation now names this explicitly as an exception, rather than leaving Sort's tag-management functionality unexplained against the general rule stated there.
+
+Both new affordances — a rename pencil, and a delete ✕ that only appears on empty tags — are hover-only and scoped to browse mode, since hovering a tag in selection/tagging mode already has an established meaning (revealing the add/extend/remove action colour).
+
+---
+
+## Process language caught bleeding into spec docs; new standing rule added to AGENTS.md
+**18 September 2026 · Process fix**
+
+While reviewing the Sort hi-fi and App Header work, a real problem surfaced: spec pages (`docs/product/`, `docs/views/`, `docs/foundations/`) had been written with process narrative embedded directly in them — phrases like "confirmed during hi-fi prototyping," "this replaced an earlier direction," "was found to be disorienting," "as earlier documented." That language belongs entirely in `story.md`, which already contained the full correct narrative — the problem was duplication, not a missing record. Spec pages should read as pure current-state truth; someone opening one cold shouldn't need to know what came before.
+
+Every affected page (`sort.md`, `app-header.md`, `capture.md`, `settings.md`, `global-actions.md`, `product/views.md`, `design-tokens.md`) was rewritten to strip the comparison/history language, leaving only declarative current-state content. `open-questions.md` and `changelog.md` were correctly left untouched — their entire job is tracking resolution history, so that register belongs there.
+
+A standing rule was added to `AGENTS.md` ("Keep process out of product docs") so this doesn't need to be caught and corrected by hand each time: `product/`, `views/`, and `foundations/` pages get current-state-only language; `story.md` and `changelog.md` get the narrative and the log; `open-questions.md` and `design-tokens.md` are named as legitimate exceptions since they exist specifically to track status. The self-check included: if a sentence only makes sense by reference to what the doc used to say, it doesn't belong there.
+
+While doing this pass, the App Header's "bottom toolbar" subsection was also split out into its own Foundation page, **View Switcher** — the two are separate persistent UI elements with no real dependency between them, and "toolbar" was a vague name for something whose actual job is switching views. Terminology updated across all current spec references; left as "bottom toolbar" in this file's own historical entries, since that's the term that was actually in use at the time.
+
+---
+
 ## Sort hi-fi prototyping locks in the interaction model; global App Header introduced
 **18 September 2026 · Design milestone**
 

@@ -56,6 +56,12 @@ The Desk Timer pill's frequency dropdown reads from a shared, editable list of o
 
 Everything else about the wipe cycle — actually selecting a frequency for the current canvas, Wipe Now, History — remains entirely inside the Timer pill on Desk itself. There is no wipe-confirmation prompt, by design; all of that behaviour is documented in `docs/views/desk.md` and Settings has no other Desk-specific content.
 
+### Tag management lives in Sort, not Settings
+
+Tags are the one user-managed list that does **not** follow the quick-add/manage split above. Renaming a tag, and deleting a tag with no notes attached, both happen directly in [Sort](../views/sort.md#tag-management--rename-and-delete-directly-in-sort) — there is no Tags category here. Tags are worked with continuously as part of Sort's own core activity, not an occasional app-wide configuration change, so their management stays where that work already happens rather than being pulled into Settings the way vaults and wipe frequencies are.
+
+An in-use tag cannot be deleted from Sort or from Settings — there is no bulk "remove this tag from all its notes" action in v1. Retiring an in-use tag means removing it from its remaining notes first.
+
 ### Sort
 - Default sort order (date / title)
 - Default view (grid / list)
