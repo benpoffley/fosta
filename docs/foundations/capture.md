@@ -16,17 +16,21 @@ Capture is the intake mechanism for the entire pipeline. It is a Foundations-lev
 
 The expanded capture state is the Quick Look modal — they are the same surface. See `../foundations/quick-look.md`.
 
+## Trigger — the global header
+
+Capture is now triggered from a single, consistently-placed button in the [App Header](app-header.md) — far right, same position on every view. This supersedes the earlier model of a transient toolbar + button that varied by view.
+
 ## Behaviour by view
 
-| View | Capture bar behaviour |
+| View | Capture behaviour |
 |---|---|
-| Desk / Base | Always visible, persistent at bottom of canvas |
-| All other views | Transient — animates in from + button on click, collapses after idle timeout, stays open once user starts typing |
+| Desk / Base | **Open question.** Desk currently also has its own persistent, always-visible capture bar built into the canvas (see `docs/views/desk.md`). Whether that bar remains alongside the header's Capture button, or is superseded by it, has not been decided — see [App Header](app-header.md#consistency-across-views). Treat the existing Desk-specific documentation below as still valid until this is resolved. |
+| All other views | Header Capture button opens the Capture surface (Quick Look, note variant) |
 
 ## Triggers
 
 - Keyboard shortcut (⌘N or similar — TBD)
-- Persistent + button in the bottom toolbar (hidden on Desk where the bar is always visible)
+- The Capture button in the global header (see above)
 
 ## What happens on capture
 
@@ -35,9 +39,9 @@ The expanded capture state is the Quick Look modal — they are the same surface
 3. SQLite index updated
 4. Capture surface closes (or stays open if user triggered "Open in Develop")
 
-## Capture from Desk
+## Capture from Desk (existing, pending reconciliation with the global header)
 
-On Desk, the capture bar sits persistently at the bottom of the canvas. The + button is hidden from the toolbar nav on the Desk view.
+On Desk, the capture bar sits persistently at the bottom of the canvas — this predates the global header decision and has not yet been reconciled with it. See [App Header](app-header.md#consistency-across-views) for the open question.
 
 ## The Capture / Quick Look connection
 

@@ -17,6 +17,10 @@ Deferred to hi-fi Figma phase:
 
 **Resolved:** Layer vs Work vs Develop — confirmed as **Develop** after hi-fi prototyping. See `docs/views/develop.md`.
 
+## Desk's App Header treatment
+
+The new global [App Header](../foundations/app-header.md) (logo, vault switcher, search, Capture) is confirmed consistent across Sort and, provisionally, the other views — except Desk. Desk already has its own persistent, always-visible capture bar built into the canvas itself. Whether Desk keeps that inline bar *in addition to* the header's Capture button, or the header replaces it entirely, needs its own discovery pass — not a decision extended from Sort by default.
+
 ## Quick Look wikilink stack — stress testing needed
 
 The back-arrow navigation stack within Quick Look needs testing across edge cases:

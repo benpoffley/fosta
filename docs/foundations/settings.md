@@ -13,7 +13,7 @@ Fosta's global, infrequent configuration surface. Settings is deliberately small
 
 ## Access
 
-Standard macOS convention: `Fosta → Settings…` menu, with the `⌘,` keyboard shortcut. No icon or entry point in the bottom toolbar — the toolbar's role is the view switcher plus Capture, and Settings doesn't belong in that workflow loop.
+Standard macOS convention: `Fosta → Settings…` menu, with the `⌘,` keyboard shortcut. No icon or entry point in the header or the bottom toolbar — the toolbar's role is now purely the view switcher (Capture moved to the [App Header](app-header.md)), and Settings doesn't belong in that workflow loop either way.
 
 This deliberately splits two things that might otherwise be bundled together:
 
@@ -22,7 +22,7 @@ This deliberately splits two things that might otherwise be bundled together:
 
 ## Vault switcher — separate from Settings, always visible
 
-The vault switcher is a persistent control in the **top-left of the window**, showing the name of the currently open vault. Clicking it opens a dropdown of known vaults. Exact visual treatment is deferred to the hi-fi Figma pass on Sort (the vault switcher will be designed as part of that same visual system).
+The vault switcher is a persistent control, showing the name of the currently open vault. Clicking it opens a dropdown of known vaults. It lives inside the [App Header](app-header.md), immediately to the right of the Fosta logo — confirmed during hi-fi prototyping on Sort. (Earlier documentation described it as a standalone top-left control; it is now a header element instead. The interaction model below is unchanged.)
 
 ### Quick-add vs. manage — the general pattern
 

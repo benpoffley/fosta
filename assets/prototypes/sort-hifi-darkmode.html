@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fosta — Sort (Hi-Fi v3)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  /* Monica Reyna palette */
+  --green:      #2A342A;   /* forest ground */
+  --green-hi:   #313D31;   /* slightly raised surface (header, nav) */
+  --green-2:    #232C23;   /* recessed / panel */
+  --green-card: #323F32;   /* card */
+  --green-card-h:#3B493B;  /* card hover */
+  --rule:       #47543F;   /* hairline */
+  --rule-soft:  #3A463A;   /* faint hairline */
+
+  --cream:      #F3EDE1;   /* primary text / white */
+  --cream-2:    #CDC7B6;   /* secondary */
+  --cream-3:    #929A85;   /* muted */
+
+  --clay:       #C56A45;   /* terracotta CTA */
+  --clay-2:     #D07F55;
+  --clay-soft:  rgba(197,106,69,0.16);
+
+  --sage:       #8BAA8F;   /* add */
+  --sage-soft:  rgba(139,170,143,0.18);
+  --gold:       #CBA45A;   /* extend */
+  --gold-soft:  rgba(203,164,90,0.16);
+  --rose:       #C57C6E;   /* remove */
+  --rose-soft:  rgba(197,124,110,0.16);
+  --ring-cream: rgba(243,237,225,0.6);
+
+  --shadow: 0 14px 40px rgba(0,0,0,0.32);
+}
+
+html, body {
+  height: 100%; background: var(--green); color: var(--cream);
+  font-family: 'Inter', -apple-system, sans-serif; font-size: 13px; font-weight: 300;
+  overflow: hidden; -webkit-font-smoothing: antialiased;
+}
+.shell { display: flex; flex-direction: column; height: 100vh; position: relative; }
+
+/* ── TOP HEADER ── */
+.header {
+  height: 60px; flex-shrink: 0; background: var(--green-hi);
+  border-bottom: 1px solid var(--rule-soft);
+  display: flex; align-items: center; gap: 18px; padding: 0 20px;
+  z-index: 40;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.brand-mark {
+  width: 30px; height: 30px; border-radius: 8px; background: var(--green-2);
+  border: 1px solid var(--rule); display: flex; align-items: center; justify-content: center;
+}
+.brand-mark svg { width: 17px; height: 17px; }
+.brand-name { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500; font-size: 19px; color: var(--cream); letter-spacing: 0.01em; }
+
+.header-div { width: 1px; height: 26px; background: var(--rule); }
+
+.vault {
+  display: flex; align-items: center; gap: 9px; cursor: pointer;
+  padding: 7px 12px; border-radius: 8px; border: 1px solid transparent; transition: background 0.15s, border-color 0.15s;
+}
+.vault:hover { background: var(--green-2); border-color: var(--rule-soft); }
+.vault-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--sage); }
+.vault-name { font-size: 12.5px; font-weight: 500; color: var(--cream-2); letter-spacing: 0.01em; }
+.vault-chev { color: var(--cream-3); font-size: 9px; }
+
+/* centered search */
+.header-search { flex: 1; display: flex; justify-content: center; }
+.search-wrap { position: relative; width: 100%; max-width: 460px; }
+.search-input {
+  width: 100%; height: 38px; background: var(--green-2); border: 1px solid var(--rule);
+  border-radius: 19px; padding: 0 40px; color: var(--cream);
+  font-family: 'Inter', sans-serif; font-size: 13px; font-weight: 300; outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+.search-input::placeholder { color: var(--cream-3); }
+.search-input:focus { border-color: var(--sage); background: var(--green); }
+.s-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--cream-3); font-size: 14px; pointer-events: none; }
+.s-clear { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); color: var(--cream-3); font-size: 12px; cursor: pointer; display: none; background: none; border: none; }
+.s-clear:hover { color: var(--cream); }
+
+.capture-btn {
+  display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 18px;
+  background: var(--clay); border: none; border-radius: 19px; cursor: pointer;
+  color: #fff; font-family: 'Inter', sans-serif; font-size: 12.5px; font-weight: 500; letter-spacing: 0.01em;
+  transition: background 0.15s, transform 0.1s;
+}
+.capture-btn:hover { background: var(--clay-2); }
+.capture-btn:active { transform: scale(0.97); }
+.capture-btn svg { width: 14px; height: 14px; }
+
+/* ── SUB BAR (panel titles + controls) ── */
+.subbar { background: var(--green); border-bottom: 1px solid var(--rule-soft); flex-shrink: 0; position: relative; }
+.subbar::after { content:''; position: absolute; top: 0; bottom: 0; left: 50%; width: 1px; background: var(--rule-soft); }
+.subbar-row { height: 58px; display: flex; align-items: center; }
+.panel-head { width: 50%; display: flex; align-items: center; padding: 0 30px; gap: 18px; }
+/* tags head now flows left-to-right like the notes head */
+.panel-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500; font-size: 22px; color: var(--cream); }
+.panel-sub { font-size: 8.5px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; color: var(--cream-3); }
+
+.tabs { display: flex; align-items: center; gap: 22px; }
+.tab {
+  font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream-3);
+  cursor: pointer; height: 58px; display: flex; align-items: center; border-bottom: 2px solid transparent;
+  transition: color 0.14s, border-color 0.14s;
+}
+.tab.active { color: var(--cream); border-bottom-color: var(--clay); }
+.tab:hover:not(.active) { color: var(--cream-2); }
+.badge { height: 17px; min-width: 17px; padding: 0 5px; margin-left: 7px; background: var(--clay-soft); border: 1px solid rgba(197,106,69,0.3); color: var(--clay-2); font-size: 9px; font-weight: 600; border-radius: 9px; display: inline-flex; align-items: center; justify-content: center; }
+.ctrls { display: flex; align-items: center; gap: 3px; margin-left: 6px; }
+.ctrl-btn { width: 30px; height: 30px; border-radius: 7px; background: none; border: none; cursor: pointer; color: var(--cream-3); font-size: 14px; display: flex; align-items: center; justify-content: center; transition: color 0.14s, background 0.14s; }
+.ctrl-btn:hover { color: var(--cream-2); background: var(--green-2); }
+.ctrl-btn.active { color: var(--cream); background: var(--green-2); }
+.sort-dropdown { position: relative; }
+.sort-trigger {
+  height: 30px; padding: 0 10px; border-radius: 7px; background: none; border: none; cursor: pointer;
+  color: var(--cream-3); font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500;
+  display: flex; align-items: center; gap: 6px; transition: color 0.14s, background 0.14s;
+}
+.sort-trigger:hover, .sort-dropdown.open .sort-trigger { color: var(--cream); background: var(--green-2); }
+.sort-menu {
+  display: none; position: absolute; top: calc(100% + 6px); left: 0; min-width: 120px;
+  background: var(--green-hi); border: 1px solid var(--rule); border-radius: 9px;
+  padding: 4px; box-shadow: var(--shadow); z-index: 60;
+}
+.sort-dropdown.open .sort-menu { display: block; }
+.sort-option {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 7px 10px; border-radius: 6px; font-size: 12px; font-weight: 400; color: var(--cream-2);
+  cursor: pointer; transition: background 0.12s, color 0.12s;
+}
+.sort-option:hover { background: var(--green-card); color: var(--cream); }
+.sort-option .sort-check { opacity: 0; font-size: 10px; color: var(--sage); }
+.sort-option.active { color: var(--cream); }
+.sort-option.active .sort-check { opacity: 1; }
+
+.view-group { display: flex; align-items: center; gap: 1px; background: var(--green-2); border-radius: 8px; padding: 2px; }
+.view-group .ctrl-btn { width: 26px; height: 26px; border-radius: 6px; }
+.view-group .ctrl-btn.active { background: var(--green-card); color: var(--cream); }
+.view-group .ctrl-btn:not(.active):hover { background: transparent; color: var(--cream-2); }
+
+.tags-controls { display: flex; align-items: center; gap: 14px; }
+.tags-head { gap: 16px; }
+.tags-head .tags-hint { margin-right: auto; }
+.tags-hint { font-size: 10.5px; font-weight: 300; color: var(--cream-3); font-style: italic; letter-spacing: 0.02em; transition: color 0.2s; }
+.tags-hint.tagging { color: var(--sage); font-style: normal; font-weight: 500; }
+.new-tag-btn { font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 500; letter-spacing: 0.04em; color: var(--cream-2); cursor: pointer; background: none; border: 1px solid var(--rule); border-radius: 7px; padding: 6px 12px; transition: all 0.15s; }
+.new-tag-btn:hover { color: var(--clay-2); border-color: var(--clay); }
+
+.sel-status {
+  position: absolute; right: 50%; top: 50%; transform: translateY(-50%);
+  margin-right: 30px; display: none; align-items: center; gap: 7px;
+  background: rgba(243,237,225,0.07); border: 1px solid var(--ring-cream);
+  color: var(--cream-2); font-size: 10.5px; font-weight: 400; letter-spacing: 0.01em;
+  padding: 5px 11px; border-radius: 12px; cursor: pointer; white-space: nowrap; z-index: 5;
+}
+.sel-status.show { display: flex; }
+.sel-status:hover { background: rgba(243,237,225,0.12); color: var(--cream); }
+.sel-status .sel-x { font-size: 11px; }
+.sel-status.show { opacity: 1; }
+
+/* ── MAIN ── */
+.main { display: flex; flex: 1; overflow: hidden; }
+.notes-panel { width: 50%; border-right: 1px solid var(--rule-soft); display: flex; flex-direction: column; background: var(--green); }
+.note-grid { background: var(--green); display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 13px; padding: 24px 24px 90px; overflow-y: auto; flex: 1; align-content: start; }
+
+.note-card {
+  background: var(--green-card); border: 1px solid var(--rule-soft); border-radius: 11px;
+  padding: 15px; cursor: pointer; position: relative;
+  transition: background 0.14s, border-color 0.14s, transform 0.12s, box-shadow 0.14s;
+  display: flex; flex-direction: column; gap: 8px; min-height: 134px; user-select: none;
+}
+.note-card:hover { background: var(--green-card-h); border-color: var(--rule); transform: translateY(-2px); box-shadow: 0 8px 22px rgba(0,0,0,0.28); }
+.note-card.selected { border-color: var(--sage) !important; background: rgba(139,170,143,0.09) !important; box-shadow: 0 0 0 1px var(--sage) !important; transform: none !important; }
+.note-card.exiting { animation: cardExit 0.32s ease forwards; pointer-events: none; }
+@keyframes cardExit { to { opacity:0; transform: translateY(-9px) scale(0.96); } }
+
+.card-check { position: absolute; top: 12px; right: 12px; width: 18px; height: 18px; border-radius: 50%; border: 1.5px solid var(--rule); background: var(--green-card); display: flex; align-items: center; justify-content: center; font-size: 9px; color: transparent; transition: all 0.14s; }
+.note-card.selected .card-check { border-color: var(--sage); background: var(--sage); color: var(--green); }
+.card-tag-indicator { position: absolute; bottom: 12px; right: 12px; font-size: 11px; font-weight: 700; opacity: 0; pointer-events: none; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+.card-tag-indicator.has-tag { background: var(--gold-soft); color: var(--gold); opacity: 1; }
+.card-tag-indicator.needs-tag { background: var(--sage-soft); color: var(--sage); opacity: 1; }
+
+.card-badge { align-self: flex-start; font-size: 8px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; padding: 3px 7px; border-radius: 5px; margin-bottom: -2px; }
+.card-badge.track { background: var(--gold-soft); color: var(--gold); }
+.card-badge.archive { background: var(--sage-soft); color: var(--sage); }
+.card-date { font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cream-3); }
+.card-title { font-family: 'Playfair Display', serif; font-style: italic; font-weight: 500; font-size: 15px; color: var(--cream); line-height: 1.3; flex: 1; padding-right: 20px; }
+.card-preview { font-size: 11px; font-weight: 300; color: var(--cream-3); line-height: 1.55; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.card-tags { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+.card-tag { font-size: 9px; font-weight: 500; color: var(--sage); }
+.card-tag::before { content:'·'; margin-right: 5px; color: var(--cream-3); }
+.card-tag:first-child::before { display: none; }
+
+.note-grid.list { grid-template-columns: 1fr; }
+.note-grid.list .note-card { min-height: 0; flex-direction: row; align-items: center; gap: 14px; padding: 13px 16px; }
+.note-grid.list .card-check { position: static; order: -2; flex-shrink: 0; }
+.note-grid.list .card-badge { order: -1; flex-shrink: 0; }
+.note-grid.list .title-date {
+  order: 0; display: flex; align-items: baseline; gap: 10px; min-width: 0; flex-shrink: 1;
+  max-width: 60%;
+}
+.note-grid.list .card-title { padding-right: 0; flex-shrink: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.note-grid.list .card-date { flex-shrink: 0; white-space: nowrap; }
+.note-grid.list .card-tags { order: 1; flex-shrink: 0; margin-top: 0; margin-left: auto; justify-content: flex-end; }
+
+.clear-sorted-btn { display: none; font-size: 10.5px; font-weight: 500; letter-spacing: 0.02em; color: var(--clay-2); cursor: pointer; background: var(--clay-soft); border: 1px solid rgba(197,106,69,0.4); border-radius: 8px; padding: 7px 13px; transition: all 0.15s; align-items: center; gap: 7px; white-space: nowrap; }
+.clear-sorted-btn.show { display: inline-flex; }
+.clear-sorted-btn:hover { background: rgba(197,106,69,0.26); color: var(--cream); border-color: var(--clay); }
+
+/* ── TAGS as chips ── */
+.tags-panel { flex: 1; display: flex; flex-direction: column; position: relative; overflow: hidden; background: var(--green); }
+.tags-scroll { flex: 1; overflow-y: auto; padding: 24px 26px 90px; position: relative; }
+.tag-chip-grid { display: flex; flex-wrap: wrap; gap: 10px; align-content: flex-start; }
+
+.tag-chip {
+  display: inline-flex; align-items: center; gap: 9px; height: 36px; padding: 0 6px 0 15px;
+  border-radius: 18px; background: var(--green-card); border: 1px solid var(--rule);
+  cursor: pointer; user-select: none; transition: background 0.14s, border-color 0.14s, transform 0.12s;
+}
+.tag-chip:hover { background: var(--green-card-h); transform: translateY(-1px); }
+.tag-chip.faded { opacity: 0.28; }
+.tag-chip-name { font-size: 12.5px; font-weight: 400; color: var(--cream); letter-spacing: 0.01em; }
+.tag-chip-count {
+  min-width: 22px; height: 22px; padding: 0 7px; border-radius: 11px;
+  background: var(--green-2); color: var(--cream-3);
+  font-size: 10px; font-weight: 600; display: inline-flex; align-items: center; justify-content: center;
+  transition: background 0.14s, color 0.14s;
+}
+.tag-chip-suffix { font-size: 11px; font-weight: 600; margin-left: -2px; }
+
+/* filter (browse) selected */
+.tag-chip.state-filter { border-color: var(--ring-cream) !important; background: rgba(243,237,225,0.05) !important; }
+.tag-chip.state-filter .tag-chip-count { background: rgba(243,237,225,0.12); color: var(--cream); }
+
+/* tagging mode resting */
+.tagging-active .tag-chip.state-partial,
+.tagging-active .tag-chip.state-full { border-color: var(--ring-cream) !important; }
+.tagging-active .tag-chip.state-none { border-color: var(--rule-soft) !important; }
+
+/* hover action states in tagging mode */
+.tagging-active .tag-chip.state-none:hover { border-color: var(--sage) !important; background: var(--sage-soft) !important; }
+.tagging-active .tag-chip.state-none:hover .tag-chip-suffix { color: var(--sage); }
+.tagging-active .tag-chip.state-partial:hover { border-color: var(--gold) !important; background: var(--gold-soft) !important; }
+.tagging-active .tag-chip.state-partial:hover .tag-chip-suffix { color: var(--gold); }
+.tagging-active .tag-chip.state-full:hover { border-color: var(--rose) !important; background: var(--rose-soft) !important; }
+.tagging-active .tag-chip.state-full:hover .tag-chip-suffix { color: var(--rose); }
+
+/* create-track hover tooltip */
+.tag-chip { position: relative; }
+.tag-tip {
+  position: absolute; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%);
+  background: var(--green-hi); border: 1px solid var(--rule); color: var(--cream-2);
+  font-family: 'Inter', sans-serif; font-size: 10.5px; font-weight: 400;
+  padding: 6px 12px; border-radius: 7px; white-space: nowrap; z-index: 30;
+  opacity: 0; pointer-events: none; transition: opacity 0.1s; box-shadow: var(--shadow);
+}
+.tag-tip::before { content:''; position: absolute; top: 100%; left: 0; right: 0; height: 12px; }
+.tag-chip:hover .tag-tip { opacity: 1; pointer-events: auto; transition: opacity 0.15s 0.12s; }
+.tag-chip .tag-tip:hover { opacity: 1; pointer-events: auto; transition: opacity 0s; }
+.tag-chip:not(:hover) .tag-tip:not(:hover) { opacity: 0; pointer-events: none; transition: opacity 0.15s 0.28s; }
+.tagging-active .tag-tip { display: none; }
+.tip-create { color: var(--clay-2); cursor: pointer; border-bottom: 1px solid rgba(197,106,69,0.5); }
+.tip-create:hover { color: var(--cream); border-bottom-color: var(--cream); }
+
+/* new tag inline input */
+.new-tag-input-wrap { position: absolute; top: 0; left: 0; right: 0; z-index: 20; background: var(--green-2); border-bottom: 1px solid var(--rule-soft); display: flex; align-items: center; gap: 11px; padding: 0 26px; height: 0; overflow: hidden; opacity: 0; transition: height 0.22s, opacity 0.18s; }
+.new-tag-input-wrap.show { height: 58px; opacity: 1; }
+.new-tag-icon { color: var(--clay); font-size: 14px; }
+.new-tag-input { flex: 1; height: 34px; background: var(--green-card); border: 1px solid var(--rule); border-radius: 8px; padding: 0 13px; color: var(--cream); font-family: 'Playfair Display', serif; font-style: italic; font-size: 15px; outline: none; }
+.new-tag-input:focus { border-color: var(--clay); }
+.new-tag-confirm { font-size: 10.5px; font-weight: 600; letter-spacing: 0.02em; color: var(--clay-2); cursor: pointer; background: var(--clay-soft); border: 1px solid rgba(197,106,69,0.4); border-radius: 7px; padding: 6px 14px; }
+.new-tag-confirm:hover { background: var(--clay); color: #fff; }
+.new-tag-cancel { background: none; border: none; color: var(--cream-3); font-size: 14px; cursor: pointer; padding: 5px; }
+.new-tag-cancel:hover { color: var(--cream); }
+
+/* search-to-create */
+.tag-search-create { display: none; background: var(--clay-soft); border: 1px dashed rgba(197,106,69,0.5); border-radius: 12px; padding: 5px 12px; cursor: pointer; font-size: 10.5px; font-weight: 400; color: var(--cream-2); transition: background 0.14s; white-space: nowrap; align-items: center; }
+.tag-search-create:hover { background: rgba(197,106,69,0.22); }
+.tag-search-create.show { display: inline-flex; }
+.tag-search-create-name { color: var(--clay-2); font-style: italic; font-family: 'Playfair Display', serif; font-weight: 500; }
+
+/* filter pill */
+.filter-pill { display: none; background: rgba(243,237,225,0.07); border: 1px solid var(--ring-cream); color: var(--cream-2); font-size: 10.5px; font-weight: 400; padding: 5px 11px; border-radius: 12px; align-items: center; gap: 7px; cursor: pointer; white-space: nowrap; }
+.filter-pill:hover { background: rgba(243,237,225,0.12); color: var(--cream); }
+.filter-pill.show { display: flex; }
+
+.esc-hint { position: absolute; bottom: 84px; left: 50%; transform: translateX(-50%); font-size: 10px; font-weight: 300; letter-spacing: 0.06em; color: var(--cream-3); pointer-events: none; opacity: 0; transition: opacity 0.3s; white-space: nowrap; }
+.tagging-active .esc-hint { opacity: 1; }
+
+/* ── FLOATING NAV ── */
+.floating-nav {
+  position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%);
+  height: 52px; background: var(--green-hi); border: 1px solid var(--rule);
+  border-radius: 26px; box-shadow: var(--shadow);
+  display: flex; align-items: center; padding: 0 10px; gap: 2px; z-index: 50;
+}
+.nav-item {
+  height: 38px; padding: 0 20px; border-radius: 19px;
+  font-family: 'Inter', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase;
+  color: var(--cream-3); cursor: pointer; display: flex; align-items: center; user-select: none;
+  transition: color 0.14s, background 0.14s;
+}
+.nav-item:hover { color: var(--cream-2); }
+.nav-item.active { color: var(--cream); background: var(--green-2); }
+
+.toast { position: fixed; bottom: 90px; left: 50%; transform: translateX(-50%) translateY(10px); background: var(--green-hi); border: 1px solid var(--rule); color: var(--cream-2); font-family: 'Playfair Display', serif; font-style: italic; font-size: 13px; padding: 8px 18px; border-radius: 9px; opacity: 0; transition: all 0.22s; pointer-events: none; white-space: nowrap; z-index: 200; box-shadow: var(--shadow); }
+.toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+.empty { grid-column: 1/-1; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; padding: 60px; min-height: 200px; }
+.empty-text { font-family: 'Playfair Display', serif; font-style: italic; font-size: 17px; color: var(--cream-2); text-align: center; }
+.empty-count { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--sage); }
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--rule); border-radius: 3px; }
+</style>
+</head>
+<body>
+<div class="shell">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">
+      <div class="brand-mark">
+        <svg viewBox="0 0 20 20" fill="none"><path d="M6.5 16.5 C6.5 16.5 4.5 11 6.5 7 C8.5 3 14.5 4 15 8 C15.5 12 10.5 15 6.5 15" stroke="#C56A45" stroke-width="1.5" stroke-linecap="round"/><circle cx="9" cy="13" r="1.7" fill="none" stroke="#C56A45" stroke-width="1.3"/></svg>
+      </div>
+      <span class="brand-name">Fosta</span>
+    </div>
+    <div class="header-div"></div>
+    <div class="vault">
+      <span class="vault-dot"></span>
+      <span class="vault-name">Film Work</span>
+      <span class="vault-chev">▾</span>
+    </div>
+    <div class="header-search">
+      <div class="search-wrap">
+        <span class="s-icon">⌕</span>
+        <input class="search-input" id="search" type="text" placeholder="Search notes and tags…" autocomplete="off">
+        <button class="s-clear" id="s-clear">✕</button>
+      </div>
+    </div>
+    <button class="capture-btn" onclick="toast('Capture — opens Quick Look')">
+      <svg viewBox="0 0 14 14" fill="none"><line x1="7" y1="2" x2="7" y2="12" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><line x1="2" y1="7" x2="12" y2="7" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/></svg>
+      Capture
+    </button>
+  </div>
+
+  <!-- SUB BAR -->
+  <div class="subbar">
+    <div class="subbar-row">
+      <div class="panel-head">
+        <span class="panel-title">Notes</span>
+        <div class="tabs">
+          <div class="tab active" onclick="switchTab('inbox',this)">Inbox <span class="badge" id="badge">12</span></div>
+          <div class="tab" onclick="switchTab('all',this)">All</div>
+        </div>
+        <div class="ctrls">
+          <div class="sort-dropdown" id="sort-dropdown">
+            <button class="sort-trigger" id="sort-trigger" onclick="toggleSortMenu()">
+              <span>↕</span><span id="sort-label">Date</span>
+            </button>
+            <div class="sort-menu" id="sort-menu">
+              <div class="sort-option active" data-mode="date" onclick="setSort('date')">Date <span class="sort-check">✓</span></div>
+              <div class="sort-option" data-mode="title" onclick="setSort('title')">Title <span class="sort-check">✓</span></div>
+            </div>
+          </div>
+          <div class="view-group">
+            <button class="ctrl-btn active" id="view-grid-btn" onclick="setView('grid')" title="Grid view">⊞</button>
+            <button class="ctrl-btn" id="view-list-btn" onclick="setView('list')" title="List view">☰</button>
+          </div>
+        </div>
+        <button class="clear-sorted-btn" id="clear-sorted-btn" onclick="clearSorted()" style="margin-left:auto;">✦ Clear sorted</button>
+      </div>
+      <div class="panel-head tags-head">
+        <span class="panel-title">Tags</span>
+        <button class="new-tag-btn" id="new-tag-btn" onclick="openNewTag()">+ New tag</button>
+        <span class="tags-hint" id="tags-hint">hover to create track · click to filter</span>
+        <div class="tag-search-create" id="search-create-row"></div>
+        <div class="filter-pill" id="filter-pill" onclick="clearFilter()"><span id="filter-label"></span><span style="font-size:11px">✕</span></div>
+      </div>
+    </div>
+    <div class="sel-status" id="sel-status"></div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="main">
+    <div class="notes-panel">
+      <div class="note-grid" id="note-grid"></div>
+    </div>
+    <div class="tags-panel" id="tags-panel">
+      <div class="new-tag-input-wrap" id="new-tag-input-wrap">
+        <span class="new-tag-icon">✦</span>
+        <input class="new-tag-input" id="new-tag-input" type="text" placeholder="New tag name…" autocomplete="off" maxlength="32">
+        <button class="new-tag-confirm" id="new-tag-confirm">Create</button>
+        <button class="new-tag-cancel" onclick="closeNewTag()">✕</button>
+      </div>
+      <div class="tags-scroll">
+        <div class="tag-chip-grid" id="tag-chip-grid"></div>
+      </div>
+      <div class="esc-hint">click a tag to apply or remove · Esc to cancel</div>
+    </div>
+  </div>
+
+  <!-- FLOATING NAV -->
+  <div class="floating-nav">
+    <div class="nav-item" onclick="nav(this,'desk')">Desk</div>
+    <div class="nav-item active" onclick="nav(this,'sort')">Sort</div>
+    <div class="nav-item" onclick="nav(this,'develop')">Develop</div>
+    <div class="nav-item" onclick="nav(this,'track')">Track</div>
+    <div class="nav-item" onclick="nav(this,'share')">Share</div>
+  </div>
+</div>
+<div class="toast" id="toast-el"></div>
+
+<script>
+const notes = [
+  {id:1, kind:'note', title:"Interview notes — opening sequence", preview:"The long take approach versus fast cutting to establish rhythm.", date:"Today", tags:["film"], inbox:true},
+  {id:2, kind:'note', title:"Colour grade reference", preview:"Teal-orange contrast, desaturate the midtones. Reference: Arrival.", date:"Today", tags:["film","reference"], inbox:true},
+  {id:3, kind:'note', title:"Client call — Thursday", preview:"Budget sign-off needed. Send the revised treatment by Friday.", date:"Yesterday", tags:["client-x"], inbox:true},
+  {id:4, kind:'note', title:"Voiceover script draft", preview:"'There's a particular quality to the light in November…'", date:"Yesterday", tags:[], inbox:true},
+  {id:5, kind:'note', title:"Location scouting notes", preview:"Warehouse district south of the bridge. Industrial, warm.", date:"2 days ago", tags:[], inbox:true},
+  {id:6, kind:'note', title:"Music reference playlist", preview:"Nils Frahm, Ólafur Arnalds. Sparse. Room for silence.", date:"2 days ago", tags:["film","reference"], inbox:true},
+  {id:7, kind:'note', title:"Edit structure thoughts", preview:"Three-act structure feels wrong. More fragmented, cyclical.", date:"3 days ago", tags:[], inbox:true},
+  {id:8, kind:'note', title:"Budget revision notes", preview:"Equipment hire overrun ~12%. Offset by shorter shoot days.", date:"3 days ago", tags:["client-x"], inbox:true},
+  {id:9, kind:'note', title:"Storyboard session recap", preview:"15 boards done. Opening montage approved. Act 2 needs work.", date:"4 days ago", tags:["film"], inbox:true},
+  {id:10, kind:'note', title:"Sound design brief", preview:"Diegetic sound should outweigh the score in the first act.", date:"4 days ago", tags:[], inbox:true},
+  {id:11, kind:'note', title:"Treatment revision v3", preview:"Less exposition. Let the visuals carry more of the meaning.", date:"5 days ago", tags:["client-x","draft"], inbox:true},
+  {id:12, kind:'note', title:"Post-production schedule", preview:"Eight-week post window. Grade week seven. Delivery week eight.", date:"5 days ago", tags:[], inbox:true},
+  {id:13, kind:'note', title:"Documentary outline — final", preview:"Three-part structure approved. Pre-production Monday.", date:"1 week ago", tags:["film","documentary"], inbox:false},
+  {id:14, kind:'track', title:"November shoot — timeline", preview:"Line track · 9 notes sequenced by shoot date", date:"1 week ago", tags:["film"], inbox:false},
+  {id:15, kind:'archive', title:"Scratchpad — 14 Sept", preview:"Desk archive · 6 nodes · wiped on 24h cycle", date:"1 week ago", tags:[], inbox:false},
+  {id:16, kind:'track', title:"Client X — relationship web", preview:"Web track · spatial map of stakeholders", date:"2 weeks ago", tags:["client-x"], inbox:false},
+];
+const tagData = [
+  {name:"film", count:18}, {name:"client-x", count:31}, {name:"ideas", count:9},
+  {name:"draft", count:14}, {name:"reference", count:11}, {name:"documentary", count:6},
+  {name:"misc", count:3}, {name:"treatment", count:7}, {name:"budget", count:5}, {name:"sound", count:4},
+];
+const liveTrackTags = new Set(["client-x"]);
+
+let tab='inbox', query='', selected=new Set(), filterTags=new Set(), viewMode='grid', hoveredTag=null, sortMode='date';
+const inTagging = ()=>selected.size>0;
+const tagState = name=>{ if(!inTagging()) return 'browse'; const ids=[...selected], have=ids.filter(id=>notes.find(n=>n.id===id)?.tags.includes(name)); if(have.length===0) return 'none'; if(have.length===ids.length) return 'full'; return 'partial'; };
+const getVisible = ()=>{ let ns = tab==='inbox' ? notes.filter(n=>n.inbox && n.kind==='note') : notes; if(filterTags.size) ns=ns.filter(n=>[...filterTags].every(t=>n.tags.includes(t))); if(query){ const q=query.toLowerCase(); ns=ns.filter(n=>n.title.toLowerCase().includes(q)||n.preview.toLowerCase().includes(q)||n.tags.some(t=>t.toLowerCase().includes(q))); } if(sortMode==='title') ns=[...ns].sort((a,b)=>a.title.localeCompare(b.title)); return ns; };
+
+function renderNotes(){
+  const grid=document.getElementById('note-grid'), vis=getVisible(), q=query.toLowerCase();
+  document.getElementById('badge').textContent = notes.filter(n=>n.inbox && n.kind==='note').length;
+  grid.className = 'note-grid' + (viewMode==='list'?' list':'');
+  updateClearBtn();
+  if(!vis.length){ const sorted=notes.filter(n=>n.inbox && n.kind==='note' && n.tags.length>0).length; const msg=query?`No matches for "${query}"`:(sorted>0?`Inbox clear — ${sorted} note${sorted>1?'s':''} sorted`:'Inbox is clear'); const sub=(!query&&sorted>0)?`<div class="empty-count">navigate away and they're gone on return</div>`:''; grid.innerHTML=`<div class="empty"><div class="empty-text">${msg}</div>${sub}</div>`; return; }
+  grid.innerHTML='';
+  vis.forEach(note=>{
+    const isSel=selected.has(note.id), card=document.createElement('div');
+    card.className='note-card'+(isSel?' selected':''); card.dataset.id=note.id;
+    let ind=''; if(inTagging()&&isSel&&hoveredTag&&tagState(hoveredTag)==='partial'){ const has=note.tags.includes(hoveredTag); ind=`<div class="card-tag-indicator ${has?'has-tag':'needs-tag'}">${has?'✓':'+'}</div>`; }
+    const badge = note.kind==='track'?`<span class="card-badge track">Track</span>`:note.kind==='archive'?`<span class="card-badge archive">Archive</span>`:'';
+    if (viewMode === 'list') {
+      card.innerHTML=`${note.kind==='note'?'<div class="card-check">✓</div>':''}${ind}${badge}<div class="title-date"><div class="card-title">${q?hl(note.title,q):note.title}</div><div class="card-date">${note.date}</div></div>${note.tags.length?`<div class="card-tags">${note.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>`:''}`;
+    } else {
+      card.innerHTML=`${note.kind==='note'?'<div class="card-check">✓</div>':''}${ind}${badge}<div class="card-date">${note.date}</div><div class="card-title">${q?hl(note.title,q):note.title}</div><div class="card-preview">${q?hl(note.preview,q):note.preview}</div>${note.tags.length?`<div class="card-tags">${note.tags.map(t=>`<span class="card-tag">${t}</span>`).join('')}</div>`:''}`;
+    }
+    if(note.kind==='note') card.addEventListener('click',()=>toggleSelect(note.id));
+    else { card.style.cursor='pointer'; card.addEventListener('dblclick',()=>toast(note.kind==='track'?`Opening "${note.title}" as a tab`:`Opening Desk history at ${note.title}`)); }
+    grid.appendChild(card);
+  });
+}
+const hl=(t,q)=>t.replace(new RegExp(`(${q.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')})`,'gi'),'<mark style="background:rgba(203,164,90,0.26);color:var(--gold);border-radius:3px">$1</mark>');
+
+function toggleSelect(id){ selected.has(id)?selected.delete(id):selected.add(id); document.getElementById('tags-panel').classList.toggle('tagging-active',inTagging()); updateSel(); updateHint(); renderNotes(); renderTags(); }
+function clearSelection(){ selected.clear(); hoveredTag=null; document.getElementById('tags-panel').classList.remove('tagging-active'); updateSel(); updateHint(); renderNotes(); renderTags(); }
+function updateSel(){ const el=document.getElementById('sel-status'); if(selected.size>0){ el.innerHTML=`<span>${selected.size} note${selected.size>1?'s':''} selected · keep clicking tags</span><span class="sel-x">✕</span>`; el.classList.add('show'); } else el.classList.remove('show'); }
+function updateClearBtn(){ const btn=document.getElementById('clear-sorted-btn'); const n=notes.filter(x=>x.inbox && x.kind==='note' && x.tags.length>0).length; if(tab==='inbox'&&n>0&&!inTagging()){ btn.innerHTML=`✦ Clear sorted <span style="opacity:0.6;font-size:10px">(${n})</span>`; btn.classList.add('show'); } else btn.classList.remove('show'); }
+function clearSorted(){ const cards=[...document.querySelectorAll('.note-card')]; const ids=notes.filter(n=>n.inbox && n.kind==='note' && n.tags.length>0).map(n=>n.id); let d=0; cards.forEach(c=>{ if(ids.includes(+c.dataset.id)){ setTimeout(()=>c.classList.add('exiting'),d); d+=45; } }); setTimeout(()=>{ ids.forEach(id=>{ const n=notes.find(x=>x.id===id); if(n)n.inbox=false; }); clearSelection(); renderNotes(); renderTags(); toast(`${ids.length} note${ids.length>1?'s':''} cleared from inbox`); }, d+280); }
+
+function handleTagClick(name){
+  if(!inTagging()){ if(filterTags.has(name)) filterTags.delete(name); else filterTags.add(name); updateFilterPill(); updateHint(); renderNotes(); renderTags(); return; }
+  const state=tagState(name), ids=[...selected];
+  if(state==='full'){ ids.forEach(id=>{ const n=notes.find(x=>x.id===id); if(n)n.tags=n.tags.filter(t=>t!==name); }); toast(`Removed "${name}" from ${ids.length} note${ids.length>1?'s':''}`); }
+  else { const added=ids.filter(id=>{ const n=notes.find(x=>x.id===id); if(n&&!n.tags.includes(name)){ n.tags.push(name); return true; } return false; }); toast(state==='partial'?`Extended "${name}" to ${added.length} remaining`:`Applied "${name}" to ${ids.length} note${ids.length>1?'s':''}`); }
+  renderNotes(); renderTags();
+}
+function updateFilterPill(){ const pill=document.getElementById('filter-pill'), label=document.getElementById('filter-label'); if(filterTags.size>0){ label.textContent='Filtered: '+[...filterTags].join(' + '); pill.classList.add('show'); } else pill.classList.remove('show'); }
+function clearFilter(){ filterTags.clear(); document.getElementById('filter-pill').classList.remove('show'); updateHint(); renderNotes(); renderTags(); }
+
+function tagCount(name){ return notes.filter(n=>n.tags.includes(name)).length; }
+
+function renderTags(){
+  const grid=document.getElementById('tag-chip-grid'); grid.innerHTML='';
+  const q=query.toLowerCase(); const matchT = q ? tagData.filter(t=>t.name.toLowerCase().includes(q)).map(t=>t.name) : null;
+  const scr=document.getElementById('search-create-row'); const exists=tagData.map(t=>t.name.toLowerCase());
+  if(q && !exists.includes(q) && !inTagging()){ scr.classList.add('show'); scr.innerHTML=`Create <span class="tag-search-create-name">${query}</span> as a new tag`; scr.onclick=()=>createTag(query); } else scr.classList.remove('show');
+
+  // retain natural order — a filtered tag stays in place, just shown selected
+  tagData.forEach(tag=>{
+    const state=tagState(tag.name);
+    const isFaded = matchT && !matchT.includes(tag.name);
+    const isFilter = filterTags.has(tag.name) && !inTagging();
+    let suffix=''; if(inTagging()){ if(state==='none') suffix='+'; else if(state==='partial') suffix='–'; else if(state==='full') suffix='✕'; }
+    let tip='';
+    if(!inTagging()){ if(isFilter) tip='Click to deselect'; else if(liveTrackTags.has(tag.name)) tip=`<span class="tip-create" data-tag="${tag.name}" data-live="1">Open live Track</span> · click to filter`; else tip=`<span class="tip-create" data-tag="${tag.name}">+ Create Track</span> · click to filter`; }
+
+    const el=document.createElement('div'); el.className='tag-chip';
+    if(isFaded) el.classList.add('faded');
+    if(state==='partial') el.classList.add('state-partial');
+    if(state==='full') el.classList.add('state-full');
+    if(state==='none'&&inTagging()) el.classList.add('state-none');
+    if(isFilter) el.classList.add('state-filter');
+    el.innerHTML=`<span class="tag-chip-name">${tag.name}</span>${suffix?`<span class="tag-chip-suffix">${suffix}</span>`:''}<span class="tag-chip-count">${tagCount(tag.name)}</span>${tip?`<span class="tag-tip">${tip}</span>`:''}`;
+    el.addEventListener('mouseenter',()=>{ if(inTagging()){ hoveredTag=tag.name; renderNotes(); } });
+    el.addEventListener('mouseleave',()=>{ if(inTagging()){ hoveredTag=null; renderNotes(); } });
+    el.addEventListener('click',()=>handleTagClick(tag.name));
+    grid.appendChild(el);
+  });
+  if(!inTagging()) updateFilterPill(); else document.getElementById('filter-pill').classList.remove('show');
+}
+document.getElementById('tags-panel').addEventListener('click',e=>{ const btn=e.target.closest('.tip-create'); if(btn){ e.stopPropagation(); toast(btn.dataset.live?`Opening existing live Track for "${btn.dataset.tag}"`:`Track created from "${btn.dataset.tag}"`); } });
+
+function updateHint(){ const hint=document.getElementById('tags-hint'), q=query.toLowerCase(); if(inTagging()){ hint.textContent='click a tag to apply or remove'; hint.classList.add('tagging'); } else if(filterTags.size){ const t=[...filterTags]; hint.textContent=t.length===1?`Filtered by "${t[0]}"`:`Filtered by ${t.length} tags`; hint.classList.remove('tagging'); } else if(q){ const m=tagData.filter(t=>t.name.toLowerCase().includes(q)); hint.textContent=m.length?`${m.length} matching`:`No tags matching`; hint.classList.remove('tagging'); } else { hint.textContent='hover to create track · click to filter'; hint.classList.remove('tagging'); } }
+
+function createTag(name){ const t=name.trim().toLowerCase().replace(/[^a-z0-9-]/g,'-').replace(/-+/g,'-').replace(/^-|-$/g,''); if(!t){ toast('Tag name cannot be empty'); return; } if(tagData.find(x=>x.name===t)){ toast(`"${t}" already exists`); return; } tagData.push({ name:t, count:0 }); document.getElementById('search').value=''; query=''; document.getElementById('s-clear').style.display='none'; closeNewTag(); renderTags(); updateHint(); toast(`Tag "${t}" created`); }
+function openNewTag(){ document.getElementById('new-tag-input-wrap').classList.add('show'); const i=document.getElementById('new-tag-input'); i.value=''; i.focus(); document.getElementById('new-tag-btn').style.opacity='0.4'; }
+function closeNewTag(){ document.getElementById('new-tag-input-wrap').classList.remove('show'); document.getElementById('new-tag-btn').style.opacity='1'; }
+document.getElementById('new-tag-input').addEventListener('keydown',e=>{ if(e.key==='Enter'){ createTag(e.target.value); e.preventDefault(); } e.stopPropagation(); });
+document.getElementById('new-tag-confirm').addEventListener('click',()=>createTag(document.getElementById('new-tag-input').value));
+
+document.getElementById('search').addEventListener('input',e=>{ query=e.target.value.trim(); document.getElementById('s-clear').style.display=query?'block':'none'; updateHint(); renderNotes(); renderTags(); });
+document.getElementById('s-clear').addEventListener('click',()=>{ document.getElementById('search').value=''; query=''; document.getElementById('s-clear').style.display='none'; updateHint(); renderNotes(); renderTags(); document.getElementById('search').focus(); });
+document.addEventListener('keydown',e=>{ if(e.key==='Escape'){ if(document.getElementById('new-tag-input-wrap').classList.contains('show')) closeNewTag(); else if(inTagging()) clearSelection(); } });
+document.getElementById('sel-status').addEventListener('click',()=>clearSelection());
+
+function switchTab(t,el){ tab=t; clearSelection(); filterTags.clear(); document.getElementById('filter-pill').classList.remove('show'); document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active')); el.classList.add('active'); renderNotes(); }
+function toggleSortMenu(){ document.getElementById('sort-dropdown').classList.toggle('open'); }
+function setSort(mode){
+  sortMode=mode;
+  document.getElementById('sort-label').textContent = mode==='date' ? 'Date' : 'Title';
+  document.querySelectorAll('.sort-option').forEach(o=>o.classList.toggle('active', o.dataset.mode===mode));
+  document.getElementById('sort-dropdown').classList.remove('open');
+  toast('Sorted by '+mode);
+  renderNotes();
+}
+document.addEventListener('click', e => {
+  const dd = document.getElementById('sort-dropdown');
+  if (dd.classList.contains('open') && !dd.contains(e.target)) dd.classList.remove('open');
+});
+function setView(mode){ viewMode=mode; document.getElementById('view-grid-btn').classList.toggle('active',mode==='grid'); document.getElementById('view-list-btn').classList.toggle('active',mode==='list'); renderNotes(); }
+function nav(el,name){ document.querySelectorAll('.nav-item').forEach(i=>i.classList.remove('active')); el.classList.add('active'); if(name!=='sort') toast(`Opening ${name.charAt(0).toUpperCase()+name.slice(1)}…`); }
+let tt; function toast(m){ const t=document.getElementById('toast-el'); t.textContent=m; t.classList.add('show'); clearTimeout(tt); tt=setTimeout(()=>t.classList.remove('show'),2600); }
+
+renderNotes(); renderTags();
+</script>
+</body>
+</html>
