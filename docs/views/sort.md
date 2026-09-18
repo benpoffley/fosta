@@ -102,6 +102,18 @@ Two paths to create a new tag:
 
 Tag names are normalised on creation: lowercase, spaces to hyphens.
 
+### Tag management — rename and delete, directly in Sort
+
+Sort is the home for a tag's full lifecycle, not just applying it to notes. This is a deliberate exception to the quick-add/manage split used elsewhere in the app (see [Settings](../foundations/settings.md#tag-management-lives-in-sort-not-settings)) — tags are worked with continuously as part of Sort's own core activity, not an app-wide configuration list, so their management stays where that work already happens.
+
+**Rename — available on hover, browse mode only, any tag regardless of use.** A pencil icon appears on a chip on hover. Clicking it turns the chip's name into an inline text field, pre-filled with the current name. Enter commits, Escape cancels back to the original name. Renaming updates the tag on every note that carries it — a tag is a name, not a separate object with its own identity, so renaming is a single, safe operation regardless of how many notes are affected. If the new name collides with a different existing tag, the rename is blocked with an inline error; there is no merge-on-rename behaviour in v1.
+
+**Delete — available on hover, browse mode only, empty tags only.** A ✕ appears alongside the pencil icon, but only on a chip whose count is 0. Clicking it asks for a lightweight one-click confirmation, then removes the tag from the vocabulary entirely.
+
+**In-use tags cannot be deleted directly.** A tag with one or more notes attached shows the rename pencil on hover, but never the delete ✕. To retire an in-use tag, remove it from its remaining notes first (via the existing select-notes-then-click-a-full-state-chip pattern in the Interaction model below) until its count reaches 0 — at which point it becomes deletable — or rename it if the label itself is what needs to change.
+
+Both icons are hover-only and scoped to browse mode, since hovering a chip in tagging mode already has a meaning (revealing the add/extend/remove suffix) — see Interaction model, below.
+
 ---
 
 ## Interaction model
@@ -115,7 +127,7 @@ The tag panel operates in two distinct modes depending on whether notes are sele
 | Click a tag chip | Adds tag to active filter. Cream/ink ring appears on the chip, in place — no reordering. |
 | Click another tag | Added to filter (AND logic — notes must carry all active tags) |
 | Click an active tag | Removes it from filter |
-| Hover a tag | "Create Track" tooltip appears (clickable) — or "Open live Track" if a Live track already exists for that exact tag, see [Global Actions](../foundations/global-actions.md) |
+| Hover a tag | "Create Track" tooltip appears (clickable) — or "Open live Track" if a Live track already exists for that exact tag, see [Global Actions](../foundations/global-actions.md). A rename pencil also appears on the chip, and a delete ✕ as well if the tag has no notes — see [Tag management](#tag-management--rename-and-delete-directly-in-sort). |
 
 **Multi-tag filter:** multiple tags can be active simultaneously. The note grid shows only notes that carry **all** active filter tags. A filter pill appears at the far right of the Tags sub-bar showing the active combination (e.g. "Filtered: film + client-x").
 
