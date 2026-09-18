@@ -13,7 +13,7 @@ Fosta's global, infrequent configuration surface. Settings is deliberately small
 
 ## Access
 
-Standard macOS convention: `Fosta → Settings…` menu, with the `⌘,` keyboard shortcut. No icon or entry point in the header or the bottom toolbar — the toolbar's role is now purely the view switcher (Capture moved to the [App Header](app-header.md)), and Settings doesn't belong in that workflow loop either way.
+Standard macOS convention: `Fosta → Settings…` menu, with the `⌘,` keyboard shortcut. No icon or entry point in the header or the [View Switcher](view-switcher.md) — Settings doesn't belong in that workflow loop.
 
 This deliberately splits two things that might otherwise be bundled together:
 

@@ -21,9 +21,7 @@ A persistent header bar at the top of the window, consistent across views.
 | Search | Centred | Global search — behaviour is view-dependent; on Sort it searches notes and tags simultaneously (see `docs/views/sort.md`) |
 | Capture | Far right | Opens the Capture surface (Quick Look, note variant). See [Capture](capture.md). |
 
-## The bottom toolbar
-
-With Capture living in the header, the bottom toolbar holds only the five view tabs. It is a floating, detached pill rather than a bar fixed flush to the bottom edge.
+See also [View Switcher](view-switcher.md) — the separate persistent control for moving between views.
 
 ## Consistency across views
 

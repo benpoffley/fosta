@@ -12,7 +12,7 @@ layout: default
 
 ## The five views
 
-Fosta has five views accessible from a persistent, floating bottom toolbar. Capture is a global action available from every view via the [App Header](../foundations/app-header.md), not a toolbar tab.
+Fosta has five views accessible from a persistent [View Switcher](../foundations/view-switcher.md). Capture is a global action available from every view via the [App Header](../foundations/app-header.md), not part of the switcher.
 
 | View | Name status | Purpose |
 |---|---|---|
@@ -29,7 +29,7 @@ Three view names are held until the hi-fi Figma phase, when real screens with re
 
 ## Layout
 
-All views share a persistent [App Header](../foundations/app-header.md) (logo, vault switcher, search, Capture) and a persistent bottom toolbar for navigation. The toolbar is a floating, detached pill holding only the five view tabs — Capture lives in the header. Capture is accessible from every view via keyboard shortcut and the header button.
+All views share a persistent [App Header](../foundations/app-header.md) (logo, vault switcher, search, Capture) and a persistent [View Switcher](../foundations/view-switcher.md) for navigation. Capture is accessible from every view via keyboard shortcut and the header button.
 
 **Desk's header treatment is not yet decided** — see [App Header](../foundations/app-header.md#consistency-across-views).
 
