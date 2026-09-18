@@ -13,6 +13,15 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Changelog rebuilt — every entry since July had been dumped into one undated block
+**18 September 2026 · Process fix**
+
+The changelog's own stated purpose is a terse record of *what* changed and *when*, but every change since the initial `v0.2.0 — July 2026` heading was created had simply been appended to that same block, regardless of when it actually happened — three months of entries with no real dates attached, just a stale month-level label from the first entry ever added under it.
+
+Rebuilt by cross-referencing every changelog line against `story.md`'s own dated entries (which had been kept accurate throughout) and re-grouping into proper per-date sections. Nothing was removed — all 85 existing entries carried over, just correctly dated and grouped. The arbitrary `v0.2.0` / `v0.1.0` / `v0.0` version numbering was also dropped in favour of plain dates, since no version number was ever referenced meaningfully elsewhere in the project.
+
+---
+
 ## Sort becomes the home for tag management, not just tag application
 **18 September 2026 · Design decision**
 
