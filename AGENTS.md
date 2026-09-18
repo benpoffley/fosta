@@ -39,6 +39,27 @@ When sections conflict, higher beats lower:
 5. Current development — `docs/project/current-development.md`
 6. Roadmap — lowest authority
 
+## Keep process out of product docs
+
+`docs/product/`, `docs/views/`, and `docs/foundations/` describe **current state only**. Someone opening any of these pages should be able to read a clean, standalone spec without needing to know how Fosta got there.
+
+**Never write into these pages:**
+- "Confirmed during hi-fi prototyping…"
+- "This replaced an earlier direction where…"
+- "Was found to be disorienting…" / "…confusing" / any rationale framed as a discovery
+- "As earlier documented…" / "Previously, this was…"
+- Any comparison to a prior version, rejected alternative, or how a decision was reached
+
+That narrative belongs in `docs/project/story.md` (the "why and how," full prototyping/decision history) and `docs/project/changelog.md` (terse "what changed and when") — **not duplicated into the spec it describes.** Write it once, in the right file. If a spec page needs updating because of a new decision, update the spec to state the new current truth plainly, and put the story of how you got there in `story.md` only.
+
+**Exceptions — these pages exist specifically to track history/status, so process language belongs there:**
+- `docs/project/open-questions.md` — tracking resolution of open items
+- `docs/project/changelog.md` — a log, by definition
+- `docs/project/story.md` — the narrative record, by definition
+- `docs/engineering/design-tokens.md` — explicitly a WIP staging doc pending finalisation
+
+**A quick self-check before writing to any `product/`, `views/`, or `foundations/` page:** if a sentence would still make sense to someone who has never seen a previous version of this doc, keep it. If it only makes sense by reference to what the doc used to say, cut it or move it to `story.md`.
+
 ## Stack — final, do not suggest alternatives
 
 Tauri 2 · React 18 + TypeScript · Tailwind · Tiptap · tldraw (renderer only, never storage) · Markdown-on-disk source of truth (YAML frontmatter) · SQLite index (via Tauri SQL plugin) · Zustand · Cloudflare (work-access only).

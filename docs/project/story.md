@@ -13,6 +13,19 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Process language caught bleeding into spec docs; new standing rule added to AGENTS.md
+**18 September 2026 · Process fix**
+
+While reviewing the Sort hi-fi and App Header work, a real problem surfaced: spec pages (`docs/product/`, `docs/views/`, `docs/foundations/`) had been written with process narrative embedded directly in them — phrases like "confirmed during hi-fi prototyping," "this replaced an earlier direction," "was found to be disorienting," "as earlier documented." That language belongs entirely in `story.md`, which already contained the full correct narrative — the problem was duplication, not a missing record. Spec pages should read as pure current-state truth; someone opening one cold shouldn't need to know what came before.
+
+Every affected page (`sort.md`, `app-header.md`, `capture.md`, `settings.md`, `global-actions.md`, `product/views.md`, `design-tokens.md`) was rewritten to strip the comparison/history language, leaving only declarative current-state content. `open-questions.md` and `changelog.md` were correctly left untouched — their entire job is tracking resolution history, so that register belongs there.
+
+A standing rule was added to `AGENTS.md` ("Keep process out of product docs") so this doesn't need to be caught and corrected by hand each time: `product/`, `views/`, and `foundations/` pages get current-state-only language; `story.md` and `changelog.md` get the narrative and the log; `open-questions.md` and `design-tokens.md` are named as legitimate exceptions since they exist specifically to track status. The self-check included: if a sentence only makes sense by reference to what the doc used to say, it doesn't belong there.
+
+While doing this pass, the App Header's "bottom toolbar" subsection was also split out into its own Foundation page, **View Switcher** — the two are separate persistent UI elements with no real dependency between them, and "toolbar" was a vague name for something whose actual job is switching views. Terminology updated across all current spec references; left as "bottom toolbar" in this file's own historical entries, since that's the term that was actually in use at the time.
+
+---
+
 ## Sort hi-fi prototyping locks in the interaction model; global App Header introduced
 **18 September 2026 · Design milestone**
 

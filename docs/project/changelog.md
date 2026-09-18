@@ -17,6 +17,9 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 
 ## v0.2.0 — July 2026
 
+- AGENTS.md: added standing rule "Keep process out of product docs" -- product/views/foundations pages are current-state only, prototyping/decision narrative stays in story.md
+- Split View Switcher out of App Header into its own Foundation page; renamed "bottom toolbar" to "View Switcher" across current spec docs
+- Stripped process/history language (e.g. "confirmed during hi-fi prototyping") from sort.md, app-header.md, capture.md, settings.md, global-actions.md, product/views.md, design-tokens.md
 - New Foundations page: App Header — logo, vault switcher, search, Capture consolidated into one persistent header, consistent across views (Desk pending discovery, logged as an open question)
 - Capture moved from a view-dependent bottom-toolbar button to a single header button; Desk's existing inline capture bar left unreconciled pending discovery
 - Vault switcher moved from a standalone top-left control into the App Header
