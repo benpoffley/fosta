@@ -42,6 +42,6 @@ The broader principle — "create or send any item from any context where it mak
 ## Design principles
 
 - Splitting views into sub-screens for minor state differences is wrong
-- The bottom toolbar is always visible — navigation is never more than one tap away
+- The View Switcher is always visible — navigation is never more than one tap away
 - Deferred complexity: features that add architectural weight without proportional user value belong in v2
 - Build phase discipline: use each phase before proceeding to the next

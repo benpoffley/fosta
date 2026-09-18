@@ -9,4 +9,4 @@ layout: default
 
 Global capabilities available across all views — not scoped to any single view.
 
-Foundations are: **Capture**, **Global Actions**, **Quick Look**, **Canvas Nodes**, **View State Persistence**, and **Settings**.
+Foundations are: **App Header**, **View Switcher**, **Capture**, **Global Actions**, **Quick Look**, **Canvas Nodes**, **View State Persistence**, and **Settings**.

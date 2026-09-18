@@ -17,6 +17,18 @@ Where decisions evolve, preserve historical context. Do not delete previous deci
 
 ## v0.2.0 — July 2026
 
+- New Foundations page: App Header — logo, vault switcher, search, Capture consolidated into one persistent header, consistent across views (Desk pending discovery, logged as an open question)
+- Capture moved from a view-dependent bottom-toolbar button to a single header button; Desk's existing inline capture bar left unreconciled pending discovery
+- Vault switcher moved from a standalone top-left control into the App Header
+- Bottom toolbar: now a floating detached pill, navigation-only (five view tabs, no Capture)
+- Sort: tag cloud (frequency-sized glowing orbs) replaced with flat tag chips (name + exact count)
+- Sort: tag order is now stable — filtering/applying no longer reorders the list to the front
+- Sort: selection-status and filter pills unified into one visual component; clearing standardised to Esc or the pill's ✕ only (click-outside removed)
+- Sort: sort control changed from a blind cycle-button to a labelled dropdown; grid/list toggle changed from a blind single button to two discoverable icons
+- Sort: both panel sub-bars now flow the same direction (title → primary control → hint → transient state far right)
+- Sort: list view shows a distinct, denser field set (no preview; date hugs the title) instead of a reflowed grid card
+- Sort: note grid is now responsive (auto-fill columns) instead of a fixed 3-column layout
+- Added two work-in-progress visual prototypes to the repo: `assets/prototypes/sort-hifi-darkmode.html` and `sort-hifi-lightmode.html` — same markup/logic, different colour palettes, neither final
 - Track: redefined around persistence/naming rather than "constraint" — Web is Track's free-form member by design, mirroring Desk's capabilities
 - Freeform nodes extended to Track's Web layout (not Line, not Thread) — confirmed distinct from Track's existing anchor-required annotation nodes
 - Canvas Nodes: freeform lifecycle now documented per-host (Desk: ephemeral + pinnable; Web: permanent by default, no pinning concept needed)

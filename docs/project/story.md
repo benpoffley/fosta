@@ -13,6 +13,25 @@ A log of how Fosta was built — decisions made, problems solved, things learned
 
 ---
 
+## Sort hi-fi prototyping locks in the interaction model; global App Header introduced
+**18 September 2026 · Design milestone**
+
+A full hi-fi prototyping pass on Sort produced a locked-in interaction model and surfaced one architectural decision bigger than Sort itself: the App Header.
+
+**The App Header is now a Foundation, not a Sort-specific layout choice.** Fosta's logo, the vault switcher, search, and Capture were consolidated into one persistent header bar, confirmed consistent across views — with one deliberate exception. Capture moves out of the bottom toolbar (previously a transient + button, always-visible only on Desk) into a single, consistently-placed header button. The vault switcher moves out of its earlier standalone top-left position into the header, next to the logo. The bottom toolbar, now holding only the five view tabs, also became a floating detached pill rather than a bar fixed to the bottom edge. **Desk's treatment is explicitly not decided** — it already has its own persistent inline capture bar built into the canvas, and whether that coexists with or is replaced by the header's Capture button needs its own discovery pass, logged as an open question rather than resolved by extension from Sort.
+
+**Sort's tag cloud became tag chips.** The frequency-sized glowing-orb cloud was replaced with flat chips showing a tag's name and an exact count — more legible at volume, and the count number does the "how often is this used" job more precisely than an approximate orb size ever did. A related fix: filtering or applying a tag no longer reorders the list. An earlier direction sorted active filters to the front, which made the list jump around disorientingly; tags now hold their position and just change visual state in place.
+
+**Selection and filtering were unified into one consistent pattern.** Notes-selection status and the tags-filter status are now the same visual component — a neutral outline pill with a dismiss ✕ — positioned symmetrically (far right of each panel's own sub-bar). Both clear the same two ways: Esc, or the pill's ✕. "Click outside to clear" was deliberately removed from both, since it was undiscoverable and previously only applied to notes anyway, not tags.
+
+**Two discoverability fixes to the sub-bar controls.** Sort order was a blind cycle-button with no visible label; it's now a dropdown showing the current mode with both options listed. Grid/list was a single blind toggle hiding whichever mode you weren't in; it's now two adjacent, always-visible icons. Both panel sub-bars were also corrected to flow the same direction — Tags previously mirrored Notes (title on the right), which fought the Notes side; both now read title → primary control → hint → transient state, left to right.
+
+**List view now shows different fields than grid view, not just a reflowed card.** Preview text is dropped entirely; the row order is checkbox → title → date (hugging the title, not pushed to the far edge) → tags. The note grid itself became responsive — auto-fill columns rather than a fixed 3-column layout, so it fluidly adds a 4th column as the window widens.
+
+**Two work-in-progress visual directions were built and added to the repo** — `sort-hifi-darkmode.html` and `sort-hifi-lightmode.html` — sharing identical markup and interaction logic, differing only in CSS colour variables. Dark mode draws from a warm counseling-site reference; light mode from an architectural logo reference (Cache Valley Breaking), with accent colours deepened for contrast on a light ground. Neither is a final visual system — both exist to stress-test whether the locked interaction model reads well in either direction before one is chosen. The earlier `sort-v1.html` prototype (glowing-orb tags, Sort-local header) is kept for historical reference but no longer reflects the current model.
+
+---
+
 ## Deep prototype review, round two: Web redefined, freeform extended, several architectural questions resolved
 **14 September 2026 · Architecture decision**
 
